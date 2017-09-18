@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wuxiaoqi.news.app">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".NewsClientApplication"
         android:allowBackup="true"
@@ -10,13 +12,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyAppTheme">
-        <activity android:name="com.wuxiaoqi.news.app.activity.MainActivity">
+        <activity
+            android:name=".activity.LaunchActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.AdActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullAppTheme"></activity>
+        <activity android:name=".activity.MainActivity"></activity>
     </application>
 
 </manifest>

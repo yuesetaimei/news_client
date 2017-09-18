@@ -1,4 +1,4 @@
-package com.wuxiaoqi.news.app.activity;
+package com.wuxiaoqi.news.app.base;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -56,7 +56,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     public abstract void initEvent();
 
     @Subscribe
-    public abstract void onEventBus();
+    public void onEventBus(BaseEvent event){
+    };
 
     @Override
     protected void onStart() {
@@ -80,7 +81,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        EventBus.getDefault().register(this);
+        EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
 }

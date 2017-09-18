@@ -1,33 +1,63 @@
 package com.wuxiaoqi.news.app.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.os.Handler;
+import android.os.Message;
 
-import org.greenrobot.eventbus.Subscribe;
+import com.wuxiaoqi.news.app.R;
+import com.wuxiaoqi.news.app.base.BaseActivity;
+import com.wuxiaoqi.news.app.presenter.LaunchPresenter;
 
 /**
  * Created by wuxiaoqi on 2017/9/18.
  * 启动页
  */
 
-public class LaunchActivity extends BaseActivity{
+public class LaunchActivity extends BaseActivity implements LaunchPresenter.ILaunchView {
+
+    private final String TAG = "LaunchActivity";
+
+    private LaunchPresenter presenter;
+
+    private boolean setAdData = false;
+
     @Override
     public void initData(Bundle bundle) {
-        
     }
 
     @Override
     public int getContentView() {
-        return 0;
+        return R.layout.activity_launch;
     }
 
     @Override
     public void initEvent() {
-
+        presenter = new LaunchPresenter(this);
+        presenter.start();
+        handler.sendEmptyMessageDelayed(1, 3000);
     }
 
     @Override
-    public void onEventBus() {
-
+    public void setAdDataSuccess() {
+        setAdData = true;
     }
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    if (setAdData) {
+                        AdActivity.startActivity(LaunchActivity.this);
+                    } else {
+                        MainActivity.startActivity(LaunchActivity.this);
+                    }
+                    finish();
+                    overridePendingTransition(0, 0);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 }
