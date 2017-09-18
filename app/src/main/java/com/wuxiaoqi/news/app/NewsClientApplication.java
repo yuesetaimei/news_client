@@ -5,4 +5,11 @@ package com.wuxiaoqi.news.app;
  */
 
 public class NewsClientApplication extends BaseApplication{
+
+    private final String TAG = "NewsClientApplication";
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
 }
