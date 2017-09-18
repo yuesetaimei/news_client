@@ -1,4 +1,4 @@
-package com.wuxiaoqi.news.myapplication;
+package com.wuxiaoqi.news.app;
 
 import org.junit.Test;
 

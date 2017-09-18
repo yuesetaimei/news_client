@@ -1,7 +1,9 @@
-package com.wuxiaoqi.news.myapplication;
+package com.wuxiaoqi.news.app.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.wuxiaoqi.news.app.R;
 
 public class MainActivity extends AppCompatActivity {
 
