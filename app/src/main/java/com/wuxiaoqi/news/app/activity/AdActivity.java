@@ -9,7 +9,9 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.wuxiaoqi.news.app.R;
 import com.wuxiaoqi.news.app.base.BaseActivity;
-import com.wuxiaoqi.news.app.base.BaseEvent;
+import com.wuxiaoqi.news.app.constant.ConstantImageUrl;
+
+import java.util.Random;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -44,7 +46,11 @@ public class AdActivity extends BaseActivity {
 
     @Override
     public void initEvent() {
-        Glide.with(this).load(R.mipmap.test_ad).into(adImg);
+        int i = new Random().nextInt(ConstantImageUrl.TRANSITION_URLS.length);
+        Glide.with(this).load(ConstantImageUrl.TRANSITION_URLS[i])
+                .placeholder(R.mipmap.test_ad)
+                .error(R.mipmap.test_ad)
+                .into(adImg);
         adImg.postDelayed(new Runnable() {
             @Override
             public void run() {
