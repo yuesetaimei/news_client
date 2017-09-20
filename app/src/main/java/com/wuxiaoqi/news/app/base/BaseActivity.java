@@ -29,7 +29,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.saveInstanceState = savedInstanceState;
-        initData(getIntent().getExtras());
         if (enableBindView()) {
             binding = DataBindingUtil.setContentView(this, getContentView());
         } else {
@@ -38,6 +37,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         EventBus.getDefault().register(this);
         initViews();
+        initData(getIntent().getExtras());
+        initWindow();
         initEvent();
     }
 
@@ -46,6 +47,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public abstract void initData(Bundle bundle);
+
+    protected void initWindow() {
+    }
 
     protected void initViews() {
     }
@@ -56,8 +60,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     public abstract void initEvent();
 
     @Subscribe
-    public void onEventBus(BaseEvent event){
-    };
+    public void onEventBus(BaseEvent event) {
+    }
+
+    ;
 
     @Override
     protected void onStart() {

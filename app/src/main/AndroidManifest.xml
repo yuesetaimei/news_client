@@ -12,6 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyAppTheme">
+
+        <!-- 启动页 -->
         <activity
             android:name=".activity.LaunchActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
@@ -23,12 +25,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 广告图片页 -->
         <activity
             android:name=".activity.AdActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:screenOrientation="portrait"
             android:theme="@style/FullAppTheme"></activity>
-        <activity android:name=".activity.MainActivity"></activity>
+
+        <!-- 首页 -->
+        <activity
+            android:name=".activity.MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

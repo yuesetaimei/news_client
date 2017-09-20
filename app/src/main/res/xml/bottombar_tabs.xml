@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        barColorWhenSelected="@color/colorPrimary"
+        icon="@drawable/ic_stars_white_24dp"
+        id="@+id/tab_recommend"
+        title="推荐" />
+    <tab
+        barColorWhenSelected="@color/colorPrimary"
+        icon="@drawable/ic_looks_white_24dp"
+        id="@+id/tab_welfare"
+        title="福利" />
+    <tab
+        barColorWhenSelected="@color/colorPrimary"
+        icon="@drawable/ic_book_white_24dp"
+        id="@+id/tab_literature"
+        title="文学" />
+    <tab
+        barColorWhenSelected="@color/colorPrimary"
+        icon="@drawable/ic_person_white_24dp"
+        id="@+id/tab_watercress"
+        title="我的" />
+</tabs>
