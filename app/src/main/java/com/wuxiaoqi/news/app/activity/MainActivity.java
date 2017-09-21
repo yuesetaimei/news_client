@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.IdRes;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 import com.wuxiaoqi.news.app.R;
 import com.wuxiaoqi.news.app.base.BaseActivity;
+import com.wuxiaoqi.news.app.fragment.RecommentFragment;
 import com.wuxiaoqi.news.app.view.statusbar.StatusBarUtil;
 
 import butterknife.InjectView;
@@ -80,6 +82,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     @Override
+    protected void initViews() {
+        initFragment(FRAGMENT_ONE);
+    }
+
+    @Override
+    protected int getContentFragmentId() {
+        return rootView.getId();
+    }
+
+    @Override
     public void initEvent() {
         drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
@@ -111,12 +123,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             public void onTabSelected(@IdRes int tabId) {
                 switch (tabId) {
                     case R.id.tab_recommend://推荐
+                        Toast.makeText(MainActivity.this, "推荐", Toast.LENGTH_SHORT).show();
+                        setFragment(FRAGMENT_ONE);
                         break;
                     case R.id.tab_welfare://福利
+                        Toast.makeText(MainActivity.this, "福利", Toast.LENGTH_SHORT).show();
+                        setFragment(FRAGMENT_TWO);
                         break;
                     case R.id.tab_literature://文学
+                        Toast.makeText(MainActivity.this, "文字", Toast.LENGTH_SHORT).show();
+                        setFragment(FRAGMENT_THREE);
                         break;
                     case R.id.tab_watercress://我的
+                        Toast.makeText(MainActivity.this, "我的", Toast.LENGTH_SHORT).show();
+                        setFragment(FRAGMENT_FOUR);
                         break;
                     default:
                         break;
@@ -174,5 +194,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    @Override
+    protected Fragment findFragmentByIndex(int index) {
+        Fragment fragment = RecommentFragment.getInstance();
+
+        switch (index) {
+            case FRAGMENT_ONE:
+                break;
+            case FRAGMENT_TWO:
+
+                break;
+            case FRAGMENT_THREE:
+
+                break;
+            case FRAGMENT_FOUR:
+
+                break;
+            default:
+                break;
+        }
+        return fragment;
     }
 }

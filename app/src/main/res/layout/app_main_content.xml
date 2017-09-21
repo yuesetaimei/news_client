@@ -66,12 +66,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/activity_main_root_fl"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:descendantFocusability="blocksDescendants" />
-
         <com.roughike.bottombar.BottomBar
             android:id="@+id/activity_main_bottomBar"
             android:layout_width="match_parent"
@@ -83,5 +77,11 @@
             app:bb_tabXmlResource="@xml/bottombar_tabs"
             app:bb_tabletMode="false" />
 
+        <FrameLayout
+            android:id="@+id/activity_main_root_fl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/activity_main_bottomBar"
+            android:descendantFocusability="blocksDescendants" />
     </RelativeLayout>
 </LinearLayout>
