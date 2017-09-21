@@ -75,7 +75,7 @@
         <com.roughike.bottombar.BottomBar
             android:id="@+id/activity_main_bottomBar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x90"
+            android:layout_height="51dp"
             android:layout_alignParentBottom="true"
             app:bb_activeTabColor="@color/white"
             app:bb_inActiveTabColor="@color/gray"

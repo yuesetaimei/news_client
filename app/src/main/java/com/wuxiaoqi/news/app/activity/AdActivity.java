@@ -48,7 +48,7 @@ public class AdActivity extends BaseActivity {
     public void initEvent() {
         int i = new Random().nextInt(ConstantImageUrl.TRANSITION_URLS.length);
         Glide.with(this).load(ConstantImageUrl.TRANSITION_URLS[i])
-                .placeholder(R.mipmap.test_ad)
+                .placeholder(R.mipmap.welcome)
                 .error(R.mipmap.test_ad)
                 .into(adImg);
         adImg.postDelayed(new Runnable() {
