@@ -182,7 +182,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (System.currentTimeMillis() - onBackTime > 2000) {
             Toast.makeText(this, R.string.press_the_exit_again, Toast.LENGTH_SHORT).show();
             onBackTime = System.currentTimeMillis();
-        } else super.onBackPressed();
+        } else finish();
     }
 
     @Override
@@ -199,7 +199,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected Fragment findFragmentByIndex(int index) {
         Fragment fragment = RecommentFragment.getInstance();
-
         switch (index) {
             case FRAGMENT_ONE:
                 break;
