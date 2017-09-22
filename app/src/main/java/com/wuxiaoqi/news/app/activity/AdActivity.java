@@ -62,7 +62,6 @@ public class AdActivity extends BaseActivity {
         }, 3000);
     }
 
-
     @OnClick({R.id.activity_ad_img, R.id.activity_ad_jump_btn})
     public void onClick(View v) {
         switch (v.getId()) {

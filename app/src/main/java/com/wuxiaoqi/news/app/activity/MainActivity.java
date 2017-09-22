@@ -6,9 +6,9 @@ import android.support.annotation.IdRes;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,13 +21,17 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 import com.wuxiaoqi.news.app.R;
 import com.wuxiaoqi.news.app.base.BaseActivity;
+import com.wuxiaoqi.news.app.bean.BannerBean;
 import com.wuxiaoqi.news.app.fragment.RecommentFragment;
+import com.wuxiaoqi.news.app.presenter.MainPresenter;
 import com.wuxiaoqi.news.app.view.statusbar.StatusBarUtil;
+
+import java.util.List;
 
 import butterknife.InjectView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener, MainPresenter.IMainView {
 
     @InjectView(R.id.activity_main_drawerlayout)
     DrawerLayout drawerLayout;
@@ -56,6 +60,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @InjectView(R.id.activity_main_bottomBar)
     BottomBar bottomBar;
 
+    private MainPresenter presenter;
+
     private long onBackTime = 0;
 
     public static void startActivity(Activity activity) {
@@ -73,7 +79,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void initData(Bundle bundle) {
-
     }
 
     @Override
@@ -143,6 +148,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
             }
         });
+        presenter = new MainPresenter(this);
+        presenter.start();
     }
 
     private void initLeftMenu() {
@@ -198,9 +205,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected Fragment findFragmentByIndex(int index) {
-        Fragment fragment = RecommentFragment.getInstance();
+        Fragment fragment = null;
         switch (index) {
             case FRAGMENT_ONE:
+                fragment = RecommentFragment.getInstance();
                 break;
             case FRAGMENT_TWO:
 
@@ -215,5 +223,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
         }
         return fragment;
+    }
+
+    @Override
+    public void setBannerData(BannerBean bean) {
+        if (bean != null && bean.getResult() != null && bean.getResult().getFocus() != null && bean.getResult().getFocus().getResult() != null) {
+            final List<BannerBean.ResultBeanXXXXXXXXXXXXXXXXX.FocusBean.ResultBeanXXXXXXXXXXXXXXX> result = bean.getResult().getFocus().getResult();
+            for (int i = 0; i < result.size(); i++) {
+                Log.i("wxq", result.get(i).getRandpic());
+            }
+        }
     }
 }

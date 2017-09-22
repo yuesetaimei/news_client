@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by wuxiaoqi on 2017/9/21.
  * 基类Fragment ,所有fragment都应继承BaseFragment
@@ -49,6 +51,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ButterKnife.inject(view);
         initView(view);
         initEvent();
         EventBus.getDefault().register(this);
