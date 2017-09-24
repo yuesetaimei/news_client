@@ -20,7 +20,10 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.base.BaseActivity;
+import com.tlkg.news.app.fragment.LiteratureFragment;
+import com.tlkg.news.app.fragment.MyFragment;
 import com.tlkg.news.app.fragment.RecommentFragment;
+import com.tlkg.news.app.fragment.WelfareFragment;
 import com.tlkg.news.app.view.statusbar.StatusBarUtil;
 
 import butterknife.InjectView;
@@ -202,13 +205,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 fragment = RecommentFragment.getInstance();
                 break;
             case FRAGMENT_TWO:
-
+                fragment = WelfareFragment.getInstance();
                 break;
             case FRAGMENT_THREE:
-
+                fragment = LiteratureFragment.getInstance();
                 break;
             case FRAGMENT_FOUR:
-
+                fragment = MyFragment.getInstance();
                 break;
             default:
                 break;

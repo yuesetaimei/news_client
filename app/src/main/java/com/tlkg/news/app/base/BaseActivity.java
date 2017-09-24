@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -123,7 +124,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                     .remove(manager.findFragmentById(getContentFragmentId()))
                     .commit();
         }
-        setFragment(currentIndex);
+//        setFragment(currentIndex);
     }
 
     @IdRes
@@ -139,7 +140,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         FragmentTransaction ft = fm.beginTransaction();
         String tag = index + "";
         mCurrentIndex = index;
-        if (!tag.equals(mCurrentTag)) {
+        if (mCurrentTag != null && !tag.equals(mCurrentTag)) {
             Fragment childFragment = fm.findFragmentByTag(tag);
             if (childFragment != null) {//Fragment栈已经存在
                 ft.hide(mCurrentFragment)
@@ -150,8 +151,9 @@ public abstract class BaseActivity extends AppCompatActivity {
             } else {//将fragment添加到栈中
                 childFragment = findFragmentByIndex(index);
                 if (childFragment == null) return;
-                ft.add(getContentFragmentId(), childFragment, tag)
-                        .addToBackStack(tag)
+                ft.addToBackStack(tag);
+                ft.hide(mCurrentFragment)
+                        .add(getContentFragmentId(), childFragment, tag)
                         .commitAllowingStateLoss();
                 mCurrentFragment = childFragment;
                 mCurrentTag = tag;
