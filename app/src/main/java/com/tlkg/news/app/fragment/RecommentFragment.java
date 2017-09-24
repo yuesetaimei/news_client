@@ -83,9 +83,9 @@ public class RecommentFragment extends BaseFragment {
 
         fragments.clear();
         fragments.add(new NewestFragment());
-        fragments.add(new NewestFragment());
-        fragments.add(new NewestFragment());
-        fragments.add(new NewestFragment());
+        fragments.add(new HotspotFragment());
+        fragments.add(new CustomizedFragment());
+        fragments.add(new AndroidFragment());
     }
 
     @Override

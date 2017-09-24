@@ -124,19 +124,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             public void onTabSelected(@IdRes int tabId) {
                 switch (tabId) {
                     case R.id.tab_recommend://推荐
-                        Toast.makeText(MainActivity.this, "推荐", Toast.LENGTH_SHORT).show();
                         setFragment(FRAGMENT_ONE);
                         break;
                     case R.id.tab_welfare://福利
-                        Toast.makeText(MainActivity.this, "福利", Toast.LENGTH_SHORT).show();
                         setFragment(FRAGMENT_TWO);
                         break;
                     case R.id.tab_literature://文学
-                        Toast.makeText(MainActivity.this, "文字", Toast.LENGTH_SHORT).show();
                         setFragment(FRAGMENT_THREE);
                         break;
                     case R.id.tab_watercress://我的
-                        Toast.makeText(MainActivity.this, "我的", Toast.LENGTH_SHORT).show();
                         setFragment(FRAGMENT_FOUR);
                         break;
                     default:
