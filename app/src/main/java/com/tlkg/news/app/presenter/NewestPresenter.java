@@ -8,6 +8,9 @@ import com.tlkg.news.app.bean.BannerBean;
 import com.tlkg.news.app.http.HttpClient;
 import com.tlkg.news.app.shared.BannerCacheSharedPreferences;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -31,11 +34,8 @@ public class NewestPresenter implements BasePresenter {
 
     private void getBannerData() {
         if (BannerCacheSharedPreferences.isDayCache(NewsClientApplication.getAppContext())) {
-            if (mView != null) {
-                Log.i("wxq", "从缓存中读取数据");
-                BannerBean bannerData = BannerCacheSharedPreferences.getBannerData(NewsClientApplication.getAppContext());
-                mView.setBannerData(bannerData);
-            }
+            BannerBean bannerData = BannerCacheSharedPreferences.getBannerData(NewsClientApplication.getAppContext());
+            setBannerList(bannerData);
             return;
         }
         HttpClient.Builder.getTingServer().getBannerPage()
@@ -54,18 +54,25 @@ public class NewestPresenter implements BasePresenter {
 
                     @Override
                     public void onNext(BannerBean bannerBean) {
-                        Log.i("wxq", "保存数据");
                         BannerCacheSharedPreferences.clearBannerCache(NewsClientApplication.getAppContext());
                         BannerCacheSharedPreferences.saveBannerData(NewsClientApplication.getAppContext(), bannerBean);
-                        if (mView != null) {
-                            mView.setBannerData(bannerBean);
-                        }
-
+                        setBannerList(bannerBean);
                     }
                 });
     }
 
+    private void setBannerList(BannerBean bannerBean) {
+        List<String> list = new ArrayList<String>();
+        List<BannerBean.ResultBeanXXXXXXXXXXXXXXXXX.FocusBean.ResultBeanXXXXXXXXXXXXXXX> result = bannerBean.getResult().getFocus().getResult();
+        for (int i = 0; i < result.size(); i++) {
+            list.add(result.get(i).getRandpic());
+        }
+        if (mView != null) {
+            mView.setBannerData(list);
+        }
+    }
+
     public interface INewestView {
-        void setBannerData(BannerBean bannerBean);
+        void setBannerData(List<String> list);
     }
 }

@@ -3,16 +3,14 @@ package com.tlkg.news.app.fragment;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.TypedValue;
 import android.view.View;
 
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.adapter.RecommentFragmentAdapter;
 import com.tlkg.news.app.base.BaseFragment;
-import com.tlkg.news.app.bean.BannerBean;
-import com.tlkg.news.app.presenter.NewestPresenter;
 import com.tlkg.news.app.ui.view.ChoiceScrollViewPager;
+import com.tlkg.news.app.ui.view.ChoiceSwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +27,7 @@ public class RecommentFragment extends BaseFragment {
     private final String TAG = "RecommentFragment";
 
     @InjectView(R.id.fragment_recomment_refreshLayout)
-    SwipeRefreshLayout swipeRefreshLayout;
+    ChoiceSwipeRefreshLayout swipeRefreshLayout;
 
     @InjectView(R.id.fragment_recomment_tablayout)
     TabLayout tabLayout;
