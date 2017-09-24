@@ -1,0 +1,71 @@
+package com.tlkg.news.app.presenter;
+
+import android.util.Log;
+
+import com.tlkg.news.app.NewsClientApplication;
+import com.tlkg.news.app.base.BasePresenter;
+import com.tlkg.news.app.bean.BannerBean;
+import com.tlkg.news.app.http.HttpClient;
+import com.tlkg.news.app.shared.BannerCacheSharedPreferences;
+
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
+/**
+ * Created by wuxiaoqi on 2017/9/24.
+ */
+
+public class NewestPresenter implements BasePresenter {
+
+    private INewestView mView;
+
+    public NewestPresenter(INewestView view) {
+        this.mView = view;
+    }
+
+    @Override
+    public void start() {
+        getBannerData();
+    }
+
+    private void getBannerData() {
+        if (BannerCacheSharedPreferences.isDayCache(NewsClientApplication.getAppContext())) {
+            if (mView != null) {
+                Log.i("wxq", "从缓存中读取数据");
+                BannerBean bannerData = BannerCacheSharedPreferences.getBannerData(NewsClientApplication.getAppContext());
+                mView.setBannerData(bannerData);
+            }
+            return;
+        }
+        HttpClient.Builder.getTingServer().getBannerPage()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<BannerBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(BannerBean bannerBean) {
+                        Log.i("wxq", "保存数据");
+                        BannerCacheSharedPreferences.clearBannerCache(NewsClientApplication.getAppContext());
+                        BannerCacheSharedPreferences.saveBannerData(NewsClientApplication.getAppContext(), bannerBean);
+                        if (mView != null) {
+                            mView.setBannerData(bannerBean);
+                        }
+
+                    }
+                });
+    }
+
+    public interface INewestView {
+        void setBannerData(BannerBean bannerBean);
+    }
+}

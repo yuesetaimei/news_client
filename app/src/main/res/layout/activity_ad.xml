@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wuxiaoqi.news.app.activity.AdActivity">
+    tools:context="com.tlkg.news.app.activity.AdActivity">
 
     <ImageView
         android:id="@+id/activity_ad_img"
