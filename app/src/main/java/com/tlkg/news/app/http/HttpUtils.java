@@ -5,6 +5,7 @@ import android.content.Context;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
@@ -63,6 +64,19 @@ public class HttpUtils implements UrlConstant {
             }
         }
         return (T) dongtingHttps;
+    }
+
+    private Object adpicHttps;
+
+    public <T> T getAdPicServer(Class<T> a) {
+        if (adpicHttps == null) {
+            synchronized (HttpUtils.class) {
+                if (adpicHttps == null) {
+                    adpicHttps = getBuilder(API_ADPIC).build().create(a);
+                }
+            }
+        }
+        return (T) adpicHttps;
     }
 
     private Retrofit.Builder getBuilder(String requestUrl) {

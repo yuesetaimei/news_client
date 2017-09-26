@@ -18,6 +18,11 @@ public interface ConstantImageUrl {
     String TRANSITION_URL_09 = "http://ojyz0c8un.bkt.clouddn.com/b_9.jpg";
     String TRANSITION_URL_10 = "http://ojyz0c8un.bkt.clouddn.com/b_10.jpg";
 
+    /**
+     * 每日一图
+     */
+    String BING_PIC = "http://api.dujin.org/bing/1920.php";
+
     String[] TRANSITION_URLS = new String[]{
             TRANSITION_URL_01, TRANSITION_URL_02, TRANSITION_URL_03
             , TRANSITION_URL_04, TRANSITION_URL_05, TRANSITION_URL_06

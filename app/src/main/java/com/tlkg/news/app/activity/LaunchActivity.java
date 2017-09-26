@@ -3,6 +3,8 @@ package com.tlkg.news.app.activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
+import android.view.KeyEvent;
 
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.base.BaseActivity;
@@ -21,6 +23,10 @@ public class LaunchActivity extends BaseActivity implements LaunchPresenter.ILau
 
     private boolean setAdData = false;
 
+    private String mBingPicUrl;
+
+    private String mTtitle;
+
     @Override
     public void initData(Bundle bundle) {
     }
@@ -38,7 +44,9 @@ public class LaunchActivity extends BaseActivity implements LaunchPresenter.ILau
     }
 
     @Override
-    public void setAdDataSuccess() {
+    public void setAdDataSuccess(String bingPicUrl, String title) {
+        mBingPicUrl = bingPicUrl;
+        mTtitle = title;
         setAdData = true;
     }
 
@@ -48,7 +56,7 @@ public class LaunchActivity extends BaseActivity implements LaunchPresenter.ILau
             switch (msg.what) {
                 case 1:
                     if (setAdData) {
-                        AdActivity.startActivity(LaunchActivity.this);
+                        AdActivity.startActivity(LaunchActivity.this, mBingPicUrl, mTtitle);
                     } else {
                         MainActivity.startActivity(LaunchActivity.this);
                     }
@@ -60,4 +68,13 @@ public class LaunchActivity extends BaseActivity implements LaunchPresenter.ILau
             }
         }
     };
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
+            handler.removeMessages(1);
+            handler.removeCallbacksAndMessages(null);
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
