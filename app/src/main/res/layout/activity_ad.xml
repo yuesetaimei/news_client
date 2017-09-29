@@ -18,7 +18,8 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/x30"
         android:layout_marginTop="@dimen/x30"
-        android:src="@mipmap/btn_ad_jump" />
+        android:src="@mipmap/btn_ad_jump"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/activity_ad_text"

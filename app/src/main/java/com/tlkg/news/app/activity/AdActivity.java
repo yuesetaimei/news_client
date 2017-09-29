@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -91,10 +93,12 @@ public class AdActivity extends BaseActivity {
                 .placeholder(R.mipmap.welcome)
                 .error(R.mipmap.test_ad)
                 .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(new GlideDrawableImageViewTarget(adImg) {
                     @Override
                     public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> animation) {
                         super.onResourceReady(resource, animation);
+                        jumpBtn.setVisibility(View.VISIBLE);
                         if (!TextUtils.isEmpty(pic_title)) {
                             titleTv.setVisibility(View.VISIBLE);
                             titleTv.setAlpha(0);
@@ -129,6 +133,14 @@ public class AdActivity extends BaseActivity {
             default:
                 break;
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
 

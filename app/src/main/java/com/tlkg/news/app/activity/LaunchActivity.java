@@ -6,6 +6,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 
+import com.bumptech.glide.Glide;
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.base.BaseActivity;
 import com.tlkg.news.app.presenter.LaunchPresenter;
@@ -46,6 +47,7 @@ public class LaunchActivity extends BaseActivity implements LaunchPresenter.ILau
     @Override
     public void setAdDataSuccess(String bingPicUrl, String title) {
         mBingPicUrl = bingPicUrl;
+        Glide.with(this).load(mBingPicUrl).downloadOnly(720, 1280);
         mTtitle = title;
         setAdData = true;
     }
