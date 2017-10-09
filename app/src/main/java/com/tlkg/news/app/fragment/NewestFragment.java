@@ -2,6 +2,7 @@ package com.tlkg.news.app.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,11 +31,13 @@ public class NewestFragment extends BaseFragment implements NewestPresenter.INew
     @InjectView(R.id.fragment_newest_banner)
     MZBannerView bannerView;
 
+    @InjectView(R.id.fragment_newest_recyclerview)
+    RecyclerView recyclerView;
+
     private NewestPresenter presenter;
 
     @Override
     protected void initData(Bundle bundle) {
-
     }
 
     @Override
@@ -46,7 +49,7 @@ public class NewestFragment extends BaseFragment implements NewestPresenter.INew
     @Override
     public void initView(View view) {
         presenter = new NewestPresenter(this);
-        presenter.start();
+        presenter.load();
     }
 
     @Override

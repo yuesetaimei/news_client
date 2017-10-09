@@ -1,7 +1,5 @@
 package com.tlkg.news.app.presenter;
 
-import android.util.Log;
-
 import com.tlkg.news.app.NewsClientApplication;
 import com.tlkg.news.app.base.BasePresenter;
 import com.tlkg.news.app.bean.BannerBean;
@@ -19,7 +17,7 @@ import rx.schedulers.Schedulers;
  * Created by wuxiaoqi on 2017/9/24.
  */
 
-public class NewestPresenter implements BasePresenter {
+public class NewestPresenter extends BasePresenter {
 
     private INewestView mView;
 
@@ -28,7 +26,7 @@ public class NewestPresenter implements BasePresenter {
     }
 
     @Override
-    public void start() {
+    public void load() {
         getBannerData();
     }
 

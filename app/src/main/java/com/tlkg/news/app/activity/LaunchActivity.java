@@ -3,7 +3,6 @@ package com.tlkg.news.app.activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.KeyEvent;
 
 import com.bumptech.glide.Glide;
@@ -40,7 +39,7 @@ public class LaunchActivity extends BaseActivity implements LaunchPresenter.ILau
     @Override
     public void initEvent() {
         presenter = new LaunchPresenter(this);
-        presenter.start();
+        presenter.load();
         handler.sendEmptyMessageDelayed(1, 3000);
     }
 

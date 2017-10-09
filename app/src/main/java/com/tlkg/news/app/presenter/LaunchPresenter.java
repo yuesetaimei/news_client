@@ -1,8 +1,6 @@
 package com.tlkg.news.app.presenter;
 
-import android.os.SystemClock;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.tlkg.news.app.NewsClientApplication;
@@ -19,7 +17,7 @@ import rx.schedulers.Schedulers;
  * Created by wuxiaoqi on 2017/9/18.
  */
 
-public class LaunchPresenter implements BasePresenter {
+public class LaunchPresenter extends BasePresenter {
 
     ILaunchView mView;
 
@@ -28,7 +26,7 @@ public class LaunchPresenter implements BasePresenter {
     }
 
     @Override
-    public void start() {
+    public void load() {
         getBingPicData();
     }
 

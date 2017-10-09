@@ -79,6 +79,19 @@ public class HttpUtils implements UrlConstant {
         return (T) adpicHttps;
     }
 
+    private Object gankHttps;
+
+    public <T> T getGankServer(Class<T> a) {
+        if (gankHttps == null) {
+            synchronized (HttpUtils.class) {
+                if (gankHttps == null) {
+                    gankHttps = getBuilder(API_GANK).build().create(a);
+                }
+            }
+        }
+        return (T) gankHttps;
+    }
+
     private Retrofit.Builder getBuilder(String requestUrl) {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.client(getOkClient())

@@ -17,4 +17,8 @@ public interface UrlConstant {
      */
     String API_ADPIC = "http://route.showapi.com/1377-1/";
 
+    /**
+     * 干货集中营Api
+     */
+    String API_GANK = "http://gank.io/api/data/";
 }

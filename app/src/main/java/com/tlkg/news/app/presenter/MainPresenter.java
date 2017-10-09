@@ -7,10 +7,10 @@ import com.tlkg.news.app.base.BasePresenter;
  */
 
 
-public class MainPresenter implements BasePresenter {
+public class MainPresenter extends BasePresenter {
 
     @Override
-    public void start() {
+    public void load() {
 
     }
 }

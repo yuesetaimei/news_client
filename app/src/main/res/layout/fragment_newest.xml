@@ -11,8 +11,13 @@
         android:layout_height="@dimen/x170"
         app:canLoop="true"
         app:indicatorAlign="center"
-        app:indicatorPaddingLeft="10dp"
         app:indicatorPaddingBottom="@dimen/x10"
+        app:indicatorPaddingLeft="10dp"
         app:middle_page_cover="true"
         app:open_mz_mode="true" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_newest_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

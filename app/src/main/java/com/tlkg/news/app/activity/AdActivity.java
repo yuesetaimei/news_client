@@ -111,7 +111,7 @@ public class AdActivity extends BaseActivity {
                                 if (isJump) return;
                                 MainActivity.startActivity(AdActivity.this);
                                 finish();
-                                overridePendingTransition(0, 0);
+                                overridePendingTransition(R.anim.screen_zoom_in, R.anim.screen_zoom_out);
                             }
                         }, 3000);
                     }
