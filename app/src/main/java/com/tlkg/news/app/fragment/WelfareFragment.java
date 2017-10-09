@@ -2,6 +2,7 @@ package com.tlkg.news.app.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.ScrollerCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -10,10 +11,12 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.tlkg.news.app.NewsClientApplication;
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.adapter.WelfareRecyclerAdapter;
 import com.tlkg.news.app.base.BaseFragment;
+import com.tlkg.news.app.base.BasePresenter;
 import com.tlkg.news.app.bean.BeautyBean;
 import com.tlkg.news.app.presenter.WalfarePresenter;
 import com.tlkg.news.app.ui.view.ChoiceSwipeRefreshLayout;
@@ -75,6 +78,28 @@ public class WelfareFragment extends BaseFragment implements WalfarePresenter.IW
         staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
         recyclerView.setAdapter(mAdapter);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+//                if (recyclerView.getScrollState() != RecyclerView.SCROLL_STATE_IDLE) {
+//                    Glide.with(getContext()).pauseRequests();
+//                } else {
+//                    Glide.with(getContext()).resumeRequests();
+//                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+        mAdapter.setLoadMoreListener(new WelfareRecyclerAdapter.ILoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                presenter.loadMore(BasePresenter.PAGE_COUNT, mAdapter.getItemCount() / 20 + 1);
+            }
+        });
         presenter.load();
     }
 

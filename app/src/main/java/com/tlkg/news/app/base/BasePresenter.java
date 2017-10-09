@@ -19,13 +19,13 @@ public abstract class BasePresenter implements IBasePresenter {
     /**
      * 默认加载数量
      */
-    protected static final int PAGE_COUNT = 20;
+    public static final int PAGE_COUNT = 20;
 
     /**
      * 分页加载要重写这个方法
      * @param pageCount
      * @param pageIndex
      */
-    protected void loadMore(int pageCount, int pageIndex) {
+    public void loadMore(int pageCount, int pageIndex) {
     }
 }

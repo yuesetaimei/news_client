@@ -25,9 +25,6 @@ public class BaseApplication extends Application {
 
 
     public static Context getAppContext() {
-        if (sContext == null) {
-            sContext = getAppContext();
-        }
         return sContext;
     }
 }

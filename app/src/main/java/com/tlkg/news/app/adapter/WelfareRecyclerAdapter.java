@@ -2,12 +2,14 @@ package com.tlkg.news.app.adapter;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -27,67 +29,104 @@ import java.util.Map;
  * Created by wuxiaoqi on 2017/9/29.
  */
 
-public class WelfareRecyclerAdapter extends RecyclerView.Adapter<WelfareRecyclerAdapter.ViewHolder> {
+public class WelfareRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    /**
+     * 内容布局标识
+     */
+    private static final int TYPE_POSITION_CONTENT = 0x0001;
+
+    /**
+     * 底部加载中布局标识
+     */
+    private static final int TYPE_POSITION_FOOTER = 0x0002;
 
     private List<BeautyBean.ResultsBean> mData;
+
     private Map<String, Integer> mapHeight = new HashMap<>();
+
+    private boolean isFirstLoad = true;
+
+    private ILoadMoreListener loadMoreListener;
+
+    public void setLoadMoreListener(ILoadMoreListener loadMoreListener) {
+        this.loadMoreListener = loadMoreListener;
+    }
 
     public WelfareRecyclerAdapter() {
         mData = new ArrayList<>();
     }
 
     public void updateBeauty(List<BeautyBean.ResultsBean> data) {
+        isFirstLoad = true;
         mData.clear();
         mData.addAll(data);
         notifyDataSetChanged();
+        isFirstLoad = false;
     }
 
     public void updateMoreBeauty(List<BeautyBean.ResultsBean> data) {
+        int startChange = mData.size();
         mData.addAll(data);
-        notifyDataSetChanged();
+        notifyItemRangeChanged(startChange, data.size());
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_welfare_img, null);
-        return new ViewHolder(v);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == TYPE_POSITION_FOOTER)
+            return new FooterViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyclerview_footer, null));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_welfare_img, null));
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
-        BeautyBean.ResultsBean resultsBean = mData.get(position);
-        ViewGroup.LayoutParams layoutParams = holder.imageView.getLayoutParams();
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+        if (holder instanceof FooterViewHolder) {
+            if (isFirstLoad)
+                ((FooterViewHolder) holder).itemView.setVisibility(View.GONE);
+            else
+                ((FooterViewHolder) holder).itemView.setVisibility(View.VISIBLE);
+
+            if (!isFirstLoad && position == mData.size()) {
+                if (loadMoreListener != null) {
+                    loadMoreListener.onLoadMore();//加载更多
+                }
+            }
+        }
+        if (position >= mData.size()) return;
+
+        final ViewHolder viewHolder = (ViewHolder) holder;
+        BeautyBean.ResultsBean resultsBean = mData.get(position % mData.size());
+        StaggeredGridLayoutManager.LayoutParams layoutParams = (StaggeredGridLayoutManager.LayoutParams) viewHolder.itemView.getLayoutParams();
         if (layoutParams == null) {
-            layoutParams = new ViewGroup.LayoutParams(-1, -2);
+            layoutParams = new StaggeredGridLayoutManager.LayoutParams(-1, -2);
         }
         Integer integer = mapHeight.get(position + "");
         if (integer != null && integer.intValue() > 0) {
-            Log.i("wxq", integer.intValue() + "");
             layoutParams.height = integer.intValue();
         } else {
             layoutParams.height = -2;
         }
-        holder.imageView.setLayoutParams(layoutParams);
-
+        layoutParams.setMargins(5, 5, 5, 5);
+        viewHolder.itemView.setLayoutParams(layoutParams);
 
         if (resultsBean == null || TextUtils.isEmpty(resultsBean.getUrl())) return;
-        holder.cardView.setVisibility(View.INVISIBLE);
+        viewHolder.textView.setVisibility(View.VISIBLE);
         Glide.with(holder.itemView.getContext())
                 .load(resultsBean.getUrl())
                 .crossFade()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .dontTransform()
                 .centerCrop()
                 .transform(new GlideRoundTransform(holder.itemView.getContext(), 10))
-                .into(new GlideDrawableImageViewTarget(holder.imageView) {
+                .into(new GlideDrawableImageViewTarget(viewHolder.imageView) {
                     @Override
                     public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> animation) {
                         super.onResourceReady(resource, animation);
-                        holder.cardView.setVisibility(View.VISIBLE);
-                        holder.imageView.post(new Runnable() {
+                        viewHolder.textView.setVisibility(View.GONE);
+                        viewHolder.imageView.post(new Runnable() {
                             @Override
                             public void run() {
-                                mapHeight.put(position + "", holder.imageView.getHeight());
+                                mapHeight.put(position + "", viewHolder.imageView.getHeight());
                             }
                         });
                     }
@@ -96,17 +135,42 @@ public class WelfareRecyclerAdapter extends RecyclerView.Adapter<WelfareRecycler
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return mData.size() + 1;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position == mData.size())
+            return TYPE_POSITION_FOOTER;
+        return TYPE_POSITION_CONTENT;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
         CardView cardView;
+        ImageView imageView;
+        TextView textView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.item_beauty_img);
             cardView = (CardView) itemView.findViewById(R.id.item_beauty_cardview);
+            textView = (TextView) itemView.findViewById(R.id.item_beauty_textview);
         }
+    }
+
+    public static class FooterViewHolder extends RecyclerView.ViewHolder {
+        ProgressBar progressBar;
+        TextView textView;
+
+        public FooterViewHolder(View itemView) {
+            super(itemView);
+            progressBar = (ProgressBar) itemView.findViewById(R.id.item_footer_progressbar);
+            textView = (TextView) itemView.findViewById(R.id.item_footer_textview);
+        }
+    }
+
+
+    public interface ILoadMoreListener {
+        void onLoadMore();
     }
 }

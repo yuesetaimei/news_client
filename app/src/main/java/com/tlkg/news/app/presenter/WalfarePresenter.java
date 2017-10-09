@@ -31,7 +31,7 @@ public class WalfarePresenter extends BasePresenter {
 
 
     @Override
-    protected void loadMore(int pageCount, int pageIndex) {
+    public void loadMore(int pageCount, int pageIndex) {
         isLoadMore = true;
         loadBeautyBean(PAGE_COUNT, pageIndex);
     }
@@ -41,7 +41,8 @@ public class WalfarePresenter extends BasePresenter {
             return;
         }
         isLoading = true;
-        mView.onLoadStart();
+        if (!isLoadMore) mView.onLoadStart();
+
         HttpClient.Builder.getGankServer().getBeautyBean(pageCount, pageIndex)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
