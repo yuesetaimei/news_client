@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -18,7 +19,11 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.bean.BeautyBean;
+import com.tlkg.news.app.event.WelfareClickEvent;
 import com.tlkg.news.app.util.GlideRoundTransform;
+import com.tlkg.news.app.util.StringListUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,6 +64,7 @@ public class WelfareRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     public void updateBeauty(List<BeautyBean.ResultsBean> data) {
         isFirstLoad = true;
+        mapHeight.clear();
         mData.clear();
         mData.addAll(data);
         notifyDataSetChanged();
@@ -95,12 +101,12 @@ public class WelfareRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         if (position >= mData.size()) return;
 
         final ViewHolder viewHolder = (ViewHolder) holder;
-        BeautyBean.ResultsBean resultsBean = mData.get(position % mData.size());
+        final BeautyBean.ResultsBean resultsBean = mData.get(position % mData.size());
         StaggeredGridLayoutManager.LayoutParams layoutParams = (StaggeredGridLayoutManager.LayoutParams) viewHolder.itemView.getLayoutParams();
         if (layoutParams == null) {
             layoutParams = new StaggeredGridLayoutManager.LayoutParams(-1, -2);
         }
-        Integer integer = mapHeight.get(position + "");
+        Integer integer = mapHeight.get(resultsBean.getUrl());
         if (integer != null && integer.intValue() > 0) {
             layoutParams.height = integer.intValue();
         } else {
@@ -126,7 +132,14 @@ public class WelfareRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                         viewHolder.imageView.post(new Runnable() {
                             @Override
                             public void run() {
-                                mapHeight.put(position + "", viewHolder.imageView.getHeight());
+                                mapHeight.put(resultsBean.getUrl(), viewHolder.imageView.getHeight());
+                            }
+                        });
+                        viewHolder.imageView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //事件在WelfareFragment中处理
+                                EventBus.getDefault().post(new WelfareClickEvent(StringListUtil.ResultsBeanToString(mData), position));
                             }
                         });
                     }

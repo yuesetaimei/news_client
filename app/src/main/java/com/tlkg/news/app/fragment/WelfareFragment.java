@@ -12,14 +12,20 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.tlkg.news.app.NewsClientApplication;
 import com.tlkg.news.app.R;
+import com.tlkg.news.app.activity.BigImageViewActivity;
 import com.tlkg.news.app.adapter.WelfareRecyclerAdapter;
+import com.tlkg.news.app.base.BaseEvent;
 import com.tlkg.news.app.base.BaseFragment;
 import com.tlkg.news.app.base.BasePresenter;
 import com.tlkg.news.app.bean.BeautyBean;
+import com.tlkg.news.app.event.WelfareClickEvent;
 import com.tlkg.news.app.presenter.WalfarePresenter;
 import com.tlkg.news.app.ui.view.ChoiceSwipeRefreshLayout;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
@@ -128,5 +134,13 @@ public class WelfareFragment extends BaseFragment implements WalfarePresenter.IW
     @Override
     public void onLoadStart() {
         swipeRefreshLayout.setRefreshing(true);
+    }
+
+    @Subscribe
+    public void onEvent(BaseEvent event) {
+        if (event instanceof WelfareClickEvent) {
+            WelfareClickEvent welfareClickEvent = (WelfareClickEvent) event;
+            BigImageViewActivity.startActivity(getActivity(), welfareClickEvent.mList, welfareClickEvent.mPosition);
+        }
     }
 }

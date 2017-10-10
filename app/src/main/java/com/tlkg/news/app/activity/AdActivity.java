@@ -1,5 +1,7 @@
 package com.tlkg.news.app.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -102,7 +104,18 @@ public class AdActivity extends BaseActivity {
                         if (!TextUtils.isEmpty(pic_title)) {
                             titleTv.setVisibility(View.VISIBLE);
                             titleTv.setAlpha(0);
-                            titleTv.animate().alpha(1).setDuration(1000).start();
+                            titleTv.animate().alpha(1).setDuration(1000).setListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationEnd(Animator animation) {
+                                    titleTv.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            titleTv.clearAnimation();
+                                            titleTv.animate().translationY(titleTv.getHeight()).setDuration(500).start();
+                                        }
+                                    });
+                                }
+                            }).start();
                             titleTv.setText(pic_title);
                         }
                         adImg.postDelayed(new Runnable() {

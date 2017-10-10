@@ -9,4 +9,5 @@
     <color name="black_70">#77000000</color>
     <color name="tran">#00000000</color>
     <color name="gray">#cccccc</color>
+    <color name="black">#000000</color>
 </resources>

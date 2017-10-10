@@ -3,4 +3,6 @@
 
     <string name="press_the_exit_again">再按一次退出</string>
     <string name="loading">加载中</string>
+    <string name="save">保存</string>
+    <string name="setting_wallpaper">设置壁纸</string>
 </resources>
