@@ -39,6 +39,15 @@ public final class DataUtils {
         return getYMD(time, "yyyyMMdd");
     }
 
+    /**
+     * 获取年月日小时分钟秒
+     *
+     * @param time
+     * @return
+     */
+    public final static String getYMDHS(long time) {
+        return getYMD(time, "yyyy-MM-dd-HH-mm-ss");
+    }
 
     /**
      * 获取毫秒值

@@ -5,4 +5,6 @@
     <string name="loading">加载中</string>
     <string name="save">保存</string>
     <string name="setting_wallpaper">设置壁纸</string>
+    <string name="save_dir_name">福利图片</string>
+    <string name="setting_success">设置成功</string>
 </resources>

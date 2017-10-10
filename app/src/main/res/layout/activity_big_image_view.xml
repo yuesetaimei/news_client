@@ -1,62 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
     tools:context="com.tlkg.news.app.activity.BigImageViewActivity">
 
-    <RelativeLayout
+    <com.tlkg.news.app.pager.HackyViewPager
+        android:id="@+id/activity_big_image_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" />
 
-        <com.tlkg.news.app.pager.HackyViewPager
-            android:id="@+id/activity_big_image_viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/activity_big_image_index_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="23dp"
+        android:layout_marginLeft="60dp"
+        android:textColor="#fff"
+        android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/activity_big_image_index_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginBottom="23dp"
-            android:layout_marginLeft="60dp"
-            android:textColor="#fff"
-            android:textSize="14sp" />
+    <TextView
+        android:id="@+id/activity_big_image_save_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="17dp"
+        android:layout_marginRight="13dp"
+        android:background="@drawable/bg_save_big_image"
+        android:text="@string/save"
+        android:textColor="#fff"
+        android:textSize="13sp" />
 
-        <TextView
-            android:id="@+id/activity_big_image_save_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="17dp"
-            android:layout_marginRight="13dp"
-            android:background="@drawable/bg_save_big_image"
-            android:text="@string/save"
-            android:textColor="#fff"
-            android:textSize="13sp" />
+    <TextView
+        android:id="@+id/activity_big_image_setting_wallpaper_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="17dp"
+        android:layout_marginRight="3dp"
+        android:layout_toLeftOf="@id/activity_big_image_save_tv"
+        android:background="@drawable/bg_save_big_image"
+        android:text="@string/setting_wallpaper"
+        android:textColor="#fff"
+        android:textSize="13sp" />
 
-        <TextView
-            android:id="@+id/activity_big_image_setting_wallpaper_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="17dp"
-            android:layout_marginRight="3dp"
-            android:layout_toLeftOf="@id/activity_big_image_save_tv"
-            android:background="@drawable/bg_save_big_image"
-            android:text="@string/setting_wallpaper"
-            android:textColor="#fff"
-            android:textSize="13sp" />
-
-        <ProgressBar
-            android:id="@+id/activity_big_image_pb"
-            android:layout_width="@dimen/x100"
-            android:layout_height="@dimen/x100"
-            android:layout_centerInParent="true"
-            android:visibility="gone" />
-    </RelativeLayout>
-</android.support.design.widget.CoordinatorLayout>
+    <ProgressBar
+        android:id="@+id/activity_big_image_pb"
+        android:layout_width="@dimen/x100"
+        android:layout_height="@dimen/x100"
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
+</RelativeLayout>

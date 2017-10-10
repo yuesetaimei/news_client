@@ -53,8 +53,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             ButterKnife.inject(this);
         }
         EventBus.getDefault().register(this);
-        initViews();
         initData(getIntent().getExtras());
+        initViews();
         initWindow();
         initEvent();
     }
