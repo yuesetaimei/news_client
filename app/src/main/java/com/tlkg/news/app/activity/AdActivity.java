@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -98,6 +99,12 @@ public class AdActivity extends BaseActivity {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(new GlideDrawableImageViewTarget(adImg) {
                     @Override
+                    public void onLoadFailed(Exception e, Drawable errorDrawable) {
+                        super.onLoadFailed(e, errorDrawable);
+                        startMainActivity(AdActivity.this, R.anim.screen_zoom_in, R.anim.screen_zoom_out);
+                    }
+
+                    @Override
                     public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> animation) {
                         super.onResourceReady(resource, animation);
                         jumpBtn.setVisibility(View.VISIBLE);
@@ -122,9 +129,7 @@ public class AdActivity extends BaseActivity {
                             @Override
                             public void run() {
                                 if (isJump) return;
-                                MainActivity.startActivity(AdActivity.this);
-                                finish();
-                                overridePendingTransition(R.anim.screen_zoom_in, R.anim.screen_zoom_out);
+                                startMainActivity(AdActivity.this, R.anim.screen_zoom_in, R.anim.screen_zoom_out);
                             }
                         }, 3000);
                     }
@@ -139,9 +144,7 @@ public class AdActivity extends BaseActivity {
                 break;
             case R.id.activity_ad_jump_btn:
                 isJump = true;
-                MainActivity.startActivity(this);
-                finish();
-                overridePendingTransition(0, 0);
+                startMainActivity(this, 0, 0);
                 break;
             default:
                 break;
@@ -154,6 +157,18 @@ public class AdActivity extends BaseActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    /**
+     * 跳转到MainActivity
+     * @param activity
+     * @param screen_zoom_in
+     * @param screen_zoom_out
+     */
+    private void startMainActivity(AdActivity activity, int screen_zoom_in, int screen_zoom_out) {
+        MainActivity.startActivity(activity);
+        finish();
+        overridePendingTransition(screen_zoom_in, screen_zoom_out);
     }
 }
 

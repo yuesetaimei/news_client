@@ -1,5 +1,6 @@
 package com.tlkg.news.app.base;
 
+import android.app.Activity;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
@@ -13,6 +14,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 
@@ -31,6 +35,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     public static final int FRAGMENT_FOUR = 4;
     public static final int FRAGMENT_FIVE = 5;
     public static final int FRAGMENT_SIX = 6;
+
+    /**
+     * Activity栈
+     */
+    private static List<Activity> activities = new ArrayList<>();
 
     protected Bundle saveInstanceState;
 
@@ -170,5 +179,39 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected Fragment findFragmentByIndex(int index) {
         return null;
+    }
+
+    /**
+     * 入栈
+     *
+     * @param activity
+     */
+    public static void addActivity(Activity activity) {
+        if (!activities.contains(activity)) {
+            activities.add(activity);
+        }
+    }
+
+    /**
+     * 出栈
+     *
+     * @param activity
+     */
+    public static void removeActivity(Activity activity) {
+        if (activities.contains(activity)) {
+            activities.remove(activity);
+        }
+    }
+
+    /**
+     * 全部退出
+     */
+    public static void finishAllActivity() {
+        for (Activity a : activities) {
+            if (!a.isFinishing()) {
+                a.finish();
+            }
+        }
+        activities.clear();
     }
 }

@@ -40,7 +40,7 @@ public class LaunchActivity extends BaseActivity implements LaunchPresenter.ILau
     public void initEvent() {
         presenter = new LaunchPresenter(this);
         presenter.load();
-        handler.sendEmptyMessageDelayed(1, 3000);
+        handler.sendEmptyMessageDelayed(1, 1000);
     }
 
     @Override
@@ -56,11 +56,11 @@ public class LaunchActivity extends BaseActivity implements LaunchPresenter.ILau
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
-                    if (setAdData) {
-                        AdActivity.startActivity(LaunchActivity.this, mBingPicUrl, mTtitle);
-                    } else {
+//                    if (setAdData) {
+//                        AdActivity.startActivity(LaunchActivity.this, mBingPicUrl, mTtitle);
+//                    } else {
                         MainActivity.startActivity(LaunchActivity.this);
-                    }
+//                    }
                     finish();
                     overridePendingTransition(0, 0);
                     break;

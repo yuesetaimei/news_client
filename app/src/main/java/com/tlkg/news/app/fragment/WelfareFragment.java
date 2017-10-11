@@ -21,10 +21,13 @@ import com.tlkg.news.app.base.BaseEvent;
 import com.tlkg.news.app.base.BaseFragment;
 import com.tlkg.news.app.base.BasePresenter;
 import com.tlkg.news.app.bean.BeautyBean;
+import com.tlkg.news.app.event.NetAgainLoadEvent;
+import com.tlkg.news.app.event.NetworkErrEvent;
 import com.tlkg.news.app.event.WelfareClickEvent;
 import com.tlkg.news.app.presenter.WalfarePresenter;
 import com.tlkg.news.app.ui.view.ChoiceSwipeRefreshLayout;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
@@ -128,6 +131,8 @@ public class WelfareFragment extends BaseFragment implements WalfarePresenter.IW
     @Override
     public void onLoadErr(String msg) {
         swipeRefreshLayout.setRefreshing(false);
+        Log.i("wxq", "发送事件");
+        EventBus.getDefault().post(new NetworkErrEvent(1));
         Toast.makeText(NewsClientApplication.getAppContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
@@ -140,7 +145,12 @@ public class WelfareFragment extends BaseFragment implements WalfarePresenter.IW
     public void onEvent(BaseEvent event) {
         if (event instanceof WelfareClickEvent) {
             WelfareClickEvent welfareClickEvent = (WelfareClickEvent) event;
-            BigImageViewActivity.startActivity(getActivity(), welfareClickEvent.mList, welfareClickEvent.mPosition);
+            BigImageViewActivity.startActivity(getActivity(), welfareClickEvent.mList, welfareClickEvent.mPosition);//跳转查看大图Activity
+        } else if (event instanceof NetAgainLoadEvent) {
+            NetAgainLoadEvent netAgainLoadEvent = (NetAgainLoadEvent) event;
+            if (netAgainLoadEvent.mPosition == 1) {
+                presenter.load();
+            }
         }
     }
 }

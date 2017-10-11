@@ -2,13 +2,16 @@ package com.tlkg.news.app.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
-import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,11 +24,17 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.base.BaseActivity;
+import com.tlkg.news.app.base.BaseEvent;
+import com.tlkg.news.app.event.NetworkErrEvent;
 import com.tlkg.news.app.fragment.LiteratureFragment;
 import com.tlkg.news.app.fragment.MyFragment;
 import com.tlkg.news.app.fragment.RecommentFragment;
 import com.tlkg.news.app.fragment.WelfareFragment;
+import com.tlkg.news.app.ui.view.NetworkErrLoadDialog;
+import com.tlkg.news.app.ui.view.NetworkErrLoadView;
 import com.tlkg.news.app.view.statusbar.StatusBarUtil;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.InjectView;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -40,6 +49,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @InjectView(R.id.activity_main_nav_view)
     NavigationView navigationView;
+
+    @InjectView(R.id.activity_main_coordinator_layout)
+    CoordinatorLayout coordinatorLayout;
+
+    @InjectView(R.id.activity_main_appbar_layout)
+    AppBarLayout appBarLayout;
 
     @InjectView(R.id.activity_main_toolbar)
     Toolbar toolbar;
@@ -60,6 +75,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     BottomBar bottomBar;
 
     private long onBackTime = 0;
+
+    private NetworkErrLoadDialog netErrDialg;
 
     public static void startActivity(Activity activity) {
         Intent i = new Intent(activity, MainActivity.class);
@@ -219,5 +236,33 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
         }
         return fragment;
+    }
+
+
+    @Subscribe
+    public void onEventBus(BaseEvent event) {
+        if (event instanceof NetworkErrEvent) {
+            Log.i("wxq", "收到事件");
+            NetworkErrEvent networkErrEvent = (NetworkErrEvent) event;
+            showNetErrDialog();
+            netErrDialg.setPosition(networkErrEvent.mPosition);
+        }
+    }
+
+    /**
+     * 显示网络差dialog
+     */
+    private void showNetErrDialog() {
+        if (netErrDialg == null) netErrDialg = new NetworkErrLoadDialog(this);
+        if (!netErrDialg.isShowing()) netErrDialg.show();
+        Log.i("wxq", "showDialog");
+    }
+
+    /**
+     * 隐藏网络差dialog
+     */
+    private void dismissNetErrDialog() {
+        if (netErrDialg == null) return;
+        if (netErrDialg.isShowing()) netErrDialg.dismiss();
     }
 }
