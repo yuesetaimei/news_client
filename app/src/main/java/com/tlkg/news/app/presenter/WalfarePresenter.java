@@ -1,11 +1,8 @@
 package com.tlkg.news.app.presenter;
 
 import com.tlkg.news.app.base.BasePresenter;
-import com.tlkg.news.app.bean.AndroidBean;
 import com.tlkg.news.app.bean.BeautyBean;
 import com.tlkg.news.app.http.HttpClient;
-
-import java.util.List;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -16,11 +13,10 @@ import rx.schedulers.Schedulers;
  * 福利Presenter
  */
 
-public class WalfarePresenter extends BasePresenter {
-    private IWelfareView mView;
+public class WalfarePresenter extends BasePresenter<WalfarePresenter.IWelfareView> {
 
     public WalfarePresenter(IWelfareView view) {
-        this.mView = view;
+        super(view);
     }
 
     @Override
@@ -62,9 +58,9 @@ public class WalfarePresenter extends BasePresenter {
                     public void onNext(BeautyBean beautyBean) {
                         isLoading = false;
                         if (isLoadMore) {
-                            mView.onLoadMore(beautyBean);
+                            mView.onLoadMoreComplete(beautyBean);
                         } else {
-                            mView.onLoad(beautyBean);
+                            mView.onLoadComplete(beautyBean);
                         }
                     }
                 });
@@ -77,14 +73,14 @@ public class WalfarePresenter extends BasePresenter {
          *
          * @param data
          */
-        void onLoad(BeautyBean data);
+        void onLoadComplete(BeautyBean data);
 
         /**
          * 加载更多完成
          *
          * @param data
          */
-        void onLoadMore(BeautyBean data);
+        void onLoadMoreComplete(BeautyBean data);
 
     }
 }

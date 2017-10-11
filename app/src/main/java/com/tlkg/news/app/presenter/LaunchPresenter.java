@@ -17,12 +17,10 @@ import rx.schedulers.Schedulers;
  * Created by wuxiaoqi on 2017/9/18.
  */
 
-public class LaunchPresenter extends BasePresenter {
-
-    ILaunchView mView;
+public class LaunchPresenter extends BasePresenter<LaunchPresenter.ILaunchView> {
 
     public LaunchPresenter(ILaunchView view) {
-        this.mView = view;
+        super(view);
     }
 
     @Override
@@ -31,7 +29,6 @@ public class LaunchPresenter extends BasePresenter {
     }
 
     private void getBingPicData() {
-        if (mView == null) return;
         if (BingPicCacheSharedPreferences.isDayCache(NewsClientApplication.getAppContext())) {//从缓存中获取图片地址
             String bingPicData = BingPicCacheSharedPreferences.getBingPicData(NewsClientApplication.getAppContext());
             BingPicBean bingPicBean = new Gson().fromJson(bingPicData, BingPicBean.class);

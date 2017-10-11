@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 
 /**
@@ -21,7 +22,17 @@ public class ChoiceSwipeRefreshLayout extends SwipeRefreshLayout {
     }
 
     private int mLastXIntercept = 0;
+
     private int mLastYIntercept = 0;
+
+    public void init() {
+        setProgressBackgroundColorSchemeResource(android.R.color.white);
+        setColorSchemeResources(android.R.color.holo_blue_light,
+//                android.R.color.holo_red_light, android.R.color.holo_orange_light,
+                android.R.color.holo_blue_light);
+        setProgressViewOffset(false, 0,
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources().getDisplayMetrics()));
+    }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {

@@ -21,4 +21,9 @@ public interface UrlConstant {
      * 干货集中营Api
      */
     String API_GANK = "http://gank.io/api/data/";
+
+    /**
+     * 豆瓣Api
+     */
+    String API_DAOUBAN = "https://api.douban.com/";
 }

@@ -5,7 +5,6 @@ import android.content.Context;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
@@ -77,6 +76,19 @@ public class HttpUtils implements UrlConstant {
             }
         }
         return (T) adpicHttps;
+    }
+
+    private Object doubanHttps;
+
+    public <T> T getDoubanServer(Class<T> a) {
+        if (doubanHttps == null) {
+            synchronized (HttpUtils.class) {
+                if (doubanHttps == null) {
+                    doubanHttps = getBuilder(API_DAOUBAN).build().create(a);
+                }
+            }
+        }
+        return (T) doubanHttps;
     }
 
     private Object gankHttps;

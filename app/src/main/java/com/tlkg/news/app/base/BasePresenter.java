@@ -4,7 +4,7 @@ package com.tlkg.news.app.base;
  * Created by wuxiaoqi on 2017/9/29.
  */
 
-public abstract class BasePresenter implements IBasePresenter {
+public abstract class BasePresenter<T> implements IBasePresenter {
 
     /**
      * 是否加载中
@@ -21,8 +21,17 @@ public abstract class BasePresenter implements IBasePresenter {
      */
     public static final int PAGE_COUNT = 20;
 
+    protected T mView;
+
+    public BasePresenter(T view) {
+        if (view == null)
+            throw new IllegalArgumentException("IView cannot is null");
+        this.mView = view;
+    }
+
     /**
      * 分页加载要重写这个方法
+     *
      * @param pageCount
      * @param pageIndex
      */

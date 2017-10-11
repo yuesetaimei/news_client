@@ -9,6 +9,10 @@ import com.tlkg.news.app.base.BasePresenter;
 
 public class MainPresenter extends BasePresenter {
 
+    public MainPresenter(Object view) {
+        super(view);
+    }
+
     @Override
     public void load() {
 

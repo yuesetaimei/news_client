@@ -4,6 +4,7 @@ import com.tlkg.news.app.bean.AndroidBean;
 import com.tlkg.news.app.bean.BannerBean;
 import com.tlkg.news.app.bean.BeautyBean;
 import com.tlkg.news.app.bean.BingPicBean;
+import com.tlkg.news.app.bean.HotMovieBean;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -26,6 +27,10 @@ public interface HttpClient {
 
         public static HttpClient getGankServer() {
             return HttpUtils.getInstance().getGankServer(HttpClient.class);
+        }
+
+        public static HttpClient getDoubanServer() {
+            return HttpUtils.getInstance().getDoubanServer(HttpClient.class);
         }
     }
 
@@ -58,4 +63,13 @@ public interface HttpClient {
      */
     @GET("福利/{pageCount}/{pageIndex}")
     Observable<BeautyBean> getBeautyBean(@Path("pageCount") int pageCount, @Path("pageIndex") int pageIndex);
+
+
+    /**
+     * 豆瓣热映电影
+     *
+     * @return
+     */
+    @GET("v2/movie/in_theaters")
+    Observable<HotMovieBean> getHotMovie();
 }

@@ -17,12 +17,10 @@ import rx.schedulers.Schedulers;
  * Created by wuxiaoqi on 2017/9/24.
  */
 
-public class NewestPresenter extends BasePresenter {
-
-    private INewestView mView;
+public class NewestPresenter extends BasePresenter<NewestPresenter.INewestView> {
 
     public NewestPresenter(INewestView view) {
-        this.mView = view;
+        super(view);
     }
 
     @Override

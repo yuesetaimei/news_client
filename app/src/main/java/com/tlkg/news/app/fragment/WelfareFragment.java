@@ -70,12 +70,7 @@ public class WelfareFragment extends BaseFragment implements WalfarePresenter.IW
     @Override
     public void initView(View view) {
         presenter = new WalfarePresenter(this);
-        swipeRefreshLayout.setProgressBackgroundColorSchemeResource(android.R.color.white);
-        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light,
-//                android.R.color.holo_red_light, android.R.color.holo_orange_light,
-                android.R.color.holo_blue_light);
-        swipeRefreshLayout.setProgressViewOffset(false, 0,
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources().getDisplayMetrics()));
+        swipeRefreshLayout.init();
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -117,13 +112,13 @@ public class WelfareFragment extends BaseFragment implements WalfarePresenter.IW
     }
 
     @Override
-    public void onLoad(BeautyBean data) {
+    public void onLoadComplete(BeautyBean data) {
         swipeRefreshLayout.setRefreshing(false);
         mAdapter.updateBeauty(data.getResults());
     }
 
     @Override
-    public void onLoadMore(BeautyBean data) {
+    public void onLoadMoreComplete(BeautyBean data) {
         swipeRefreshLayout.setRefreshing(false);
         mAdapter.updateMoreBeauty(data.getResults());
     }
@@ -131,7 +126,6 @@ public class WelfareFragment extends BaseFragment implements WalfarePresenter.IW
     @Override
     public void onLoadErr(String msg) {
         swipeRefreshLayout.setRefreshing(false);
-        Log.i("wxq", "发送事件");
         EventBus.getDefault().post(new NetworkErrEvent(1));
         Toast.makeText(NewsClientApplication.getAppContext(), msg, Toast.LENGTH_SHORT).show();
     }

@@ -27,4 +27,8 @@ public class BaseApplication extends Application {
     public static Context getAppContext() {
         return sContext;
     }
+
+    public static String getStringId(int resId) {
+        return getAppContext().getString(resId);
+    }
 }
