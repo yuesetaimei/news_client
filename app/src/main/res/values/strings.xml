@@ -14,14 +14,17 @@
     <string name="save_dir_name">福利图片</string>
     <string name="setting_success">设置成功</string>
     <string name="network_err">网络不给力~</string>
+    <string name="checkout_network">请检查网络连接</string>
     <string name="network_disable">网络不可用\n请检查网络连接</string>
     <string name="result_data_fail">数据为空</string>
 
     <string name="doubao_top_250">豆瓣电影Top250</string>
-    <string name="classic_quotations">生活就像巧克力,你永远不会知道你会得到什么</string>
+    <string name="classic_quotations">生活就像巧克力,你永远不知道下一颗是什么味道</string>
     <string name="hot_list">热映榜</string>
     <string name="director">导演：</string>
     <string name="main_perform">主演：</string>
     <string name="movie_type">类型：</string>
     <string name="movie_score">评分：</string>
+    <string name="doubao_top">豆瓣Top</string>
+    <string name="no_more_data">没有更多数据了~</string>
 </resources>

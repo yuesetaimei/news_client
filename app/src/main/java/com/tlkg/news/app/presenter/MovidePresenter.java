@@ -67,7 +67,6 @@ public class MovidePresenter extends BasePresenter<MovidePresenter.IMovieView> {
                 });
     }
 
-
     public interface IMovieView extends IView {
         /**
          * 加载完成
@@ -82,6 +81,5 @@ public class MovidePresenter extends BasePresenter<MovidePresenter.IMovieView> {
          * @param data
          */
         void onLoadMoreComplete(HotMovieBean data);
-
     }
 }

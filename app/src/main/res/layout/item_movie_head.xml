@@ -38,6 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
+                android:maxLines="1"
                 android:text="@string/classic_quotations"
                 android:textColor="@color/colorTitle"
                 android:textSize="12sp" />
@@ -49,7 +50,8 @@
             android:layout_height="23dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="10dp"
+            android:elevation="8dp"
             android:src="@drawable/home_arrow_right_gray" />
 
     </RelativeLayout>

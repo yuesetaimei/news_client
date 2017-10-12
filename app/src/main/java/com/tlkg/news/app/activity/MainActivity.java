@@ -28,7 +28,7 @@ import com.tlkg.news.app.event.NetworkErrEvent;
 import com.tlkg.news.app.fragment.MovieFragment;
 import com.tlkg.news.app.fragment.MyFragment;
 import com.tlkg.news.app.fragment.RecommentFragment;
-import com.tlkg.news.app.fragment.WelfareFragment;
+import com.tlkg.news.app.fragment.WalfareFragment;
 import com.tlkg.news.app.ui.view.NetworkErrLoadDialog;
 import com.tlkg.news.app.view.statusbar.StatusBarUtil;
 
@@ -159,6 +159,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     default:
                         break;
                 }
+                appBarLayout.setExpanded(true, false);
             }
         });
     }
@@ -222,7 +223,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 fragment = RecommentFragment.getInstance();
                 break;
             case FRAGMENT_TWO:
-                fragment = WelfareFragment.getInstance();
+                fragment = WalfareFragment.getInstance();
                 break;
             case FRAGMENT_THREE:
                 fragment = MovieFragment.getInstance();

@@ -5,6 +5,7 @@
     <color name="colorAccent">#1d9ce1</color>
 
     <color name="colorPageBg">#f2f4f5</color>
+    <color name="colorTopPageBg">#22cccccc</color>
 
     <color name="white">#ffffff</color>
     <color name="black_50">#55000000</color>

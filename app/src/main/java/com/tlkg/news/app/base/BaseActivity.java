@@ -63,8 +63,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         EventBus.getDefault().register(this);
         initData(getIntent().getExtras());
-        initViews();
         initWindow();
+        initViews();
         initEvent();
     }
 

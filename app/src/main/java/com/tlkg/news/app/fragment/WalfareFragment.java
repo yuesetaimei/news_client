@@ -2,17 +2,12 @@ package com.tlkg.news.app.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.ScrollerCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.tlkg.news.app.NewsClientApplication;
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.activity.BigImageViewActivity;
@@ -30,8 +25,6 @@ import com.tlkg.news.app.ui.view.ChoiceSwipeRefreshLayout;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.util.List;
-
 import butterknife.InjectView;
 
 /**
@@ -39,9 +32,9 @@ import butterknife.InjectView;
  * 福利Fragment
  */
 
-public class WelfareFragment extends BaseFragment implements WalfarePresenter.IWelfareView {
+public class WalfareFragment extends BaseFragment implements WalfarePresenter.IWelfareView {
 
-    private static final String TAG = "WelfareFragment";
+    private static final String TAG = "WalfareFragment";
 
     @InjectView(R.id.fragment_welfare_refreshLayout)
     ChoiceSwipeRefreshLayout swipeRefreshLayout;
@@ -54,7 +47,7 @@ public class WelfareFragment extends BaseFragment implements WalfarePresenter.IW
     private WelfareRecyclerAdapter mAdapter;
 
     public static Fragment getInstance() {
-        return new WelfareFragment();
+        return new WalfareFragment();
     }
 
     @Override
@@ -98,6 +91,7 @@ public class WelfareFragment extends BaseFragment implements WalfarePresenter.IW
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
+        mAdapter.setEnableLoadMore(true);
         mAdapter.setLoadMoreListener(new WelfareRecyclerAdapter.ILoadMoreListener() {
             @Override
             public void onLoadMore() {
@@ -114,13 +108,13 @@ public class WelfareFragment extends BaseFragment implements WalfarePresenter.IW
     @Override
     public void onLoadComplete(BeautyBean data) {
         swipeRefreshLayout.setRefreshing(false);
-        mAdapter.updateBeauty(data.getResults());
+        mAdapter.refreshData(data.getResults());
     }
 
     @Override
     public void onLoadMoreComplete(BeautyBean data) {
         swipeRefreshLayout.setRefreshing(false);
-        mAdapter.updateMoreBeauty(data.getResults());
+        mAdapter.refreshAddData(data.getResults());
     }
 
     @Override

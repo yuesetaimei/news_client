@@ -9,11 +9,16 @@ import android.widget.Toast;
 
 import com.tlkg.news.app.NewsClientApplication;
 import com.tlkg.news.app.R;
+import com.tlkg.news.app.activity.DoubanTopActivity;
 import com.tlkg.news.app.adapter.MovieRecyclerAdapter;
+import com.tlkg.news.app.base.BaseEvent;
 import com.tlkg.news.app.base.BaseFragment;
 import com.tlkg.news.app.bean.HotMovieBean;
+import com.tlkg.news.app.event.DoubanTop250CliekEvent;
 import com.tlkg.news.app.presenter.MovidePresenter;
 import com.tlkg.news.app.ui.view.ChoiceSwipeRefreshLayout;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.InjectView;
 
@@ -60,7 +65,8 @@ public class MovieFragment extends BaseFragment implements MovidePresenter.IMovi
     }
 
     private void setAdapter() {
-        mAdapter = new MovieRecyclerAdapter(null);
+        mAdapter = new MovieRecyclerAdapter();
+        mAdapter.setEnableLoadMore(false);
         LinearLayoutManager ll = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(ll);
         mRecyclerView.setAdapter(mAdapter);
@@ -68,6 +74,7 @@ public class MovieFragment extends BaseFragment implements MovidePresenter.IMovi
             mHeadView = View.inflate(getContext(), R.layout.item_movie_head, null);
         }
         mAdapter.addHeadView(mHeadView);
+        mAdapter.setHeadViewHolder(new MovieRecyclerAdapter.HeadViewHoler(mHeadView));
     }
 
     @Override
@@ -90,11 +97,18 @@ public class MovieFragment extends BaseFragment implements MovidePresenter.IMovi
     public void onLoadComplete(HotMovieBean data) {
         mRefreshLayout.setRefreshing(false);
         mRefreshLayout.setEnabled(false);
-        mAdapter.updateMovieItem(data.getSubjects());
+        mAdapter.refreshData(data.getSubjects());
     }
 
     @Override
     public void onLoadMoreComplete(HotMovieBean data) {
         //暂时没有加载更多
+    }
+
+    @Subscribe
+    public void onEvent(BaseEvent event) {
+        if (event instanceof DoubanTop250CliekEvent) {
+            DoubanTopActivity.startActivity(getActivity());
+        }
     }
 }

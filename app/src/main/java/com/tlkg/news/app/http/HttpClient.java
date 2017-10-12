@@ -8,6 +8,7 @@ import com.tlkg.news.app.bean.HotMovieBean;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -64,7 +65,6 @@ public interface HttpClient {
     @GET("福利/{pageCount}/{pageIndex}")
     Observable<BeautyBean> getBeautyBean(@Path("pageCount") int pageCount, @Path("pageIndex") int pageIndex);
 
-
     /**
      * 豆瓣热映电影
      *
@@ -72,4 +72,13 @@ public interface HttpClient {
      */
     @GET("v2/movie/in_theaters")
     Observable<HotMovieBean> getHotMovie();
+
+    /**
+     * 获取豆瓣电影top250
+     *
+     * @param start 从多少开始，如从"0"开始
+     * @param count 请求的数目
+     */
+    @GET("v2/movie/top250")
+    Observable<HotMovieBean> getMovieTop250(@Query("start") int start, @Query("count") int count);
 }
