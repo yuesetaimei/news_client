@@ -27,4 +27,11 @@
     <string name="movie_score">评分：</string>
     <string name="doubao_top">豆瓣Top</string>
     <string name="no_more_data">没有更多数据了~</string>
+    <string name="person_score">&#160;人评分</string>
+    <string name="movie_day">上映日期：%s</string>
+    <string name="movie_city">制片国家/地区：%s</string>
+    <string name="movie_other_name">又名</string>
+    <string name="brief_introduction">剧情简介</string>
+    <string name="movie_all_performer">导演 &amp; 演员</string>
+    <string name="movie_share">抱歉，分享功能暂时不可用~</string>
 </resources>

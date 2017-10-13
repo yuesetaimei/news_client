@@ -15,6 +15,12 @@ public class NewsClientApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         HttpUtils.getInstance().init(getAppContext(), BuildConfig.DEBUG);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Glide.get(getAppContext()).clearDiskCache();
+            }
+        }).start();
     }
 
     @Override

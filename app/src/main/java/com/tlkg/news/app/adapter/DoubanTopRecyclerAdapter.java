@@ -12,6 +12,9 @@ import com.tlkg.news.app.NewsClientApplication;
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.base.BaseRecyclerAdapter;
 import com.tlkg.news.app.bean.HotMovieBean;
+import com.tlkg.news.app.event.MovieTopItemClickEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.InjectView;
 
@@ -49,7 +52,7 @@ public class DoubanTopRecyclerAdapter extends BaseRecyclerAdapter<HotMovieBean.S
         }
 
         @Override
-        public void onBindViewHolder(HotMovieBean.SubjectsBean object, int position) {
+        public void onBindViewHolder(final HotMovieBean.SubjectsBean object, int position) {
             HotMovieBean.SubjectsBean bean = object;
             Glide.with(itemView.getContext())
                     .load(bean.getImages().getLarge())
@@ -59,6 +62,12 @@ public class DoubanTopRecyclerAdapter extends BaseRecyclerAdapter<HotMovieBean.S
                     .into(photoImg);
             titleTv.setText(bean.getTitle());
             ratingTv.setText(NewsClientApplication.getStringId(R.string.movie_score) + bean.getRating().getAverage());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EventBus.getDefault().post(new MovieTopItemClickEvent(object));
+                }
+            });
         }
     }
 }

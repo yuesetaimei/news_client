@@ -7,6 +7,7 @@
     <color name="colorPageBg">#f2f4f5</color>
     <color name="colorTopPageBg">#22cccccc</color>
 
+    <color name="color_red">#ff0000</color>
     <color name="white">#ffffff</color>
     <color name="black_50">#55000000</color>
     <color name="black_70">#77000000</color>

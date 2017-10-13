@@ -3,6 +3,7 @@ package com.tlkg.news.app.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,16 +16,22 @@ import com.tlkg.news.app.NewsClientApplication;
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.adapter.DoubanTopRecyclerAdapter;
 import com.tlkg.news.app.base.BaseActivity;
+import com.tlkg.news.app.base.BaseEvent;
 import com.tlkg.news.app.base.BaseRecyclerAdapter;
 import com.tlkg.news.app.bean.HotMovieBean;
+import com.tlkg.news.app.event.MovieTopItemClickEvent;
 import com.tlkg.news.app.presenter.DoubanTopPresenter;
 import com.tlkg.news.app.ui.view.ChoiceSwipeRefreshLayout;
 import com.tlkg.news.app.util.PhoneUtil;
 import com.tlkg.news.app.view.statusbar.StatusBarUtil;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import butterknife.InjectView;
 
-
+/**
+ * 豆瓣Top界面
+ */
 public class DoubanTopActivity extends BaseActivity implements DoubanTopPresenter.IDoubanTopView {
 
     private static final String TAG = "DoubanTopActivity";
@@ -94,6 +101,12 @@ public class DoubanTopActivity extends BaseActivity implements DoubanTopPresente
             }
         });
         mRecyclerView.setAdapter(mAdapter);
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPresenter.load();
+            }
+        });
         mPresenter.load();
     }
 
@@ -142,5 +155,13 @@ public class DoubanTopActivity extends BaseActivity implements DoubanTopPresente
         count = data.getTotal();
         mAdapter.refreshAddData(data.getSubjects());
         mRefreshLayout.setRefreshing(false);
+    }
+
+    @Subscribe
+    public void onEventBus(BaseEvent event) {
+        if (event instanceof MovieTopItemClickEvent) {
+            MovieTopItemClickEvent movieTopItemClickEvent = (MovieTopItemClickEvent) event;
+            DetailsPageActivity.startActivity(this, movieTopItemClickEvent.mBean);
+        }
     }
 }

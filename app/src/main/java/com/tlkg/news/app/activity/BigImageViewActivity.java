@@ -34,7 +34,9 @@ import java.util.concurrent.ExecutionException;
 
 import butterknife.InjectView;
 
-
+/**
+ * 查看图片界面
+ */
 public class BigImageViewActivity extends BaseActivity {
 
     private static final String TAG = "BigImageViewActivity";

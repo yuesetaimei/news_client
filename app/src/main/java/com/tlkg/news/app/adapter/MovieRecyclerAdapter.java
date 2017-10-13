@@ -18,6 +18,7 @@ import com.tlkg.news.app.R;
 import com.tlkg.news.app.base.BaseRecyclerAdapter;
 import com.tlkg.news.app.bean.HotMovieBean;
 import com.tlkg.news.app.event.DoubanTop250CliekEvent;
+import com.tlkg.news.app.event.MovieItemClickEvent;
 import com.tlkg.news.app.util.PhoneUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -77,7 +78,7 @@ public class MovieRecyclerAdapter extends BaseRecyclerAdapter<HotMovieBean.Subje
 
         @Override
         public void onBindViewHolder(HotMovieBean.SubjectsBean object, int position) {
-            HotMovieBean.SubjectsBean subjectsBean = object;
+            final HotMovieBean.SubjectsBean subjectsBean = object;
             Glide.with(itemView.getContext())
                     .load(subjectsBean.getImages().getLarge())
                     .into(photoImg);
@@ -91,6 +92,12 @@ public class MovieRecyclerAdapter extends BaseRecyclerAdapter<HotMovieBean.Subje
             ViewHelper.setScaleY(itemView, 0.7f);
             ViewPropertyAnimator.animate(itemView).scaleX(1).setDuration(350).setInterpolator(new OvershootInterpolator(0.8f)).start();
             ViewPropertyAnimator.animate(itemView).scaleY(1).setDuration(350).setInterpolator(new OvershootInterpolator(0.8f)).start();
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EventBus.getDefault().post(new MovieItemClickEvent(subjectsBean));
+                }
+            });
         }
     }
 

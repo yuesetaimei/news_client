@@ -5,6 +5,7 @@ import com.tlkg.news.app.bean.BannerBean;
 import com.tlkg.news.app.bean.BeautyBean;
 import com.tlkg.news.app.bean.BingPicBean;
 import com.tlkg.news.app.bean.HotMovieBean;
+import com.tlkg.news.app.bean.MovieDetailBean;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -81,4 +82,12 @@ public interface HttpClient {
      */
     @GET("v2/movie/top250")
     Observable<HotMovieBean> getMovieTop250(@Query("start") int start, @Query("count") int count);
+
+    /**
+     * 获取电影详情
+     *
+     * @param id 电影bean里的id
+     */
+    @GET("v2/movie/subject/{id}")
+    Observable<MovieDetailBean> getMovieDetail(@Path("id") String id);
 }

@@ -58,11 +58,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/FullAppTheme" />
 
-        <!-- 豆瓣Top250-->
+        <!-- 豆瓣Top250 -->
         <activity
             android:name=".activity.DoubanTopActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:screenOrientation="portrait" />
+        <activity android:name=".activity.DetailsPageActivity"></activity>
     </application>
 
 </manifest>

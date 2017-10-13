@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="76dp"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="3dp">
+
+    <ImageView
+        android:id="@+id/item_movie_detail_person_img"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:adjustViewBounds="true" />
+
+    <TextView
+        android:id="@+id/item_movie_detail_person_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:lineSpacingExtra="7dp"
+        android:singleLine="true"
+        android:textColor="@color/colorTitle"
+        android:textSize="15sp" />
+</LinearLayout>

@@ -9,12 +9,14 @@ import android.widget.Toast;
 
 import com.tlkg.news.app.NewsClientApplication;
 import com.tlkg.news.app.R;
+import com.tlkg.news.app.activity.DetailsPageActivity;
 import com.tlkg.news.app.activity.DoubanTopActivity;
 import com.tlkg.news.app.adapter.MovieRecyclerAdapter;
 import com.tlkg.news.app.base.BaseEvent;
 import com.tlkg.news.app.base.BaseFragment;
 import com.tlkg.news.app.bean.HotMovieBean;
 import com.tlkg.news.app.event.DoubanTop250CliekEvent;
+import com.tlkg.news.app.event.MovieItemClickEvent;
 import com.tlkg.news.app.presenter.MovidePresenter;
 import com.tlkg.news.app.ui.view.ChoiceSwipeRefreshLayout;
 
@@ -109,6 +111,9 @@ public class MovieFragment extends BaseFragment implements MovidePresenter.IMovi
     public void onEvent(BaseEvent event) {
         if (event instanceof DoubanTop250CliekEvent) {
             DoubanTopActivity.startActivity(getActivity());
+        } else if (event instanceof MovieItemClickEvent) {
+            MovieItemClickEvent movieItemClickEvent = (MovieItemClickEvent) event;
+            DetailsPageActivity.startActivity(getActivity(), movieItemClickEvent.mBean);
         }
     }
 }
