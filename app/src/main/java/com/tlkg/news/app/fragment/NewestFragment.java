@@ -71,9 +71,10 @@ public class NewestFragment extends BaseFragment implements NewestPresenter.INew
 
     @Override
     public void setBannerData(List<String> list) {
+        if (getActivity() != null && getActivity().isFinishing()) return;
         // 设置数据
         bannerView.setDelayedTime(ClientConfig.BANNER_DELAY_TIME);
-        bannerView.setIndicatorRes(R.drawable.indicator_rectangle_normal,R.drawable.indicator_rectang_selected);
+        bannerView.setIndicatorRes(R.drawable.indicator_rectangle_normal, R.drawable.indicator_rectang_selected);
         bannerView.setPages(list, new MZHolderCreator<BannerViewHolder>() {
             @Override
             public BannerViewHolder createViewHolder() {

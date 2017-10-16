@@ -25,15 +25,15 @@ public class CustomCachingGlideModule implements GlideModule {
 
     @Override
     public void applyOptions(Context context, GlideBuilder builder) {
-        int cacheSize30M = 20 * 1024 * 1024;
+        int cacheSize30M = 40 * 1024 * 1024;
         builder.setDiskCache(new InternalCacheDiskCacheFactory(context, cacheSize30M));
 
         MemorySizeCalculator calculator = new MemorySizeCalculator(context);
         int defaultMemoryCacheSize = calculator.getMemoryCacheSize();
         int defaultBitmapPoolSize = calculator.getBitmapPoolSize();
 
-        int customMemoryCacheSize = (int) (1.2 * defaultMemoryCacheSize);
-        int customBitmapPoolSize = (int) (1.2 * defaultBitmapPoolSize);
+        int customMemoryCacheSize = (int) (0.8 * defaultMemoryCacheSize);
+        int customBitmapPoolSize = (int) (0.8 * defaultBitmapPoolSize);
 
         builder.setMemoryCache(new LruResourceCache(customMemoryCacheSize));
         builder.setBitmapPool(new LruBitmapPool(customBitmapPoolSize));

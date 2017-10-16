@@ -107,12 +107,14 @@ public class WalfareFragment extends BaseFragment implements WalfarePresenter.IW
 
     @Override
     public void onLoadComplete(BeautyBean data) {
+        if (getActivity() != null && getActivity().isFinishing()) return;
         swipeRefreshLayout.setRefreshing(false);
         mAdapter.refreshData(data.getResults());
     }
 
     @Override
     public void onLoadMoreComplete(BeautyBean data) {
+        if (getActivity() != null && getActivity().isFinishing()) return;
         swipeRefreshLayout.setRefreshing(false);
         mAdapter.refreshAddData(data.getResults());
     }

@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.ViewPropertyAnimator;
 import com.tlkg.news.app.NewsClientApplication;
@@ -117,6 +118,7 @@ public class MovieRecyclerAdapter extends BaseRecyclerAdapter<HotMovieBean.Subje
         public void onBindViewHolder(HotMovieBean.SubjectsBean object, int position) {
             Glide.with(itemView.getContext()).load(headPic)
                     .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.RESULT)
                     .into(imageView);
             relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override

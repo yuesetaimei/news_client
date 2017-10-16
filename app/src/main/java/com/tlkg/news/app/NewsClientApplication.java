@@ -1,6 +1,5 @@
 package com.tlkg.news.app;
 
-import com.bumptech.glide.Glide;
 import com.tlkg.news.app.http.HttpUtils;
 
 /**
@@ -15,17 +14,11 @@ public class NewsClientApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         HttpUtils.getInstance().init(getAppContext(), BuildConfig.DEBUG);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Glide.get(getAppContext()).clearDiskCache();
-            }
-        }).start();
-    }
-
-    @Override
-    public void onTrimMemory(int level) {
-        super.onTrimMemory(level);
-        Glide.get(NewsClientApplication.getAppContext()).clearMemory();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                Glide.get(getAppContext()).clearDiskCache();
+//            }
+//        }).start();
     }
 }

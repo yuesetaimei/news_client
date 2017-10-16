@@ -19,4 +19,5 @@
     <color name="colorContent">#ff333333</color>
     <color name="itemLowBackground">#d9d9d9</color>
     <color name="itemBackground">#DD7D7D7D</color>
+    <color name="tabBackground">#777D7D7D</color>
 </resources>

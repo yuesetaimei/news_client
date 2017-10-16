@@ -97,6 +97,7 @@ public class MovieFragment extends BaseFragment implements MovidePresenter.IMovi
 
     @Override
     public void onLoadComplete(HotMovieBean data) {
+        if (getActivity() != null && getActivity().isFinishing()) return;
         mRefreshLayout.setRefreshing(false);
         mRefreshLayout.setEnabled(false);
         mAdapter.refreshData(data.getSubjects());

@@ -11,11 +11,14 @@ public class PersonBean implements Serializable {
 
     public String imageUrl;
 
+    public String art;
+
     public PersonBean() {
     }
 
-    public PersonBean(String name, String imageUrl) {
+    public PersonBean(String name, String imageUrl, String art) {
         this.name = name;
         this.imageUrl = imageUrl;
+        this.art = art;
     }
 }

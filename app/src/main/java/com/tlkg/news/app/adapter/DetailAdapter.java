@@ -10,6 +10,9 @@ import com.bumptech.glide.Glide;
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.base.BaseRecyclerAdapter;
 import com.tlkg.news.app.bean.PersonBean;
+import com.tlkg.news.app.event.DetailPersonClienEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.InjectView;
 
@@ -40,11 +43,17 @@ public class DetailAdapter extends BaseRecyclerAdapter<PersonBean> {
         }
 
         @Override
-        public void onBindViewHolder(PersonBean object, int position) {
+        public void onBindViewHolder(final PersonBean object, int position) {
             Glide.with(itemView.getContext()).load(object.imageUrl)
                     .centerCrop()
                     .into(imageView);
             textView.setText(object.name);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EventBus.getDefault().post(new DetailPersonClienEvent(object.art, object.name));
+                }
+            });
         }
     }
 }

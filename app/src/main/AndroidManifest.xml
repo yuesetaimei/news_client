@@ -63,7 +63,18 @@
             android:name=".activity.DoubanTopActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.DetailsPageActivity"></activity>
+
+        <!-- 电影详情页 -->
+        <activity
+            android:name=".activity.DetailsPageActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:screenOrientation="portrait" />
+
+        <!-- 加载网页的Activyt -->
+        <activity
+            android:name=".activity.WebViewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

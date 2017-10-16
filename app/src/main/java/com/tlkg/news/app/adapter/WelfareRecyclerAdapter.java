@@ -105,15 +105,15 @@ public class WelfareRecyclerAdapter extends BaseRecyclerAdapter<BeautyBean.Resul
                                     mapHeight.put(resultsBean.getUrl(), imageView.getHeight());
                                 }
                             });
-                            imageView.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    //事件在WelfareFragment中处理
-                                    EventBus.getDefault().post(new WelfareClickEvent(StringListUtil.ResultsBeanToString(getData()), position));
-                                }
-                            });
                         }
                     });
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //事件在WelfareFragment中处理
+                    EventBus.getDefault().post(new WelfareClickEvent(StringListUtil.ResultsBeanToString(getData()), position));
+                }
+            });
         }
     }
 }

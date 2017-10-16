@@ -3,6 +3,7 @@ package com.tlkg.news.app.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
@@ -30,12 +31,16 @@ import com.tlkg.news.app.R;
 import com.tlkg.news.app.adapter.DetailAdapter;
 import com.tlkg.news.app.adapter.MovieRecyclerAdapter;
 import com.tlkg.news.app.base.BaseActivity;
+import com.tlkg.news.app.base.BaseEvent;
 import com.tlkg.news.app.bean.HotMovieBean;
 import com.tlkg.news.app.bean.MovieDetailBean;
 import com.tlkg.news.app.bean.PersonBean;
+import com.tlkg.news.app.event.DetailPersonClienEvent;
 import com.tlkg.news.app.presenter.DetailsPresenter;
 import com.tlkg.news.app.util.PhoneUtil;
 import com.tlkg.news.app.view.statusbar.StatusBarUtil;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,7 +133,11 @@ public class DetailsPageActivity extends BaseActivity implements DetailsPresente
 
     @Override
     protected void initWindow() {
-        StatusBarUtil.setTranslucent(this, 0);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            StatusBarUtil.setTranslucent(this, 0);
+        } else {
+            StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary));
+        }
     }
 
     @Override
@@ -213,11 +222,11 @@ public class DetailsPageActivity extends BaseActivity implements DetailsPresente
                 @Override
                 public void run() {
                     int i = 0;
-                    while (i <= 100 && progressBar.getVisibility() == View.VISIBLE) {
+                    while (i <= 900 && progressBar.getVisibility() == View.VISIBLE) {
                         i = progressBar.getProgress();
                         i += 15;
                         progressBar.setProgress(i);
-                        SystemClock.sleep(200);
+                        SystemClock.sleep(20);
                     }
                 }
             }).start();
@@ -226,7 +235,8 @@ public class DetailsPageActivity extends BaseActivity implements DetailsPresente
 
     @Override
     public void onLoadComplete(MovieDetailBean data) {
-        progressBar.setProgress(100);
+        if(isFinishing()) return;
+        progressBar.setProgress(1000);
         progressBar.setVisibility(View.GONE);
         cardView.setVisibility(View.VISIBLE);
         headOneDayTv.setText(String.format(getString(R.string.movie_day), data.getYear()));
@@ -246,14 +256,22 @@ public class DetailsPageActivity extends BaseActivity implements DetailsPresente
                 final List<PersonBean> personBeanList = new ArrayList<PersonBean>();
                 PersonBean bean;
                 for (int i = 0; i < movieDetailBean.getDirectors().size(); i++) {
-                    bean = new PersonBean(movieDetailBean.getDirectors().get(i).getName(),
-                            movieDetailBean.getDirectors().get(i).getAvatars().getLarge());
-                    personBeanList.add(bean);
+                    try {
+                        bean = new PersonBean(movieDetailBean.getDirectors().get(i).getName(),
+                                movieDetailBean.getDirectors().get(i).getAvatars().getLarge(),
+                                movieDetailBean.getDirectors().get(i).getAlt());
+                        personBeanList.add(bean);
+                    } catch (Exception e) {
+                    }
                 }
                 for (int i = 0; i < movieDetailBean.getCasts().size(); i++) {
-                    bean = new PersonBean(movieDetailBean.getCasts().get(i).getName(),
-                            movieDetailBean.getCasts().get(i).getAvatars().getLarge());
-                    personBeanList.add(bean);
+                    try {
+                        bean = new PersonBean(movieDetailBean.getCasts().get(i).getName(),
+                                movieDetailBean.getCasts().get(i).getAvatars().getLarge(),
+                                movieDetailBean.getCasts().get(i).getAlt());
+                        personBeanList.add(bean);
+                    } catch (Exception e) {
+                    }
                 }
 
                 DetailsPageActivity.this.runOnUiThread(new Runnable() {
@@ -293,5 +311,13 @@ public class DetailsPageActivity extends BaseActivity implements DetailsPresente
     public String getMovieId() {
         if (mBean == null) return "";
         return mBean.getId();
+    }
+
+    @Subscribe
+    public void onEventBus(BaseEvent event) {
+        if (event instanceof DetailPersonClienEvent) {
+            DetailPersonClienEvent detailPersonClienEvent = (DetailPersonClienEvent) event;
+            WebViewActivity.startActivity(this, detailPersonClienEvent.mLoadUrl, detailPersonClienEvent.mTitle);
+        }
     }
 }

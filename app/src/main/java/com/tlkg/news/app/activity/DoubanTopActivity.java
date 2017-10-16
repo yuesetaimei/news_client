@@ -145,6 +145,7 @@ public class DoubanTopActivity extends BaseActivity implements DoubanTopPresente
 
     @Override
     public void onLoadComplete(HotMovieBean data) {
+        if(isFinishing()) return;
         count = data.getTotal();
         mAdapter.refreshData(data.getSubjects());
         mRefreshLayout.setRefreshing(false);
@@ -152,6 +153,7 @@ public class DoubanTopActivity extends BaseActivity implements DoubanTopPresente
 
     @Override
     public void onLoadMoreComplete(HotMovieBean data) {
+        if(isFinishing()) return;
         count = data.getTotal();
         mAdapter.refreshAddData(data.getSubjects());
         mRefreshLayout.setRefreshing(false);
