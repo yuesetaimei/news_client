@@ -81,16 +81,19 @@
             android:layout_height="match_parent"
             android:descendantFocusability="blocksDescendants"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <com.roughike.bottombar.BottomBar
+            android:id="@+id/activity_main_bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_gravity="bottom"
+            app:bb_activeTabColor="@color/white"
+            app:bb_behavior="shy|underNavbar"
+            app:bb_inActiveTabColor="@color/gray"
+            app:bb_showShadow="false"
+            app:bb_tabXmlResource="@xml/bottombar_tabs"
+            app:bb_tabletMode="false" />
     </android.support.design.widget.CoordinatorLayout>
 
-    <com.roughike.bottombar.BottomBar
-        android:id="@+id/activity_main_bottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="51dp"
-        android:layout_alignParentBottom="true"
-        app:bb_activeTabColor="@color/white"
-        app:bb_inActiveTabColor="@color/gray"
-        app:bb_showShadow="false"
-        app:bb_tabXmlResource="@xml/bottombar_tabs"
-        app:bb_tabletMode="false" />
+
 </LinearLayout>
