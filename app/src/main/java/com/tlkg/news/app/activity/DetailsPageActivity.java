@@ -202,8 +202,11 @@ public class DetailsPageActivity extends BaseActivity implements DetailsPresente
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
-                Toast.makeText(DetailsPageActivity.this, R.string.movie_share, Toast.LENGTH_SHORT).show();
+                Intent shareIntent = new Intent()
+                        .setAction(Intent.ACTION_SEND)
+                        .setType("text/plain")
+                        .putExtra(Intent.EXTRA_TEXT, mBean.getTitle() + "https://movie.douban.com/subject/" + mBean.getId() + "/?from=showing");
+                startActivity(Intent.createChooser(shareIntent, "分享"));
             }
         });
     }
@@ -235,7 +238,7 @@ public class DetailsPageActivity extends BaseActivity implements DetailsPresente
 
     @Override
     public void onLoadComplete(MovieDetailBean data) {
-        if(isFinishing()) return;
+        if (isFinishing()) return;
         progressBar.setProgress(1000);
         progressBar.setVisibility(View.GONE);
         cardView.setVisibility(View.VISIBLE);
