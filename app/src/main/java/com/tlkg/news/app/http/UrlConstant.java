@@ -26,4 +26,9 @@ public interface UrlConstant {
      * 豆瓣Api
      */
     String API_DAOUBAN = "https://api.douban.com/";
+
+    /**
+     * 今日头条
+     */
+    String API_TOUTIAO = "http://toutiao.com/";
 }

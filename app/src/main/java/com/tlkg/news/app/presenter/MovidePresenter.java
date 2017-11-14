@@ -8,9 +8,11 @@ import com.tlkg.news.app.bean.HotMovieBean;
 import com.tlkg.news.app.http.HttpClient;
 import com.tlkg.news.app.shared.HotMovieCacheSharedPreferences;
 
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by wuxiaoqi on 2017/10/11.
@@ -44,14 +46,20 @@ public class MovidePresenter extends BasePresenter<MovidePresenter.IMovieView> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<HotMovieBean>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
 
                     @Override
                     public void onError(Throwable e) {
                         mView.onLoadErr(e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
                     }
 
                     @Override

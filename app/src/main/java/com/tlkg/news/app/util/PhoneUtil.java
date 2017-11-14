@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
 
 import com.tlkg.news.app.constant.ConstantImageUrl;
 
@@ -54,5 +53,38 @@ public final class PhoneUtil {
         int i = new Random().nextInt(ConstantImageUrl.TRANSITION_URLS.length);
         String pic_url = ConstantImageUrl.TRANSITION_URLS[i];
         return pic_url;
+    }
+
+    /**
+     * 判断WIFI网络是否可用
+     */
+    public static boolean isWifiConnected(Context context) {
+        if (context != null) {
+            // 获取手机所有连接管理对象(包括对wi-fi,net等连接的管理)
+            ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            // 获取NetworkInfo对象
+            NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+            //判断NetworkInfo对象是否为空 并且类型是否为WIFI
+            if (null != networkInfo && networkInfo.getType() == ConnectivityManager.TYPE_WIFI)
+                return networkInfo.isAvailable();
+        }
+        return false;
+    }
+
+
+    /**
+     * 判断MOBILE网络是否可用
+     */
+    public static boolean isMobileConnected(Context context) {
+        if (context != null) {
+            //获取手机所有连接管理对象(包括对wi-fi,net等连接的管理)
+            ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            //获取NetworkInfo对象
+            NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+            //判断NetworkInfo对象是否为空 并且类型是否为MOBILE
+            if (null != networkInfo && networkInfo.getType() == ConnectivityManager.TYPE_MOBILE)
+                return networkInfo.isAvailable();
+        }
+        return false;
     }
 }

@@ -9,9 +9,11 @@ import com.tlkg.news.app.shared.BannerCacheSharedPreferences;
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by wuxiaoqi on 2017/9/24.
@@ -38,13 +40,19 @@ public class NewestPresenter extends BasePresenter<NewestPresenter.INewestView> 
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<BannerBean>() {
+
                     @Override
-                    public void onCompleted() {
+                    public void onError(Throwable e) {
 
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onComplete() {
+
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
                     }
 

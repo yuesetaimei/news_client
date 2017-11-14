@@ -4,9 +4,11 @@ import com.tlkg.news.app.base.BasePresenter;
 import com.tlkg.news.app.bean.MovieDetailBean;
 import com.tlkg.news.app.http.HttpClient;
 
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by wuxiaoqi on 2017/10/13.
@@ -34,15 +36,22 @@ public class DetailsPresenter extends BasePresenter<DetailsPresenter.IDetailsVie
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<MovieDetailBean>() {
-                    @Override
-                    public void onCompleted() {
 
-                    }
 
                     @Override
                     public void onError(Throwable e) {
                         mView.onLoadErr(e.getMessage());
                         isLoading = false;
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
                     }
 
                     @Override

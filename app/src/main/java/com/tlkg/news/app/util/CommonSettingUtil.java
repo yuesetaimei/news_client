@@ -21,6 +21,16 @@ public class CommonSettingUtil {
      */
     private static final String THEME_COLOR = "theme_color";
 
+    /**
+     * 切换无图模式
+     */
+    private static final String SWITCH_NOPHOTOMODE = "switch_noPhotoMode";
+
+    /**
+     * 字体大小
+     */
+    private static final String TEXT_SIZE = "textsize";
+
     private CommonSettingUtil() {
     }
 
@@ -50,6 +60,13 @@ public class CommonSettingUtil {
     }
 
     /**
+     * 获取是否开启无图模式
+     */
+    public boolean getIsNoPhotoMode() {
+        return sharedPreferences.getBoolean(SWITCH_NOPHOTOMODE, false) && PhoneUtil.isMobileConnected(NewsClientApplication.getAppContext());
+    }
+
+    /**
      * 设置主题颜色
      *
      * @param color
@@ -58,5 +75,10 @@ public class CommonSettingUtil {
         sharedPreferences.edit().putInt(THEME_COLOR, color).apply();
     }
 
-
+    /**
+     * 获取字体大小
+     */
+    public int getTextSize() {
+        return sharedPreferences.getInt(TEXT_SIZE, 16);
+    }
 }

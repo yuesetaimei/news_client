@@ -7,10 +7,10 @@ import com.tlkg.news.app.bean.BingPicBean;
 import com.tlkg.news.app.bean.HotMovieBean;
 import com.tlkg.news.app.bean.MovieDetailBean;
 
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import rx.Observable;
 
 /**
  * Created by wuxiaoqi on 2017/9/22.
@@ -33,6 +33,10 @@ public interface HttpClient {
 
         public static HttpClient getDoubanServer() {
             return HttpUtils.getInstance().getDoubanServer(HttpClient.class);
+        }
+
+        public static IMobileNewsApi getToutiaoServer() {
+            return HttpUtils.getInstance().getToutiaoServer(IMobileNewsApi.class);
         }
     }
 

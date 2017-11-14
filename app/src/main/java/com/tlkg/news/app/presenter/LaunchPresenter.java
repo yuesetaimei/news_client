@@ -9,9 +9,11 @@ import com.tlkg.news.app.bean.BingPicBean;
 import com.tlkg.news.app.http.HttpClient;
 import com.tlkg.news.app.shared.BingPicCacheSharedPreferences;
 
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by wuxiaoqi on 2017/9/18.
@@ -44,13 +46,19 @@ public class LaunchPresenter extends BasePresenter<LaunchPresenter.ILaunchView> 
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<BingPicBean>() {
+
                     @Override
-                    public void onCompleted() {
+                    public void onError(Throwable e) {
 
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onComplete() {
+
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
                     }
 

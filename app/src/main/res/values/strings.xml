@@ -34,4 +34,7 @@
     <string name="brief_introduction">剧情简介</string>
     <string name="movie_all_performer">导演 &amp; 演员</string>
     <string name="movie_share">抱歉，分享功能暂时不可用~</string>
+    <string name="action_share">分享</string>
+    <string name="no_more_content">暂无更多内容</string>
+    <string name="network_error">网络不给力</string>
 </resources>
