@@ -31,4 +31,9 @@ public class BaseApplication extends Application {
     public static String getStringId(int resId) {
         return getAppContext().getString(resId);
     }
+
+
+    public static int getColorId(int colorId) {
+        return getAppContext().getResources().getColor(colorId);
+    }
 }

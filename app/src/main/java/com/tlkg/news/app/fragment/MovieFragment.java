@@ -33,6 +33,8 @@ public class MovieFragment extends BaseFragment implements MovidePresenter.IMovi
 
     private static final String TAG = "MovieFragment";
 
+    private static MovieFragment instance = null;
+
     @InjectView(R.id.fragment_movie_refreshLayout)
     ChoiceSwipeRefreshLayout mRefreshLayout;
 
@@ -46,7 +48,8 @@ public class MovieFragment extends BaseFragment implements MovidePresenter.IMovi
     private View mHeadView = null;
 
     public static Fragment getInstance() {
-        return new MovieFragment();
+        if (instance == null) instance = new MovieFragment();
+        return instance;
     }
 
     @Override

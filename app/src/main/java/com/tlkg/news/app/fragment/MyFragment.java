@@ -12,10 +12,14 @@ import com.tlkg.news.app.base.BaseFragment;
  */
 
 public class MyFragment extends BaseFragment {
+
     private static final String TAG = "MyFragment";
 
+    private static MyFragment instance = null;
+
     public static Fragment getInstance() {
-        return new MyFragment();
+        if (instance == null) instance = new MyFragment();
+        return instance;
     }
 
 

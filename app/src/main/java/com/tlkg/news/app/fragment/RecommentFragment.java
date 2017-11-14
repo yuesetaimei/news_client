@@ -3,17 +3,23 @@ package com.tlkg.news.app.fragment;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.util.TypedValue;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.tlkg.news.app.R;
-import com.tlkg.news.app.adapter.RecommentFragmentAdapter;
+import com.tlkg.news.app.adapter.BasePagerAdapter;
 import com.tlkg.news.app.base.BaseFragment;
+import com.tlkg.news.app.bean.NewsTableBean;
+import com.tlkg.news.app.db.NewsTableDao;
 import com.tlkg.news.app.ui.view.ChoiceScrollViewPager;
-import com.tlkg.news.app.ui.view.ChoiceSwipeRefreshLayout;
+import com.tlkg.news.app.util.CommonSettingUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.InjectView;
 
@@ -24,28 +30,84 @@ import butterknife.InjectView;
 
 public class RecommentFragment extends BaseFragment {
 
-    private final String TAG = "RecommentFragment";
+    private static final String TAG = "RecommentFragment";
 
-    @InjectView(R.id.fragment_recomment_refreshLayout)
-    ChoiceSwipeRefreshLayout swipeRefreshLayout;
+    private static RecommentFragment instance = null;
+
+    @InjectView(R.id.fragment_recomment_headtable_ll)
+    LinearLayout headTableLl;
 
     @InjectView(R.id.fragment_recomment_tablayout)
     TabLayout tabLayout;
 
+    @InjectView(R.id.fragment_recomment_add_iv)
+    ImageView addIv;
+
     @InjectView(R.id.fragment_recomment_viewpager)
     ChoiceScrollViewPager viewPager;
 
-    private List<BaseFragment> fragments;
+    private List<Fragment> fragments;
     private List<String> titleList;
 
-    private RecommentFragmentAdapter mFragmentAdapter;
+    private BasePagerAdapter mFragmentAdapter;
+
+    private NewsTableDao dao = new NewsTableDao();
+
+    private Map<String, Fragment> map = new HashMap<>();
 
     public static Fragment getInstance() {
-        return new RecommentFragment();
+        if (instance == null) instance = new RecommentFragment();
+        return instance;
     }
 
     @Override
     protected void initData(Bundle bundle) {
+        initTabs();
+    }
+
+    private void initTabs() {
+        fragments = new ArrayList<>();
+        titleList = new ArrayList<>();
+        List<NewsTableBean> newsTableBeanList = dao.query(1);
+        if (newsTableBeanList.size() == 0) {
+            dao.initNewsData();
+            newsTableBeanList = dao.query(1);
+        }
+
+        for (NewsTableBean bean : newsTableBeanList) {
+            BaseFragment fragment = null;
+            String _id = bean._id;
+            switch (_id) {
+                case "essay_joke":
+                    if (map.containsKey(_id)) {
+                        fragments.add(map.get(_id));
+                    } else {
+                        fragment = new NewestFragment();
+                        fragments.add(fragment);
+                    }
+                    break;
+                case "question_and_answer":
+                    if (map.containsKey(_id)) {
+                        fragments.add(map.get(_id));
+                    } else {
+                        fragment = new NewestFragment();
+                        fragments.add(fragment);
+                    }
+                    break;
+                default:
+                    if (map.containsKey(_id)) {
+                        fragments.add(map.get(_id));
+                    } else {
+                        fragment = new NewestFragment();
+                        fragments.add(fragment);
+                    }
+                    break;
+            }
+            titleList.add(bean.name);
+            if (fragment != null) {
+                map.put(_id, fragment);
+            }
+        }
     }
 
     @Override
@@ -55,41 +117,23 @@ public class RecommentFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
-        swipeRefreshLayout.setProgressBackgroundColorSchemeResource(android.R.color.white);
-        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light,
-//                android.R.color.holo_red_light, android.R.color.holo_orange_light,
-                android.R.color.holo_blue_light);
-        swipeRefreshLayout.setProgressViewOffset(false, 0,
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources().getDisplayMetrics()));
-        initFragmentList();
-        mFragmentAdapter = new RecommentFragmentAdapter(getChildFragmentManager(), fragments, titleList);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        headTableLl.setBackgroundColor(CommonSettingUtil.getInstance().getThemeColor());
+        mFragmentAdapter = new BasePagerAdapter(getChildFragmentManager(), fragments, titleList);
         viewPager.setAdapter(mFragmentAdapter);
-        viewPager.setOffscreenPageLimit(fragments.size() - 1);//预加载
-        mFragmentAdapter.notifyDataSetChanged();
+        viewPager.setOffscreenPageLimit(15);
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    private void initFragmentList() {
-        if (titleList == null)
-            titleList = new ArrayList<>();
-        if (fragments == null)
-            fragments = new ArrayList<>();
-
-        titleList.clear();
-        titleList.add("最新");
-        titleList.add("热点");
-        titleList.add("干货定制");
-        titleList.add("安卓");
-
-        fragments.clear();
-        fragments.add(new NewestFragment());
-        fragments.add(new HotspotFragment());
-        fragments.add(new CustomizedFragment());
-        fragments.add(new AndroidFragment());
-    }
 
     @Override
     public void initEvent() {
-
+        addIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "跳转", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
