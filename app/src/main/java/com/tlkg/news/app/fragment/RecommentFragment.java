@@ -86,11 +86,11 @@ public class RecommentFragment extends BaseFragment {
                         fragments.add(fragment);
                     }
                     break;
-                case "question_and_answer":
+                case "question_and_answer"://问答
                     if (map.containsKey(_id)) {
                         fragments.add(map.get(_id));
                     } else {
-                        fragment = new NewestFragment();
+                        fragment = QuestionAnswerFragment.getInstance();
                         fragments.add(fragment);
                     }
                     break;

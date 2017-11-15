@@ -118,6 +118,7 @@ public class MovieRecyclerAdapter extends BaseRecyclerAdapter<HotMovieBean.Subje
         public void onBindViewHolder(HotMovieBean.SubjectsBean object, int position) {
             Glide.with(itemView.getContext()).load(headPic)
                     .centerCrop()
+                    .placeholder(R.drawable.ic_error_outline_white_48dp)
                     .diskCacheStrategy(DiskCacheStrategy.RESULT)
                     .into(imageView);
             relativeLayout.setOnClickListener(new View.OnClickListener() {
