@@ -13,8 +13,11 @@ import com.tlkg.news.app.adapter.BasePagerAdapter;
 import com.tlkg.news.app.base.BaseFragment;
 import com.tlkg.news.app.bean.NewsTableBean;
 import com.tlkg.news.app.db.NewsTableDao;
+import com.tlkg.news.app.event.ShowConfigTabEvent;
 import com.tlkg.news.app.ui.view.ChoiceScrollViewPager;
 import com.tlkg.news.app.util.CommonSettingUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -135,6 +138,7 @@ public class RecommentFragment extends BaseFragment {
         addIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EventBus.getDefault().post(new ShowConfigTabEvent());
             }
         });
     }

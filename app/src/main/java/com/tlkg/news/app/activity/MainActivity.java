@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,10 +25,12 @@ import com.tlkg.news.app.R;
 import com.tlkg.news.app.base.BaseActivity;
 import com.tlkg.news.app.base.BaseEvent;
 import com.tlkg.news.app.event.NetworkErrEvent;
+import com.tlkg.news.app.event.ShowConfigTabEvent;
 import com.tlkg.news.app.fragment.MovieFragment;
 import com.tlkg.news.app.fragment.MyFragment;
 import com.tlkg.news.app.fragment.RecommentFragment;
 import com.tlkg.news.app.fragment.WalfareFragment;
+import com.tlkg.news.app.ui.view.ConfigShowTabPopWindow;
 import com.tlkg.news.app.ui.view.NetworkErrLoadDialog;
 import com.tlkg.news.app.view.statusbar.StatusBarUtil;
 
@@ -76,6 +77,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private long onBackTime = 0;
 
     private NetworkErrLoadDialog netErrDialg;
+
+    private ConfigShowTabPopWindow configShowTabPopWindow;
 
     public static void startActivity(Activity activity) {
         Intent i = new Intent(activity, MainActivity.class);
@@ -195,6 +198,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
+        if (configShowTabPopWindow != null && configShowTabPopWindow.isShowing()) {
+            configShowTabPopWindow.dismiss();
+            return;
+        }
         if (drawerLayout.isDrawerOpen(Gravity.START)) {
             drawerLayout.closeDrawer(Gravity.START);
             return;
@@ -245,6 +252,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             NetworkErrEvent networkErrEvent = (NetworkErrEvent) event;
             showNetErrDialog();
             netErrDialg.setPosition(networkErrEvent.mPosition);
+        } else if (event instanceof ShowConfigTabEvent) {
+            if (configShowTabPopWindow == null)
+                configShowTabPopWindow = new ConfigShowTabPopWindow(this);
+            configShowTabPopWindow.show(drawerLayout);
         }
     }
 
