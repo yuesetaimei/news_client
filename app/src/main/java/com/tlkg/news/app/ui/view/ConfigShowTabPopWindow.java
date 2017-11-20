@@ -1,10 +1,14 @@
 package com.tlkg.news.app.ui.view;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 
 import com.tlkg.news.app.R;
@@ -17,6 +21,10 @@ import com.tlkg.news.app.R;
 public class ConfigShowTabPopWindow extends PopupWindow {
 
     private static final String TAG = "ConfigShowTabPopWindow";
+
+    private RecyclerView recyclerView;
+
+    private ImageView closeImg;
 
     private Context mContext;
 
@@ -31,5 +39,21 @@ public class ConfigShowTabPopWindow extends PopupWindow {
         setContentView(contentView);
         setAnimationStyle(R.style.popwin_anim_style);
         showAtLocation(parent, Gravity.TOP, 0, 0);
+        recyclerView = (RecyclerView) contentView.findViewById(R.id.view_configshowtab_recyclerview);
+        closeImg = (ImageView) contentView.findViewById(R.id.view_configshowtab_close_img);
+        closeImg.animate().rotation(0).setDuration(0).start();
+        closeImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeImg.clearAnimation();
+                closeImg.animate().rotation(120).setDuration(100).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        dismiss();
+                    }
+                }).start();
+            }
+        });
     }
 }
