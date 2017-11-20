@@ -95,7 +95,7 @@ public class NewsArticleFragment extends BaseListFragment implements NewsArticle
     public void onLoadErr(String msg) {
         swipeRefreshLayout.setRefreshing(false);
         Toast.makeText(getActivity(), R.string.network_error, Toast.LENGTH_SHORT).show();
-        adapter.setItems(new Items());
+        oldItems.clear();
         adapter.notifyDataSetChanged();
         canLoadMore = false;
     }

@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
 
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.adapter.BasePagerAdapter;
@@ -33,6 +33,9 @@ public class RecommentFragment extends BaseFragment {
     private static final String TAG = "RecommentFragment";
 
     private static RecommentFragment instance = null;
+
+    @InjectView(R.id.fragment_recomment_refreshLayout)
+    RelativeLayout rootLl;
 
     @InjectView(R.id.fragment_recomment_headtable_ll)
     LinearLayout headTableLl;
@@ -132,7 +135,6 @@ public class RecommentFragment extends BaseFragment {
         addIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "跳转", Toast.LENGTH_SHORT).show();
             }
         });
     }

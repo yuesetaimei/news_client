@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -150,7 +151,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     case R.id.tab_welfare://福利
                         setFragment(FRAGMENT_TWO);
                         break;
-                    case R.id.tab_literature://文学
+                    case R.id.tab_literature://电影
                         setFragment(FRAGMENT_THREE);
                         break;
                     case R.id.tab_watercress://我的
