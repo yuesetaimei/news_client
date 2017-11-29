@@ -43,4 +43,6 @@
     <string name="config_drag_tip">长按编辑,拖拽排序</string>
     <string name="edit">编辑</string>
     <string name="finish">完成</string>
+    <string name="copy_content">复制内容</string>
+    <string name="copied_to_clipboard">复制成功</string>
 </resources>

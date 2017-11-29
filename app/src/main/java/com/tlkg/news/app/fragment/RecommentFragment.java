@@ -92,7 +92,7 @@ public class RecommentFragment extends BaseFragment {
                     if (map.containsKey(_id)) {
                         fragments.add(map.get(_id));
                     } else {
-                        fragment = new NewestFragment();
+                        fragment = JokeFragment.getInstance();
                         fragments.add(fragment);
                     }
                     break;

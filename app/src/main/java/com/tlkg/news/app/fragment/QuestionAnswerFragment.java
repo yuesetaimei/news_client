@@ -38,7 +38,6 @@ public class QuestionAnswerFragment extends BaseListFragment implements Question
         return new QuestionAnswerFragment();
     }
 
-
     @Override
     protected void initData(Bundle bundle) {
 
@@ -52,7 +51,6 @@ public class QuestionAnswerFragment extends BaseListFragment implements Question
             public void onLoadMore() {
                 if (canLoadMore) {
                     canLoadMore = false;
-                    Log.i("wxq", "加载11111");
                     presenter.loadMore(0, 0);
                 }
             }
@@ -103,7 +101,6 @@ public class QuestionAnswerFragment extends BaseListFragment implements Question
 
     @Override
     public void onRefresh() {
-
         presenter.load();
     }
 

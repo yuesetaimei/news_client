@@ -25,6 +25,7 @@ import butterknife.InjectView;
  * 最新推荐Fragment
  */
 
+@Deprecated
 public class NewestFragment extends BaseFragment implements NewestPresenter.INewestView {
 
 
