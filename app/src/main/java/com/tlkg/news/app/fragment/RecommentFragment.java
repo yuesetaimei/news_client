@@ -7,17 +7,21 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.adapter.BasePagerAdapter;
+import com.tlkg.news.app.base.BaseEvent;
 import com.tlkg.news.app.base.BaseFragment;
 import com.tlkg.news.app.bean.NewsTableBean;
 import com.tlkg.news.app.db.NewsTableDao;
 import com.tlkg.news.app.event.ShowConfigTabEvent;
+import com.tlkg.news.app.event.TabShowRefreshEvent;
 import com.tlkg.news.app.ui.view.ChoiceScrollViewPager;
 import com.tlkg.news.app.util.CommonSettingUtil;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -141,5 +145,13 @@ public class RecommentFragment extends BaseFragment {
                 EventBus.getDefault().post(new ShowConfigTabEvent());
             }
         });
+    }
+
+    @Subscribe
+    public void onEvent(BaseEvent event) {
+        if (event instanceof TabShowRefreshEvent) {
+            initTabs();
+            mFragmentAdapter.recreateItems(fragments, titleList);
+        }
     }
 }

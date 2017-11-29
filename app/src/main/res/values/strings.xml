@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">轻松一刻</string>
+    <string name="app_name">新闻一刻</string>
 
     <!-- 底部导航按钮文字 -->
     <string name="recomment">推荐</string>
@@ -37,4 +37,10 @@
     <string name="action_share">分享</string>
     <string name="no_more_content">暂无更多内容</string>
     <string name="network_error">网络不给力</string>
+
+    <string name="config_show_tab">显示Tab</string>
+    <string name="config_hide_tab">隐藏Tab</string>
+    <string name="config_drag_tip">长按编辑,拖拽排序</string>
+    <string name="edit">编辑</string>
+    <string name="finish">完成</string>
 </resources>

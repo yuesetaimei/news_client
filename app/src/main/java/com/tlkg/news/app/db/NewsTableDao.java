@@ -47,6 +47,20 @@ public class NewsTableDao {
         db.insert(NewsTable.TABLE_NAME, null, contentValues);
     }
 
+    public void addEnableList(List<NewsTableBean> list) {
+        if (list == null || list.size() == 0) return;
+        for (int i = 0; i < list.size(); i++) {
+            add(list.get(i)._id, list.get(i).name, NewsTable.NEWS_TABLE_ENABLE, i);
+        }
+    }
+
+    public void addDisableList(List<NewsTableBean> list) {
+        if (list == null || list.size() == 0) return;
+        for (int i = 0; i < list.size(); i++) {
+            add(list.get(i)._id, list.get(i).name, NewsTable.NEWS_TABLE_DISABLE, i);
+        }
+    }
+
     public List<NewsTableBean> query(int isEnable) {
         Cursor cursor = db.query(NewsTable.TABLE_NAME, null, NewsTable.IS_ENABLE + "=?", new String[]{isEnable + ""}, null, null, null);
         List<NewsTableBean> list = new ArrayList<>();
