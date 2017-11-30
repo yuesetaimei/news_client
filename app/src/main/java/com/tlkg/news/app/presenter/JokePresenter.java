@@ -34,6 +34,12 @@ public class JokePresenter extends BasePresenter<JokePresenter.IJokeView> {
 
     @Override
     public void load() {
+        mView.onLoadStart();
+        loadMore(0, 0);
+    }
+
+    @Override
+    public void loadMore(int pageCount, int pageIndex) {
         Map<String, String> map = PhoneUtil.getAsCp();
 
         HttpUtils.getRetrofit().create(IJokeApi.class).getJokeContent(time, map.get("as"), map.get("cp"))

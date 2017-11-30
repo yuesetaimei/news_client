@@ -21,14 +21,14 @@ import android.widget.Toast;
 
 import com.tlkg.news.app.NewsClientApplication;
 import com.tlkg.news.app.R;
-import com.tlkg.news.app.base.BaseActivity;
+import com.tlkg.news.app.base.BaseSlidrActivity;
 import com.tlkg.news.app.util.PhoneUtil;
 import com.tlkg.news.app.view.statusbar.StatusBarUtil;
 
 import butterknife.InjectView;
 
 
-public class WebViewActivity extends BaseActivity {
+public class WebViewActivity extends BaseSlidrActivity {
 
     private static final String TAG = "WebViewActivity";
 

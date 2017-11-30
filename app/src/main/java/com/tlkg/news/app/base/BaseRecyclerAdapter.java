@@ -67,6 +67,10 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         this.mHeadViewHolder = headViewHolder;
     }
 
+    public View getHeadView() {
+        return mHeadView;
+    }
+
     public void refreshData(List<T> data) {
         isFirstLoad = true;
         mData.clear();

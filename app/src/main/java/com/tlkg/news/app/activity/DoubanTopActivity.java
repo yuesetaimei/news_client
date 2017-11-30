@@ -18,6 +18,7 @@ import com.tlkg.news.app.adapter.DoubanTopRecyclerAdapter;
 import com.tlkg.news.app.base.BaseActivity;
 import com.tlkg.news.app.base.BaseEvent;
 import com.tlkg.news.app.base.BaseRecyclerAdapter;
+import com.tlkg.news.app.base.BaseSlidrActivity;
 import com.tlkg.news.app.bean.HotMovieBean;
 import com.tlkg.news.app.event.MovieTopItemClickEvent;
 import com.tlkg.news.app.presenter.DoubanTopPresenter;
@@ -32,7 +33,7 @@ import butterknife.InjectView;
 /**
  * 豆瓣Top界面
  */
-public class DoubanTopActivity extends BaseActivity implements DoubanTopPresenter.IDoubanTopView {
+public class DoubanTopActivity extends BaseSlidrActivity implements DoubanTopPresenter.IDoubanTopView {
 
     private static final String TAG = "DoubanTopActivity";
 

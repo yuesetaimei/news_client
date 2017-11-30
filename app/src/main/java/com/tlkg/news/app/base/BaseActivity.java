@@ -61,11 +61,18 @@ public abstract class BaseActivity extends AppCompatActivity {
             setContentView(getContentView());
             ButterKnife.inject(this);
         }
+        initSlidable();
         EventBus.getDefault().register(this);
         initData(getIntent().getExtras());
         initWindow();
         initViews();
         initEvent();
+    }
+
+    /**
+     * 被动化滑动返回
+     */
+    protected void initSlidable() {
     }
 
     protected boolean enableBindView() {

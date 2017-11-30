@@ -30,8 +30,8 @@ import com.tlkg.news.app.NewsClientApplication;
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.adapter.DetailAdapter;
 import com.tlkg.news.app.adapter.MovieRecyclerAdapter;
-import com.tlkg.news.app.base.BaseActivity;
 import com.tlkg.news.app.base.BaseEvent;
+import com.tlkg.news.app.base.BaseSlidrActivity;
 import com.tlkg.news.app.bean.HotMovieBean;
 import com.tlkg.news.app.bean.MovieDetailBean;
 import com.tlkg.news.app.bean.PersonBean;
@@ -49,7 +49,7 @@ import butterknife.InjectView;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
 
-public class DetailsPageActivity extends BaseActivity implements DetailsPresenter.IDetailsView {
+public class DetailsPageActivity extends BaseSlidrActivity implements DetailsPresenter.IDetailsView {
 
     private static final String TAG = "DetailsPageActivity";
 

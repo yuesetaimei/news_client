@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorTopPageBg"
+    android:background="@color/viewBackground"
     android:orientation="vertical"
     tools:context="com.tlkg.news.app.activity.DoubanTopActivity">
 

@@ -25,6 +25,10 @@
         <item name="android:backgroundDimEnabled">false</item><!--模糊-->
     </style>
 
+    <style name="AppTheme.NoActionBar.Slidable" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 
     <style name="ToolbarStyle" parent="@style/AppTheme">
         <item name="titleTextAppearance">@style/ToolBar.Title</item>

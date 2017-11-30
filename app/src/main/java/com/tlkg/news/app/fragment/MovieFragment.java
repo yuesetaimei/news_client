@@ -78,8 +78,6 @@ public class MovieFragment extends BaseFragment implements MovidePresenter.IMovi
         if (mHeadView == null) {
             mHeadView = View.inflate(getContext(), R.layout.item_movie_head, null);
         }
-        mAdapter.addHeadView(mHeadView);
-        mAdapter.setHeadViewHolder(new MovieRecyclerAdapter.HeadViewHoler(mHeadView));
     }
 
     @Override
@@ -104,6 +102,10 @@ public class MovieFragment extends BaseFragment implements MovidePresenter.IMovi
         mRefreshLayout.setRefreshing(false);
         mRefreshLayout.setEnabled(false);
         mAdapter.refreshData(data.getSubjects());
+        if (mAdapter.getHeadView() == null) {
+            mAdapter.addHeadView(mHeadView);
+            mAdapter.setHeadViewHolder(new MovieRecyclerAdapter.HeadViewHoler(mHeadView));
+        }
     }
 
     @Override

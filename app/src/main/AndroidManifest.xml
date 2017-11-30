@@ -62,19 +62,22 @@
         <activity
             android:name=".activity.DoubanTopActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.Slidable" />
 
         <!-- 电影详情页 -->
         <activity
             android:name=".activity.DetailsPageActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.Slidable" />
 
         <!-- 加载网页的Activyt -->
         <activity
             android:name=".activity.WebViewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.Slidable" />
     </application>
 
 </manifest>

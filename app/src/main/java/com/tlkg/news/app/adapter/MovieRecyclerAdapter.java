@@ -116,7 +116,7 @@ public class MovieRecyclerAdapter extends BaseRecyclerAdapter<HotMovieBean.Subje
 
         @Override
         public void onBindViewHolder(HotMovieBean.SubjectsBean object, int position) {
-            Glide.with(itemView.getContext()).load(headPic)
+            Glide.with(itemView.getContext()).load(R.drawable.ico_moviet_top)
                     .centerCrop()
                     .placeholder(R.drawable.ic_error_outline_white_48dp)
                     .diskCacheStrategy(DiskCacheStrategy.RESULT)

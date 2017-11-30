@@ -39,7 +39,7 @@ public class JokeFragment extends BaseListFragment implements JokePresenter.IJok
             public void onLoadMore() {
                 if (canLoadMore) {
                     canLoadMore = false;
-                    presenter.load();
+                    presenter.loadMore(0,0);
                 }
             }
         });
