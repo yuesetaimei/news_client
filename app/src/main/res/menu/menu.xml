@@ -3,26 +3,26 @@
 
     <item
         android:id="@+id/project"
-        android:icon="@mipmap/ic_launcher_round"
-        android:title="项目地址" />
+        android:icon="@drawable/ic_touch_app_black_24dp"
+        android:title="@string/left_menu_project_address" />
 
     <item
         android:id="@+id/down"
-        android:icon="@mipmap/ic_launcher_round"
-        android:title="扫码下载" />
+        android:icon="@drawable/ic_file_download_black_24dp"
+        android:title="@string/left_menu_down" />
 
     <item
         android:id="@+id/share"
-        android:icon="@mipmap/ic_launcher_round"
-        android:title="分享好友" />
+        android:icon="@drawable/ic_share_black_24dp"
+        android:title="@string/left_menu_shared" />
 
     <item
         android:id="@+id/guanyu"
-        android:icon="@mipmap/ic_launcher_round"
-        android:title="关于 Hi,干货" />
+        android:icon="@drawable/ic_apps_black_24dp"
+        android:title="@string/left_menu_about_app" />
 
     <item
         android:id="@+id/exit"
-        android:icon="@mipmap/ic_launcher_round"
-        android:title="退出应用" />
+        android:icon="@drawable/ic_exit_to_app_black_24dp"
+        android:title="@string/left_menu_exit" />
 </menu>

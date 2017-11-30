@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">新闻一刻</string>
 
+    <!-- 侧滑按钮文字 -->
+    <string name="left_menu_project_address">项目地址</string>
+    <string name="left_menu_down">扫码下载</string>
+    <string name="left_menu_shared">分享好友</string>
+    <string name="left_menu_about_app">关于应用</string>
+    <string name="left_menu_exit">退出应用</string>
+
     <!-- 底部导航按钮文字 -->
     <string name="recomment">推荐</string>
     <string name="welfare">福利</string>
