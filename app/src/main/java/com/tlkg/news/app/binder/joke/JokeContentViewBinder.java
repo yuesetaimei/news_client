@@ -16,16 +16,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.tlkg.news.app.NewsClientApplication;
 import com.tlkg.news.app.R;
+import com.tlkg.news.app.activity.JokeContentActivity;
 import com.tlkg.news.app.bean.JokeContentBean;
 import com.tlkg.news.app.util.ImageLoader;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.drakeet.multitype.ItemViewBinder;
-
-/**
- * Created by Meiji on 2017/6/10.
- */
 
 public class JokeContentViewBinder extends ItemViewBinder<JokeContentBean.DataBean.GroupBean, JokeContentViewBinder.ViewHolder> {
 
@@ -55,19 +53,17 @@ public class JokeContentViewBinder extends ItemViewBinder<JokeContentBean.DataBe
             holder.tv_digg_count.setText(digg_count);
             holder.tv_bury_count.setText(bury_count);
             if (comment_count > 0) {
-                holder.tv_comment_count.setText(comment_count + "评论");
+                holder.tv_comment_count.setText(comment_count + NewsClientApplication.getStringId(R.string.comment));
             } else {
                 holder.tv_comment_count.setVisibility(View.GONE);
             }
 
-//            RxView.clicks(holder.itemView)
-//                    .throttleFirst(1, TimeUnit.SECONDS)
-//                    .subscribe(new Consumer<Object>() {
-//                        @Override
-//                        public void accept(@io.reactivex.annotations.NonNull Object o) throws Exception {
-//                            JokeCommentActivity.launch(item);
-//                        }
-//                    });
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    JokeContentActivity.startActivity(context, item);
+                }
+            });
 
             holder.iv_dots.setOnClickListener(new View.OnClickListener() {
                 @Override

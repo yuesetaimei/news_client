@@ -78,6 +78,14 @@
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.Slidable" />
+
+        <!-- 段子内容页-->
+        <activity
+            android:name=".activity.JokeContentActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.Slidable" />
     </application>
 
 </manifest>

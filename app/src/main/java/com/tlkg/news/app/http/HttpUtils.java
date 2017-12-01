@@ -152,8 +152,8 @@ public class HttpUtils implements UrlConstant {
                         .cache(cache)
                         .addInterceptor(cacheControlInterceptor)
                         .connectTimeout(10, TimeUnit.SECONDS)
-                        .readTimeout(15, TimeUnit.SECONDS)
-                        .writeTimeout(15, TimeUnit.SECONDS)
+                        .readTimeout(20, TimeUnit.SECONDS)
+                        .writeTimeout(20, TimeUnit.SECONDS)
                         .retryOnConnectionFailure(true);
 
                 // Log 拦截器

@@ -5,10 +5,6 @@ import android.os.Parcelable;
 
 import java.util.List;
 
-/**
- * Created by Meiji on 2016/12/28.
- */
-
 public class JokeContentBean {
 
     /**

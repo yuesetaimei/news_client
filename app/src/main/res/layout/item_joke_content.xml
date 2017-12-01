@@ -71,8 +71,7 @@
             <TextView
                 android:id="@+id/tv_text"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="昨天和闺蜜出去逛街，闺密问她老公要钱，她老公坐在沙发上，翘着二郎腿抽着烟问：“20行吗？”闺密想了想，温柔的点点头，我正惊讶她老公能把她管制的服服贴贴，只见她老公从钱包里掏出20，然后把钱包递给了媳妇……" />
+                android:layout_height="wrap_content" />
 
             <LinearLayout
                 android:layout_width="match_parent"
