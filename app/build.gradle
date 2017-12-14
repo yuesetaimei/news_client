@@ -16,9 +16,20 @@ android {
             }
         }
     }
+
+    signingConfigs {
+        config {
+            keyAlias 'news_client'
+            keyPassword 'android'
+            storeFile file('keystore/news_client.jks')
+            storePassword 'android'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
