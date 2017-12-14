@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Grey100"
+    android:background="@color/Grey200"
     android:orientation="vertical"
     tools:context="com.tlkg.news.app.activity.JokeContentActivity">
 
@@ -95,5 +95,34 @@
             app:layout_anchor="@id/activity_joke_content_cardview"
             app:layout_anchorGravity="bottom|end" />
     </android.support.design.widget.CoordinatorLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/activity_joke_content_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:scrollbars="vertical"
+            app:layoutManager="LinearLayoutManager" />
+
+        <ImageView
+            android:id="@+id/activity_joke_content_no_comment"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_adb_white_36dp"
+            android:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/activity_joke_progressbar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
 
 </LinearLayout>
