@@ -7,6 +7,8 @@ import android.support.annotation.StyleRes;
 
 import com.tlkg.news.app.R;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by wuxiaoqi on 2017/10/10.
  */
@@ -18,5 +20,6 @@ public class BaseDialog extends Dialog {
 
     public BaseDialog(@NonNull Context context, @StyleRes int themeResId) {
         super(context, themeResId);
+        ButterKnife.inject(this,this);
     }
 }

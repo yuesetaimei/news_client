@@ -1,4 +1,4 @@
-package com.tlkg.news.app.ui.view;
+package com.tlkg.news.app.ui.dialog;
 
 import android.content.Context;
 import android.content.Intent;
@@ -38,7 +38,6 @@ public class NetworkErrLoadDialog extends BaseDialog {
         setContentView(R.layout.network_err_load_view);
 //        setCancelable(false);
 //        setCanceledOnTouchOutside(false);
-        ButterKnife.inject(this);
         initView();
         initEvent();
     }

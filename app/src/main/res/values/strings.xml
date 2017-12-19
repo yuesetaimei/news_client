@@ -54,4 +54,6 @@
     <string name="copied_to_clipboard">复制成功</string>
     <string name="comment">评论</string>
     <string name="back">返回</string>
+
+    <string name="project_address_url"><a href='https://github.com/wuxiaoqi123/news_client' color='white'>https://github.com/wuxiaoqi123/news_client</a></string>
 </resources>

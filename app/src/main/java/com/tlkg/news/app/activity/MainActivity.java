@@ -30,8 +30,9 @@ import com.tlkg.news.app.fragment.MovieFragment;
 import com.tlkg.news.app.fragment.MyFragment;
 import com.tlkg.news.app.fragment.RecommentFragment;
 import com.tlkg.news.app.fragment.WalfareFragment;
+import com.tlkg.news.app.ui.dialog.NetworkErrLoadDialog;
+import com.tlkg.news.app.ui.dialog.ProjectAddressDialog;
 import com.tlkg.news.app.ui.view.ConfigShowTabPopWindow;
-import com.tlkg.news.app.ui.view.NetworkErrLoadDialog;
 import com.tlkg.news.app.view.statusbar.StatusBarUtil;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -179,13 +180,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         });
     }
 
+    private ProjectAddressDialog projectAddressDialog = null;
+
     private void onClickLeftMenu(final MenuItem item) {
         drawerLayout.closeDrawer(Gravity.START);
         drawerLayout.postDelayed(new Runnable() {
             @Override
             public void run() {
                 switch (item.getItemId()) {
-                    case R.id.exit:
+                    case R.id.project://项目地址
+                        showProjectAddressDialog();
+                        break;
+                    case R.id.down://扫码下载
+
+                        break;
+                    case R.id.share://分享好友
+
+                        break;
+                    case R.id.guanyu://关于应用
+
+                        break;
+                    case R.id.exit://退出应用
                         finish();
                         android.os.Process.killProcess(android.os.Process.myPid());
                         break;
@@ -194,6 +209,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
             }
         }, 290);
+    }
+
+    private void showProjectAddressDialog() {
+        if (projectAddressDialog == null) {
+            projectAddressDialog = new ProjectAddressDialog(this);
+        }
+        projectAddressDialog.show();
     }
 
     @Override
@@ -244,7 +266,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         return fragment;
     }
-
 
     @Subscribe
     public void onEventBus(BaseEvent event) {

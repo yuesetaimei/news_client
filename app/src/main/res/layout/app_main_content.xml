@@ -89,12 +89,11 @@
             android:layout_height="51dp"
             android:layout_gravity="bottom"
             app:bb_activeTabColor="@color/white"
-            app:bb_behavior="shy|underNavbar"
+            app:bb_behavior="shy"
             app:bb_inActiveTabColor="@color/gray"
             app:bb_showShadow="false"
             app:bb_tabXmlResource="@xml/bottombar_tabs"
             app:bb_tabletMode="false" />
     </android.support.design.widget.CoordinatorLayout>
-
 
 </LinearLayout>

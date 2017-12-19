@@ -16,13 +16,26 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
-    <style name="dialog" parent="@android:style/Theme.Dialog">
+    <style name="dialog" parent="Animation.AppCompat.Dialog">
         <item name="android:windowFrame">@null</item><!--边框-->
         <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
         <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowNoTitle">true</item><!--无标题-->
         <item name="android:windowBackground">@color/tran</item><!--背景透明-->
         <item name="android:backgroundDimEnabled">false</item><!--模糊-->
+    </style>
+
+    <style name="menu_dialog" parent="Animation.AppCompat.Dialog">
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@color/tran</item><!--背景透明-->
+        <item name="android:backgroundDimEnabled">true</item><!--模糊-->
     </style>
 
     <style name="AppTheme.NoActionBar.Slidable" parent="AppTheme">
