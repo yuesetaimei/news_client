@@ -27,11 +27,8 @@ public class ScanDownLoadDialog extends BaseMenuDialog {
 
     Bitmap qrBitmap = null;
 
-    private Context mContext;
-
     public ScanDownLoadDialog(@NonNull Context context) {
         super(context);
-        mContext = context;
         initQR();
     }
 

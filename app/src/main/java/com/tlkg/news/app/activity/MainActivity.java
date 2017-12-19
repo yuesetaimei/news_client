@@ -30,6 +30,7 @@ import com.tlkg.news.app.fragment.MovieFragment;
 import com.tlkg.news.app.fragment.MyFragment;
 import com.tlkg.news.app.fragment.RecommentFragment;
 import com.tlkg.news.app.fragment.WalfareFragment;
+import com.tlkg.news.app.ui.dialog.AboutDialog;
 import com.tlkg.news.app.ui.dialog.NetworkErrLoadDialog;
 import com.tlkg.news.app.ui.dialog.ProjectAddressDialog;
 import com.tlkg.news.app.ui.dialog.ScanDownLoadDialog;
@@ -185,6 +186,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private ScanDownLoadDialog scanDownLoadDialog = null;
 
+    private AboutDialog aboutDialog = null;
+
     private void onClickLeftMenu(final MenuItem item) {
         drawerLayout.closeDrawer(Gravity.START);
         drawerLayout.postDelayed(new Runnable() {
@@ -198,10 +201,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         showScanDownLoadDialog();
                         break;
                     case R.id.share://分享好友
-
+                        share();
                         break;
                     case R.id.guanyu://关于应用
-
+                        showAboutDialog();
                         break;
                     case R.id.exit://退出应用
                         finish();
@@ -212,6 +215,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
             }
         }, 290);
+    }
+
+    private void showAboutDialog() {
+        if (aboutDialog == null) {
+            aboutDialog = new AboutDialog(this);
+        }
+        aboutDialog.show();
+    }
+
+    private void share() {
+        Intent shareIntent = new Intent()
+                .setAction(Intent.ACTION_SEND)
+                .setType("text/plain")
+                .putExtra(Intent.EXTRA_TEXT, getString(R.string.share_url));
+        startActivity(Intent.createChooser(shareIntent, getString(R.string.action_share)));
     }
 
     private void showScanDownLoadDialog() {

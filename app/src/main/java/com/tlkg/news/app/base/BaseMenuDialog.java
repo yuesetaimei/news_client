@@ -14,12 +14,16 @@ import butterknife.ButterKnife;
  */
 
 public abstract class BaseMenuDialog extends Dialog {
+
+    protected  Context mContext;
+
     public BaseMenuDialog(@NonNull Context context) {
         this(context, R.style.menu_dialog);
     }
 
     public BaseMenuDialog(@NonNull Context context, int themeResId) {
         super(context, themeResId);
+        mContext = context;
         setContentView(getContentView());
         ButterKnife.inject(this, this);
         setCanceledOnTouchOutside(true);
