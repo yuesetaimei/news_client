@@ -55,5 +55,6 @@
     <string name="comment">评论</string>
     <string name="back">返回</string>
 
-    <string name="project_address_url"><a href='https://github.com/wuxiaoqi123/news_client' color='white'>https://github.com/wuxiaoqi123/news_client</a></string>
+    <string name="project_address_url"><a color='white' href='https://github.com/wuxiaoqi123/news_client'>https://github.com/wuxiaoqi123/news_client</a></string>
+    <string name="scan_down_load_url">https://github.com/wuxiaoqi123/news_client</string>
 </resources>

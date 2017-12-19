@@ -32,6 +32,7 @@ import com.tlkg.news.app.fragment.RecommentFragment;
 import com.tlkg.news.app.fragment.WalfareFragment;
 import com.tlkg.news.app.ui.dialog.NetworkErrLoadDialog;
 import com.tlkg.news.app.ui.dialog.ProjectAddressDialog;
+import com.tlkg.news.app.ui.dialog.ScanDownLoadDialog;
 import com.tlkg.news.app.ui.view.ConfigShowTabPopWindow;
 import com.tlkg.news.app.view.statusbar.StatusBarUtil;
 
@@ -182,6 +183,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private ProjectAddressDialog projectAddressDialog = null;
 
+    private ScanDownLoadDialog scanDownLoadDialog = null;
+
     private void onClickLeftMenu(final MenuItem item) {
         drawerLayout.closeDrawer(Gravity.START);
         drawerLayout.postDelayed(new Runnable() {
@@ -192,7 +195,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         showProjectAddressDialog();
                         break;
                     case R.id.down://扫码下载
-
+                        showScanDownLoadDialog();
                         break;
                     case R.id.share://分享好友
 
@@ -209,6 +212,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
             }
         }, 290);
+    }
+
+    private void showScanDownLoadDialog() {
+        if (scanDownLoadDialog == null) {
+            scanDownLoadDialog = new ScanDownLoadDialog(this);
+        }
+        scanDownLoadDialog.show();
     }
 
     private void showProjectAddressDialog() {

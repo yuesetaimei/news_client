@@ -22,6 +22,8 @@ public abstract class BaseMenuDialog extends Dialog {
         super(context, themeResId);
         setContentView(getContentView());
         ButterKnife.inject(this, this);
+        setCanceledOnTouchOutside(true);
+        setCancelable(true);
     }
 
     @LayoutRes

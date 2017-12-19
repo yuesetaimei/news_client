@@ -29,8 +29,6 @@ public class ProjectAddressDialog extends BaseMenuDialog {
 
     public ProjectAddressDialog(@NonNull Context context) {
         super(context);
-        setCanceledOnTouchOutside(true);
-        setCancelable(true);
         SpannableString spannableString = new SpannableString(getContext().getString(R.string.project_address_url));
         Linkify.addLinks(spannableString, Linkify.ALL);
         spannableString.setSpan(new ForegroundColorSpan(Color.WHITE), 0, spannableString.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
