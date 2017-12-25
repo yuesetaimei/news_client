@@ -116,17 +116,21 @@ public class MovieRecyclerAdapter extends BaseRecyclerAdapter<HotMovieBean.Subje
 
         @Override
         public void onBindViewHolder(HotMovieBean.SubjectsBean object, int position) {
-            Glide.with(itemView.getContext()).load(R.drawable.ico_moviet_top)
-                    .centerCrop()
-                    .placeholder(R.drawable.ic_error_outline_white_48dp)
-                    .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                    .into(imageView);
-            relativeLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    EventBus.getDefault().post(new DoubanTop250CliekEvent());
-                }
-            });
+            try {
+                Glide.with(itemView.getContext()).load(R.drawable.ico_moviet_top)
+                        .centerCrop()
+                        .placeholder(R.drawable.ic_error_outline_white_48dp)
+                        .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                        .into(imageView);
+                relativeLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        EventBus.getDefault().post(new DoubanTop250CliekEvent());
+                    }
+                });
+            } catch (Exception e) {
+
+            }
         }
     }
 

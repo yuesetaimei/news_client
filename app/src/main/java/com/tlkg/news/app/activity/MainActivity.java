@@ -1,7 +1,12 @@
 package com.tlkg.news.app.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.AppBarLayout;
@@ -11,11 +16,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.util.EventLog;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,8 +32,10 @@ import com.roughike.bottombar.OnTabSelectListener;
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.base.BaseActivity;
 import com.tlkg.news.app.base.BaseEvent;
+import com.tlkg.news.app.event.AnimTranEvent;
 import com.tlkg.news.app.event.NetworkErrEvent;
 import com.tlkg.news.app.event.ShowConfigTabEvent;
+import com.tlkg.news.app.event.ShowMyFragmentCircleEvent;
 import com.tlkg.news.app.fragment.MovieFragment;
 import com.tlkg.news.app.fragment.MyFragment;
 import com.tlkg.news.app.fragment.RecommentFragment;
@@ -35,8 +45,11 @@ import com.tlkg.news.app.ui.dialog.NetworkErrLoadDialog;
 import com.tlkg.news.app.ui.dialog.ProjectAddressDialog;
 import com.tlkg.news.app.ui.dialog.ScanDownLoadDialog;
 import com.tlkg.news.app.ui.view.ConfigShowTabPopWindow;
+import com.tlkg.news.app.util.DensityUtil;
+import com.tlkg.news.app.util.PhoneUtil;
 import com.tlkg.news.app.view.statusbar.StatusBarUtil;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.InjectView;
@@ -71,6 +84,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @InjectView(R.id.activity_main_tool_bar_head_iv)
     CircleImageView toolBarHeadImg;
 
+    @InjectView(R.id.activity_main_parent_rl)
+    RelativeLayout parentRl;
+
     @InjectView(R.id.activity_main_root_fl)
     FrameLayout rootView;
 
@@ -82,6 +98,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private NetworkErrLoadDialog netErrDialg;
 
     private ConfigShowTabPopWindow configShowTabPopWindow;
+
+    private CircleImageView myCircleImageView = null;
 
     public static void startActivity(Activity activity) {
         Intent i = new Intent(activity, MainActivity.class);
@@ -152,15 +170,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             public void onTabSelected(@IdRes int tabId) {
                 switch (tabId) {
                     case R.id.tab_recommend://推荐
+                        hideCircleView();
                         setFragment(FRAGMENT_ONE);
                         break;
                     case R.id.tab_welfare://福利
+                        hideCircleView();
                         setFragment(FRAGMENT_TWO);
                         break;
                     case R.id.tab_literature://电影
+                        hideCircleView();
                         setFragment(FRAGMENT_THREE);
                         break;
                     case R.id.tab_watercress://我的
+                        showCircleView();
                         setFragment(FRAGMENT_FOUR);
                         break;
                     default:
@@ -169,6 +191,31 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 appBarLayout.setExpanded(true, false);
             }
         });
+        toolBarHeadImg.post(new Runnable() {
+            @Override
+            public void run() {
+                myCircleImageView = addMirrorView(parentRl, toolBarHeadImg);
+                toolBarHeadImg.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void hideCircleView() {
+        if (myCircleImageView != null && myCircleImageView.getVisibility() == View.VISIBLE) {
+            myCircleImageView.setVisibility(View.GONE);
+        }
+        if (toolBarHeadImg.getVisibility() != View.VISIBLE) {
+            toolBarHeadImg.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void showCircleView() {
+        if (myCircleImageView != null && myCircleImageView.getVisibility() != View.VISIBLE) {
+            myCircleImageView.setVisibility(View.VISIBLE);
+        }
+        if (toolBarHeadImg.getVisibility() == View.VISIBLE) {
+            toolBarHeadImg.setVisibility(View.GONE);
+        }
     }
 
     private void initLeftMenu() {
@@ -305,6 +352,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             if (configShowTabPopWindow == null)
                 configShowTabPopWindow = new ConfigShowTabPopWindow(this);
             configShowTabPopWindow.show(drawerLayout);
+        } else if (event instanceof AnimTranEvent) {
+            AnimTranEvent animTranEvent = (AnimTranEvent) event;
+            int x = animTranEvent.x + DensityUtil.dip2px(70) / 2;
+            int y = animTranEvent.y + DensityUtil.dip2px(70) / 2;
+            if (myCircleImageView != null) {
+                PropertyValuesHolder pvhX = PropertyValuesHolder.ofFloat("translationX", 0f, x - mirrorX);
+                PropertyValuesHolder pvhY = PropertyValuesHolder.ofFloat("translationY", 0f, y - mirrorY);
+                PropertyValuesHolder pvhSx = PropertyValuesHolder.ofFloat("scaleX", 0, 2.5f);
+                PropertyValuesHolder pvhSy = PropertyValuesHolder.ofFloat("scaleY", 0, 2.5f);
+//                myCircleImageView.animate().translationXBy(x - mirrorX).translationYBy(y - mirrorY).setDuration(1000).start();
+                ObjectAnimator objectAnimator = ObjectAnimator.ofPropertyValuesHolder(myCircleImageView, pvhX, pvhY, pvhSx, pvhSy).setDuration(1000);
+                objectAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        myCircleImageView.setVisibility(View.GONE);
+                        EventBus.getDefault().post(new ShowMyFragmentCircleEvent());
+                    }
+                });
+                objectAnimator.start();
+            }
         }
     }
 
@@ -322,5 +389,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void dismissNetErrDialog() {
         if (netErrDialg == null) return;
         if (netErrDialg.isShowing()) netErrDialg.dismiss();
+    }
+
+    private int mirrorX, mirrorY;
+
+    private CircleImageView addMirrorView(ViewGroup parent, View view) {
+        view.destroyDrawingCache();
+        view.setDrawingCacheEnabled(true);
+        final CircleImageView mirrorView = new CircleImageView(this);
+        Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
+//        mirrorView.setImageBitmap(bitmap);
+        mirrorView.setImageResource(R.drawable.iv_menu_head);
+        view.setDrawingCacheEnabled(false);
+        int[] locations = new int[2];
+        view.getLocationOnScreen(locations);
+        Log.i("wxq", "width:" + bitmap.getWidth());
+        Log.i("wxq", "height:" + bitmap.getHeight());
+        mirrorX = locations[0] + bitmap.getWidth() / 2;
+        mirrorY = locations[1] + bitmap.getHeight() / 2;
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(bitmap.getWidth(), bitmap.getHeight());
+        params.setMargins(locations[0], locations[1], 0, 0);
+        parent.addView(mirrorView, params);
+        return mirrorView;
     }
 }
