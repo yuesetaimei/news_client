@@ -36,8 +36,6 @@ public class WalfareFragment extends BaseFragment implements WalfarePresenter.IW
 
     private static final String TAG = "WalfareFragment";
 
-    private static WalfareFragment instance = null;
-
     @InjectView(R.id.fragment_welfare_refreshLayout)
     ChoiceSwipeRefreshLayout swipeRefreshLayout;
 
@@ -49,8 +47,7 @@ public class WalfareFragment extends BaseFragment implements WalfarePresenter.IW
     private WelfareRecyclerAdapter mAdapter;
 
     public static Fragment getInstance() {
-        if (instance == null) instance = new WalfareFragment();
-        return instance;
+        return new WalfareFragment();
     }
 
     @Override

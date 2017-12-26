@@ -39,8 +39,6 @@ public class RecommentFragment extends BaseFragment {
 
     private static final String TAG = "RecommentFragment";
 
-    private static RecommentFragment instance = null;
-
     @InjectView(R.id.fragment_recomment_refreshLayout)
     RelativeLayout rootLl;
 
@@ -66,8 +64,7 @@ public class RecommentFragment extends BaseFragment {
     private Map<String, Fragment> map = new HashMap<>();
 
     public static Fragment getInstance() {
-        if (instance == null) instance = new RecommentFragment();
-        return instance;
+        return new RecommentFragment();
     }
 
     @Override

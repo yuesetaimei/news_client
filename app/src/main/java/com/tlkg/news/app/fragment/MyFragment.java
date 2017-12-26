@@ -25,20 +25,15 @@ public class MyFragment extends BaseFragment {
 
     public static final String TAG = "MyFragment";
 
-    private static MyFragment instance = null;
-
     @InjectView(R.id.fragment_my_circle_img)
     CircleImageView circleImageView;
 
     public static Fragment getInstance() {
-        if (instance == null) instance = new MyFragment();
-        return instance;
+        return new MyFragment();
     }
-
 
     @Override
     protected void initData(Bundle bundle) {
-
     }
 
     @Override

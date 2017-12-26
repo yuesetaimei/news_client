@@ -366,7 +366,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 objectAnimator.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        myCircleImageView.setVisibility(View.GONE);
+                        if (myCircleImageView != null) {
+                            myCircleImageView.setVisibility(View.GONE);
+                        }
                         EventBus.getDefault().post(new ShowMyFragmentCircleEvent());
                     }
                 });
