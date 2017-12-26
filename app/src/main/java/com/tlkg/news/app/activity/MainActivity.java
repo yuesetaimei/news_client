@@ -98,6 +98,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private CircleImageView myCircleImageView = null;
 
+    private boolean isShowCircleImageView = true;
+
     public static void startActivity(Activity activity) {
         Intent i = new Intent(activity, MainActivity.class);
         activity.startActivity(i);
@@ -207,7 +209,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private void showCircleView() {
         if (myCircleImageView != null && myCircleImageView.getVisibility() != View.VISIBLE) {
-            myCircleImageView.setVisibility(View.VISIBLE);
+            if (isShowCircleImageView) {
+                myCircleImageView.setVisibility(View.VISIBLE);
+            } else {
+                myCircleImageView.setVisibility(View.GONE);
+            }
         }
         if (toolBarHeadImg.getVisibility() == View.VISIBLE) {
             toolBarHeadImg.setVisibility(View.GONE);
@@ -302,7 +308,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (System.currentTimeMillis() - onBackTime > 2000) {
             Toast.makeText(this, R.string.press_the_exit_again, Toast.LENGTH_SHORT).show();
             onBackTime = System.currentTimeMillis();
-        } else finish();
+        } else {
+            finish();
+            android.os.Process.killProcess(android.os.Process.myPid());
+        }
     }
 
     @Override
@@ -358,10 +367,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 PropertyValuesHolder pvhSx = PropertyValuesHolder.ofFloat("scaleX", 0, 2.5f);
                 PropertyValuesHolder pvhSy = PropertyValuesHolder.ofFloat("scaleY", 0, 2.5f);
 //                myCircleImageView.animate().translationXBy(x - mirrorX).translationYBy(y - mirrorY).setDuration(1000).start();
-                ObjectAnimator objectAnimator = ObjectAnimator.ofPropertyValuesHolder(myCircleImageView, pvhX, pvhY, pvhSx, pvhSy).setDuration(1000);
+                ObjectAnimator objectAnimator = ObjectAnimator.ofPropertyValuesHolder(myCircleImageView, pvhX, pvhY, pvhSx, pvhSy).setDuration(800);
                 objectAnimator.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
+                        isShowCircleImageView = false;
                         if (myCircleImageView != null) {
                             myCircleImageView.setVisibility(View.GONE);
                         }
