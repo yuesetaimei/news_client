@@ -16,8 +16,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.util.EventLog;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,7 +44,6 @@ import com.tlkg.news.app.ui.dialog.ProjectAddressDialog;
 import com.tlkg.news.app.ui.dialog.ScanDownLoadDialog;
 import com.tlkg.news.app.ui.view.ConfigShowTabPopWindow;
 import com.tlkg.news.app.util.DensityUtil;
-import com.tlkg.news.app.util.PhoneUtil;
 import com.tlkg.news.app.view.statusbar.StatusBarUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -195,7 +192,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void run() {
                 myCircleImageView = addMirrorView(parentRl, toolBarHeadImg);
-                toolBarHeadImg.setVisibility(View.GONE);
             }
         });
     }
@@ -402,11 +398,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
 //        mirrorView.setImageBitmap(bitmap);
         mirrorView.setImageResource(R.drawable.iv_menu_head);
+        mirrorView.setVisibility(View.GONE);
         view.setDrawingCacheEnabled(false);
         int[] locations = new int[2];
         view.getLocationOnScreen(locations);
-        Log.i("wxq", "width:" + bitmap.getWidth());
-        Log.i("wxq", "height:" + bitmap.getHeight());
         mirrorX = locations[0] + bitmap.getWidth() / 2;
         mirrorY = locations[1] + bitmap.getHeight() / 2;
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(bitmap.getWidth(), bitmap.getHeight());
