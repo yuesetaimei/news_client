@@ -3,8 +3,10 @@ package com.tlkg.news.app.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.TextView;
 
 import com.tlkg.news.app.R;
+import com.tlkg.news.app.activity.RegisterOrLoginActivity;
 import com.tlkg.news.app.base.BaseEvent;
 import com.tlkg.news.app.base.BaseFragment;
 import com.tlkg.news.app.event.AnimTranEvent;
@@ -27,6 +29,9 @@ public class MyFragment extends BaseFragment {
 
     @InjectView(R.id.fragment_my_circle_img)
     CircleImageView circleImageView;
+
+    @InjectView(R.id.fragment_my_regiter_or_login_tv)
+    TextView registerOrLoginTv;
 
     public static Fragment getInstance() {
         return new MyFragment();
@@ -51,13 +56,20 @@ public class MyFragment extends BaseFragment {
                 EventBus.getDefault().post(new AnimTranEvent(locations[0], locations[1]));
             }
         });
+        registerOrLoginTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RegisterOrLoginActivity.startActivity(getActivity());
+            }
+        });
     }
-
 
     @Subscribe
     public void onEvent(BaseEvent event) {
         if (event instanceof ShowMyFragmentCircleEvent) {
             circleImageView.setVisibility(View.VISIBLE);
+            registerOrLoginTv.clearAnimation();
+            registerOrLoginTv.animate().alpha(1).setDuration(200).start();
         }
     }
 }

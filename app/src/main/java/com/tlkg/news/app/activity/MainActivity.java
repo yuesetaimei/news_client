@@ -169,20 +169,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             public void onTabSelected(@IdRes int tabId) {
                 switch (tabId) {
                     case R.id.tab_recommend://推荐
-                        hideCircleView();
                         setFragment(FRAGMENT_ONE);
+                        hideCircleView();
                         break;
                     case R.id.tab_welfare://福利
-                        hideCircleView();
                         setFragment(FRAGMENT_TWO);
+                        hideCircleView();
                         break;
                     case R.id.tab_literature://电影
-                        hideCircleView();
                         setFragment(FRAGMENT_THREE);
+                        hideCircleView();
                         break;
                     case R.id.tab_watercress://我的
-                        showCircleView();
                         setFragment(FRAGMENT_FOUR);
+                        showCircleView();
                         break;
                     default:
                         break;

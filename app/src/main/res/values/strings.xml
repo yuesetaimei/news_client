@@ -60,4 +60,6 @@
     <string name="share_url">我在使用新闻一刻，快去github上下载源码吧~ https://github.com/wuxiaoqi123/news_client</string>
 
     <string name="about_app">非常感谢github上众多开源项目，使我可以去学习大牛们写的代码。在这里深深的表示感谢，谢谢！\n新闻一刻APP是本人在工作闲暇之时，为了学习其它开源项目而写的，后续也会一直维护，欢迎start和Issues。</string>
+
+    <string name="register_or_login">登录 | 注册</string>
 </resources>
