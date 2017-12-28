@@ -1,5 +1,7 @@
 package com.tlkg.news.app.fragment;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -33,6 +35,18 @@ public class MyFragment extends BaseFragment {
     @InjectView(R.id.fragment_my_regiter_or_login_tv)
     TextView registerOrLoginTv;
 
+    @InjectView(R.id.fragment_my_theme)
+    TextView themeTv;
+
+    @InjectView(R.id.fragment_my_setting)
+    TextView settingTv;
+
+    @InjectView(R.id.fragment_my_version)
+    TextView versionTv;
+
+    @InjectView(R.id.fragment_my_clear)
+    TextView clearTv;
+
     public static Fragment getInstance() {
         return new MyFragment();
     }
@@ -44,6 +58,19 @@ public class MyFragment extends BaseFragment {
     @Override
     public int getContentView() {
         return R.layout.fragment_my;
+    }
+
+    @Override
+    public void initView(View view) {
+        PackageManager packageManager = getActivity().getPackageManager();
+        try {
+            PackageInfo packageInfo = packageManager.getPackageInfo(getActivity().getPackageName(), 0);
+            String versionName = packageInfo.versionName;
+            versionTv.setText(versionTv.getText() + versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
