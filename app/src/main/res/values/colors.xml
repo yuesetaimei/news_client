@@ -37,4 +37,8 @@
     <color name="Grey900">#212121</color>
     <color name="line_divider">@color/Grey300</color>
 
+    <color name="account_input_bg_color">#33ffffff</color>
+    <color name="login_input_active">#1d9ce1</color>
+    <color name="account_pressed_true">#881d9ce1</color>
+    <color name="login_line_color">#dededf</color>
 </resources>

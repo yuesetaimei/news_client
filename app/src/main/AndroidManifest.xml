@@ -55,7 +55,8 @@
         <activity
             android:name=".activity.RegisterOrLoginActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.Slidable" />
 
         <!-- 显示图片的 -->
         <activity

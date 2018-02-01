@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.activity.RegisterOrLoginActivity;
@@ -25,7 +26,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * 我的Fragment
  */
 
-public class MyFragment extends BaseFragment {
+public class MyFragment extends BaseFragment implements View.OnClickListener {
 
     public static final String TAG = "MyFragment";
 
@@ -62,15 +63,24 @@ public class MyFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
+        versionTv.append(getVersionName());
+        registerOrLoginTv.setOnClickListener(this);
+        themeTv.setOnClickListener(this);
+        settingTv.setOnClickListener(this);
+        versionTv.setOnClickListener(this);
+        clearTv.setOnClickListener(this);
+    }
+
+    private String getVersionName() {
+        String versionName = "";
         PackageManager packageManager = getActivity().getPackageManager();
         try {
             PackageInfo packageInfo = packageManager.getPackageInfo(getActivity().getPackageName(), 0);
-            String versionName = packageInfo.versionName;
-            versionTv.setText(versionTv.getText() + versionName);
+            versionName = packageInfo.versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-
+        return versionName;
     }
 
     @Override
@@ -83,12 +93,7 @@ public class MyFragment extends BaseFragment {
                 EventBus.getDefault().post(new AnimTranEvent(locations[0], locations[1]));
             }
         });
-        registerOrLoginTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RegisterOrLoginActivity.startActivity(getActivity());
-            }
-        });
+        registerOrLoginTv.setOnClickListener(this);
     }
 
     @Subscribe
@@ -97,6 +102,30 @@ public class MyFragment extends BaseFragment {
             circleImageView.setVisibility(View.VISIBLE);
             registerOrLoginTv.clearAnimation();
             registerOrLoginTv.animate().alpha(1).setDuration(200).start();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fragment_my_regiter_or_login_tv:
+                RegisterOrLoginActivity.startActivity(getActivity());
+                break;
+            case R.id.fragment_my_theme:
+
+                break;
+
+            case R.id.fragment_my_setting:
+
+                break;
+            case R.id.fragment_my_version:
+                Toast.makeText(getActivity(), getVersionName(), Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.fragment_my_clear:
+
+                break;
+            default:
+                break;
         }
     }
 }
