@@ -86,9 +86,17 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.Slidable" />
 
-        <!-- 段子内容页-->
+        <!-- 段子内容页 -->
         <activity
             android:name=".activity.JokeContentActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.Slidable" />
+
+        <!-- 新闻内容页-->
+        <activity
+            android:name=".activity.NewsContentActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"

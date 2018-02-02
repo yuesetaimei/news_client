@@ -66,7 +66,7 @@ public class TitleView extends LinearLayout {
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.onClickLieft();
+                    listener.onClickLeft();
                 }
             }
         });
@@ -91,10 +91,11 @@ public class TitleView extends LinearLayout {
     public void setTitle(String title) {
         titleTv.setVisibility(View.VISIBLE);
         titleTv.setText(title);
+        titleTv.setSelected(true);
     }
 
     public interface ITitleOnClicenListener {
-        void onClickLieft();
+        void onClickLeft();
 
         void onClickRight();
     }

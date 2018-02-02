@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.DecelerateInterpolator;
@@ -80,7 +79,7 @@ public class RegisterOrLoginActivity extends BaseSlidrActivity implements ViewTr
     public void initEvent() {
         titleView.setListener(new TitleView.ITitleOnClicenListener() {
             @Override
-            public void onClickLieft() {
+            public void onClickLeft() {
                 finish();
             }
 
@@ -99,10 +98,8 @@ public class RegisterOrLoginActivity extends BaseSlidrActivity implements ViewTr
         int keyShowHeight = screenHeight - keyRect.bottom;
         if (keyShowHeight > 0) {
             animShowOrHideHeadImg(false);
-            Log.i("wxq", "显示");
         } else {
             animShowOrHideHeadImg(true);
-            Log.i("wxq", "隐藏");
         }
     }
 

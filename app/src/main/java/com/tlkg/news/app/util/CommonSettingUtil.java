@@ -67,6 +67,14 @@ public class CommonSettingUtil {
     }
 
     /**
+     * 获取是否开启夜间模式
+     */
+    public boolean getIsNightMode() {
+        return sharedPreferences.getBoolean("switch_nightMode", false);
+    }
+
+
+    /**
      * 设置主题颜色
      *
      * @param color
