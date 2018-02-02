@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.tlkg.news.app.BuildConfig;
 import com.tlkg.news.app.R;
+import com.tlkg.news.app.activity.NewsContentActivity;
 import com.tlkg.news.app.bean.MultiNewsArticleDataBean;
 import com.tlkg.news.app.util.CommonSettingUtil;
 import com.tlkg.news.app.util.DataUtils;
@@ -75,24 +76,21 @@ public class NewsArticleTextViewBinder extends ItemViewBinder<MultiNewsArticleDa
                         @Override
                         public boolean onMenuItemClick(MenuItem menu) {
                             int itemId = menu.getItemId();
-                            if (itemId == R.id.action_share) {
+//                            if (itemId == R.id.action_share) {
 //                                IntentAction.send(context, item.getTitle() + "\n" + item.getShare_url());
-                            }
+//                            }
                             return false;
                         }
                     });
                     popupMenu.show();
                 }
             });
-
-//            RxView.clicks(holder.itemView)
-//                    .throttleFirst(1, TimeUnit.SECONDS)
-//                    .subscribe(new Consumer<Object>() {
-//                        @Override
-//                        public void accept(@io.reactivex.annotations.NonNull Object o) throws Exception {
-//                            NewsContentActivity.launch(item);
-//                        }
-//                    });
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    NewsContentActivity.startActivity(item);
+                }
+            });
         } catch (Exception e) {
             if (BuildConfig.DEBUG) e.printStackTrace();
 
