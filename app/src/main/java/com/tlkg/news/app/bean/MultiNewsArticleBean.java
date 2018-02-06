@@ -2,10 +2,6 @@ package com.tlkg.news.app.bean;
 
 import java.util.List;
 
-/**
- * Created by Meiji on 2017/5/18.
- */
-
 public class MultiNewsArticleBean {
 
     /**

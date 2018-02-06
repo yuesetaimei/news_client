@@ -2,10 +2,6 @@ package com.tlkg.news.app.bean;
 
 import java.util.List;
 
-/**
- * Created by Meiji on 2017/5/20.
- */
-
 public class WendaArticleBean {
 
     /**

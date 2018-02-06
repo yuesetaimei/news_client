@@ -5,10 +5,6 @@ import android.os.Parcelable;
 
 import java.util.List;
 
-/**
- * Created by Meiji on 2017/5/22.
- */
-
 public class WendaContentBean {
 
     /**

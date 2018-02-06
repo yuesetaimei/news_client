@@ -1,0 +1,31 @@
+package com.tlkg.news.app.http;
+
+import com.tlkg.news.app.bean.VideoContentBean;
+
+import io.reactivex.Observable;
+import okhttp3.ResponseBody;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+import retrofit2.http.Url;
+
+
+public interface IVideoApi {
+
+    /**
+     * 获取视频标题等信息
+     * http://toutiao.com/api/article/recent/?source=2&category=类型&as=A105177907376A5&cp=5797C7865AD54E1&count=20"
+     */
+    @GET("api/article/recent/?source=2&as=A105177907376A5&cp=5797C7865AD54E1&count=30")
+    Observable<ResponseBody> getVideoArticle(
+            @Query("category") String category,
+            @Query("_") String time);
+
+    /**
+     * 获取视频信息
+     * Api 生成较复杂
+     * http://ib.365yg.com/video/urls/v/1/toutiao/mp4/视频ID?r=17位随机数&s=加密结果
+     */
+    @GET
+    Observable<VideoContentBean> getVideoContent(@Url String url);
+
+}

@@ -8,10 +8,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Query;
 
-/**
- * Created by Meiji on 2017/5/7.
- */
-
 public interface IJokeApi {
 
     /**

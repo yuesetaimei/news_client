@@ -16,11 +16,6 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
 
-/**
- * Created by Meiji on 2017/5/17.
- * 参考 :　https://github.com/hrscy/TodayNews/blob/master/news.json
- */
-
 public interface IMobileNewsApi {
 
     String HOST = "http://is.snssdk.com/";

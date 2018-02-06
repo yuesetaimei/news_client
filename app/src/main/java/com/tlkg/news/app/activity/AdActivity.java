@@ -31,7 +31,7 @@ import butterknife.OnClick;
  */
 public class AdActivity extends BaseActivity {
 
-    private static final String TAG = "AdActivity";
+//    private static final String TAG = "AdActivity";
 
     /**
      * 获取图片的key
@@ -154,8 +154,8 @@ public class AdActivity extends BaseActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
-            return true;
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (keyCode == KeyEvent.KEYCODE_BACK) return true;
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -163,9 +163,9 @@ public class AdActivity extends BaseActivity {
     /**
      * 跳转到MainActivity
      *
-     * @param activity
-     * @param screen_zoom_in
-     * @param screen_zoom_out
+     * @param activity        上下文
+     * @param screen_zoom_in  in动画
+     * @param screen_zoom_out out动画
      */
     private void startMainActivity(AdActivity activity, int screen_zoom_in, int screen_zoom_out) {
         MainActivity.startActivity(activity);

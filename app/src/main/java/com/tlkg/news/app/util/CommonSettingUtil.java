@@ -44,6 +44,12 @@ public class CommonSettingUtil {
 
     private SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(NewsClientApplication.getAppContext());
 
+    /**
+     * 获取是否开启视频强制横屏
+     */
+    public boolean getIsVideoForceLandscape() {
+        return sharedPreferences.getBoolean("video_force_landscape", true);
+    }
 
     /**
      * 获取主题颜色

@@ -94,13 +94,21 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.Slidable" />
 
-        <!-- 新闻内容页-->
+        <!-- 新闻内容页 -->
         <activity
             android:name=".activity.NewsContentActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.Slidable" />
+
+        <!-- 新闻视频页-->
+        <activity
+            android:name=".activity.VideoContentActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyAppTheme" />
     </application>
 
 </manifest>

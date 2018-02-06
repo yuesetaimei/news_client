@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.tlkg.news.app.BuildConfig;
 import com.tlkg.news.app.R;
+import com.tlkg.news.app.activity.VideoContentActivity;
 import com.tlkg.news.app.bean.MultiNewsArticleDataBean;
 import com.tlkg.news.app.util.CommonSettingUtil;
 import com.tlkg.news.app.util.DataUtils;
@@ -97,15 +98,12 @@ public class NewsArticleVideoViewBinder extends ItemViewBinder<MultiNewsArticleD
                     popupMenu.show();
                 }
             });
-
-//            RxView.clicks(holder.itemView)
-//                    .throttleFirst(1, TimeUnit.SECONDS)
-//                    .subscribe(new Consumer<Object>() {
-//                        @Override
-//                        public void accept(@io.reactivex.annotations.NonNull Object o) throws Exception {
-//                            VideoContentActivity.launch(item);
-//                        }
-//                    });
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    VideoContentActivity.startActivity(item);
+                }
+            });
         } catch (Exception e) {
             if (BuildConfig.DEBUG) e.printStackTrace();
         }
