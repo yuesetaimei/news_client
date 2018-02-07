@@ -22,6 +22,7 @@
         android:background="#ffffffff"
         android:clickable="true"
         android:fitsSystemWindows="true"
+        android:focusable="true"
         app:headerLayout="@layout/app_main_left_head"
         app:menu="@menu/menu" />
 

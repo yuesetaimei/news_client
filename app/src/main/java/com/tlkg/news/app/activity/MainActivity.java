@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
@@ -31,7 +32,6 @@ import com.tlkg.news.app.R;
 import com.tlkg.news.app.base.BaseActivity;
 import com.tlkg.news.app.base.BaseEvent;
 import com.tlkg.news.app.event.AnimTranEvent;
-import com.tlkg.news.app.event.NetworkErrEvent;
 import com.tlkg.news.app.event.ShowConfigTabEvent;
 import com.tlkg.news.app.event.ShowMyFragmentCircleEvent;
 import com.tlkg.news.app.fragment.MovieFragment;
@@ -39,7 +39,6 @@ import com.tlkg.news.app.fragment.MyFragment;
 import com.tlkg.news.app.fragment.RecommentFragment;
 import com.tlkg.news.app.fragment.WalfareFragment;
 import com.tlkg.news.app.ui.dialog.AboutDialog;
-import com.tlkg.news.app.ui.dialog.NetworkErrLoadDialog;
 import com.tlkg.news.app.ui.dialog.ProjectAddressDialog;
 import com.tlkg.news.app.ui.dialog.ScanDownLoadDialog;
 import com.tlkg.news.app.ui.view.ConfigShowTabPopWindow;
@@ -92,7 +91,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private long onBackTime = 0;
 
-    private NetworkErrLoadDialog netErrDialg;
+//    private NetworkErrLoadDialog netErrDialg;
 
     private ConfigShowTabPopWindow configShowTabPopWindow;
 
@@ -224,7 +223,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 onClickLeftMenu(item);
                 return true;
             }
@@ -349,11 +348,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Subscribe
     public void onEventBus(BaseEvent event) {
-        if (event instanceof NetworkErrEvent) {
-            NetworkErrEvent networkErrEvent = (NetworkErrEvent) event;
-            showNetErrDialog();
-            netErrDialg.setPosition(networkErrEvent.mPosition);
-        } else if (event instanceof ShowConfigTabEvent) {
+//        if (event instanceof NetworkErrEvent) {
+//            NetworkErrEvent networkErrEvent = (NetworkErrEvent) event;
+//            showNetErrDialog();
+//            netErrDialg.setPosition(networkErrEvent.mPosition);
+//        } else
+        if (event instanceof ShowConfigTabEvent) {
             if (configShowTabPopWindow == null)
                 configShowTabPopWindow = new ConfigShowTabPopWindow(this);
             configShowTabPopWindow.show(drawerLayout);
@@ -383,21 +383,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    /**
-     * 显示网络差dialog
-     */
-    private void showNetErrDialog() {
-        if (netErrDialg == null) netErrDialg = new NetworkErrLoadDialog(this);
-        if (!netErrDialg.isShowing()) netErrDialg.show();
-    }
-
-    /**
-     * 隐藏网络差dialog
-     */
-    private void dismissNetErrDialog() {
-        if (netErrDialg == null) return;
-        if (netErrDialg.isShowing()) netErrDialg.dismiss();
-    }
+//    /**
+//     * 显示网络差dialog
+//     */
+//    private void showNetErrDialog() {
+//        if (netErrDialg == null) netErrDialg = new NetworkErrLoadDialog(this);
+//        if (!netErrDialg.isShowing()) netErrDialg.show();
+//    }
+//
+//    /**
+//     * 隐藏网络差dialog
+//     */
+//    private void dismissNetErrDialog() {
+//        if (netErrDialg == null) return;
+//        if (netErrDialg.isShowing()) netErrDialg.dismiss();
+//    }
 
     private int mirrorX, mirrorY;
 

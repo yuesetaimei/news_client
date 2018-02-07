@@ -90,7 +90,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     @LayoutRes
     public abstract int getContentView();
 
-    public abstract void initEvent();
+    protected void initEvent() {
+    }
 
     @Subscribe
     public void onEventBus(BaseEvent event) {

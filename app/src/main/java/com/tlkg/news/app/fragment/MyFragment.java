@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.activity.RegisterOrLoginActivity;
+import com.tlkg.news.app.activity.SettingActivity;
 import com.tlkg.news.app.base.BaseEvent;
 import com.tlkg.news.app.base.BaseFragment;
 import com.tlkg.news.app.event.AnimTranEvent;
@@ -114,9 +115,8 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
             case R.id.fragment_my_theme:
 
                 break;
-
             case R.id.fragment_my_setting:
-
+                SettingActivity.startActivity(getActivity());
                 break;
             case R.id.fragment_my_version:
                 Toast.makeText(getActivity(), getVersionName(), Toast.LENGTH_SHORT).show();

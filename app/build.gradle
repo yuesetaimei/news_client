@@ -82,6 +82,8 @@ dependencies {
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     // 简化版 Adapter
     implementation 'me.drakeet.multitype:multitype:3.3.3'
+    // MD dialog
+    implementation 'com.afollestad.material-dialogs:commons:0.9.4.4'
     // 滑动返回
     implementation 'com.r0adkll:slidableactivity:2.0.7-SNAPSHOT'
     // 二维码

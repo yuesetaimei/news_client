@@ -11,6 +11,8 @@
     <!-- My App Theme-->
     <style name="MyAppTheme" parent="AppTheme" />
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
     <!-- 全屏显示 -->
     <style name="FullAppTheme" parent="AppTheme">
         <item name="android:windowFullscreen">true</item>

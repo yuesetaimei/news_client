@@ -64,7 +64,7 @@
     <string name="register_or_login">登录 | 注册</string>
     <string name="login">登录</string>
     <string name="register">注册</string>
-    <string name="my_theme">主题</string>
+    <string name="my_theme">切换主题</string>
     <string name="my_setting">设置</string>
     <string name="my_version">版本号：&#160;V</string>
     <string name="my_clear">清除缓存</string>
@@ -73,4 +73,6 @@
     <string name="hint_password">请输入密码</string>
     <string name="login_hold_hint">记住密码</string>
     <string name="login_forget_hint">忘记密码？</string>
+
+
 </resources>

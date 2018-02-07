@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="基本设置">
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="switch_noWifiLoadImg"
+            android:summary="仅在Wifi环境下加载图片"
+            android:title="无图模式" />
+
+        <Preference
+            android:key="auto_nightMode"
+            android:summary="设置切换时间"
+            android:title="自动切换夜间模式" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="nav_btn"
+            android:summary="上滑列表导航按钮隐藏"
+            android:title="导航按钮" />
+
+        <Preference
+            android:key="text_size"
+            android:summary="设置字体大小"
+            android:title="字体大小" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="视频设置">
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="video_force_landscape"
+            android:summary="开启后强制横屏播放视频"
+            android:title="全屏播放" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="video_auto_play"
+            android:summary="仅在Wifi环境下自动播放视频"
+            android:title="自动播放视频" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="video_auto_down"
+            android:summary="仅在Wifi环境下自动下载播放的视频"
+            android:title="视频下载" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="其它设置">
+
+        <com.tlkg.news.app.ui.view.ThemePreference
+            android:key="theme_color"
+            android:summary="自定义主题颜色"
+            android:title="主题颜色" />
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/slidable"
+            android:entryValues="@array/slidableValues"
+            android:key="slidable"
+            android:negativeButtonText="取消"
+            android:summary="类似iOS左侧滑动返回"
+            android:title="滑动返回" />
+
+        <Preference
+            android:key="clearCache"
+            android:title="清除缓存" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="关于">
+
+        <Preference
+            android:key="version"
+            android:title="版本" />
+
+        <Preference
+            android:key="licenses"
+            android:title="开源许可" />
+
+        <Preference
+            android:key="sourceCode"
+            android:summary="https://github.com/wuxiaoqi123/news_client"
+            android:title="源码" />
+
+        <Preference
+            android:key="copyRight"
+            android:summary="仅作为个人学习非商业用途"
+            android:title="版本声明" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
