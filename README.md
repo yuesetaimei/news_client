@@ -1,8 +1,31 @@
-# news_client
 
+[![Platform][1]][2] ![GitHub license][3] 
+
+[1]:https://img.shields.io/badge/platform-Android-blue.svg  
+[2]:https://github.com/wuxiaoqi123/news_client
+[3]:https://img.shields.io/badge/license-Apache%202-blue.svg
+
+# 新闻一刻
+<img src="./img/logo.png" width="128" alt="logo">
+
+新闻一刻App是本人在工作闲暇之时，为了学习其它开源项目而写的，后续不断完善中，欢迎start和Issues.
+
+
+## Statement
+新闻一刻App中大部分 API 收集自网络, 本程序仅供学习交流, 不可用于任何商业用途
+
+## Screenshots
+![](img/img-1.png)
+
+![](img/img-2.png)
+
+![](img/img-3.png)
+
+![](img/img-4.png)
 
 
 ## License
+
 ```
 Copyright (C) 2017 wuxiaoqi
 
