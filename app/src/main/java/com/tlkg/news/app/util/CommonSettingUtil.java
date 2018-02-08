@@ -96,6 +96,10 @@ public class CommonSettingUtil {
         return sharedPreferences.getInt(TEXT_SIZE, 16);
     }
 
+    public void setTextSize(int size) {
+        sharedPreferences.edit().putInt(TEXT_SIZE, size).apply();
+    }
+
     /**
      * 获取是否开启自动切换夜间模式
      */

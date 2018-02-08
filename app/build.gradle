@@ -88,6 +88,8 @@ dependencies {
     implementation 'com.r0adkll:slidableactivity:2.0.7-SNAPSHOT'
     // 二维码
     implementation 'com.google.zxing:core:3.2.1'
+    // 带刻度的 SeekBar
+    implementation 'com.github.Jay-Goo:RangeSeekBar:v1.0.7'
     implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
     testCompile 'junit:junit:4.12'
 }

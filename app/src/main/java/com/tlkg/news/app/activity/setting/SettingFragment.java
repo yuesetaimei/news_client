@@ -28,5 +28,12 @@ public class SettingFragment extends PreferenceFragment {
                 return true;
             }
         });
+        findPreference("text_size").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                SettingActivity.startFragment(getActivity(), TextSizeFragment.class.getName(), null, getString(R.string.text_size));
+                return true;
+            }
+        });
     }
 }
