@@ -5,17 +5,19 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 
+import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.base.BaseSlidrActivity;
 
 /**
  * 设置界面
  */
-public class SettingActivity extends BaseSlidrActivity {
+public class SettingActivity extends BaseSlidrActivity implements ColorChooserDialog.ColorCallback{
 
     public static final String LAUNCH_FRAGMENT_NAME = "launch_fragment_name";
 
@@ -90,5 +92,15 @@ public class SettingActivity extends BaseSlidrActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onColorSelection(@NonNull ColorChooserDialog dialog, int selectedColor) {
+
+    }
+
+    @Override
+    public void onColorChooserDismissed(@NonNull ColorChooserDialog dialog) {
+
     }
 }

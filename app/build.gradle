@@ -90,6 +90,8 @@ dependencies {
     implementation 'com.google.zxing:core:3.2.1'
     // 带刻度的 SeekBar
     implementation 'com.github.Jay-Goo:RangeSeekBar:v1.0.7'
+    // 协议Dialog
+    implementation 'de.psdev.licensesdialog:licensesdialog:1.8.2'
     implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
     testCompile 'junit:junit:4.12'
 }

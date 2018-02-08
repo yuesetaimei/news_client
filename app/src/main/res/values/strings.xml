@@ -56,6 +56,7 @@
     <string name="back">返回</string>
 
     <string name="project_address_url"><a color='white' href='https://github.com/wuxiaoqi123/news_client'>https://github.com/wuxiaoqi123/news_client</a></string>
+    <string name="github_url">https://github.com/wuxiaoqi123/news_client</string>
     <string name="scan_down_load_url">https://github.com/wuxiaoqi123/news_client</string>
     <string name="share_url">我在使用新闻一刻，快去github上下载源码吧~ https://github.com/wuxiaoqi123/news_client</string>
 
@@ -104,10 +105,11 @@
     <string name="licenses">开源许可</string>
     <string name="souce_code">源码</string>
     <string name="only_study">仅作为个人学习非商业用途</string>
-    <string name="copy_right">版本声明</string>
+    <string name="copy_right">版权声明</string>
     <string name="start">启动</string>
     <string name="time">时间</string>
     <string name="auto_night_start_time">夜间模式开始时间</string>
     <string name="auto_day_start_time">日间模式开始时间</string>
+    <string name="custom">自定义</string>
 
 </resources>

@@ -64,7 +64,7 @@
             android:title="@string/slide_back" />
 
         <Preference
-            android:key="clearCache"
+            android:key="clear_cache"
             android:title="@string/clear_cache" />
     </PreferenceCategory>
 
@@ -79,12 +79,12 @@
             android:title="@string/licenses" />
 
         <Preference
-            android:key="sourceCode"
+            android:key="source_code"
             android:summary="https://github.com/wuxiaoqi123/news_client"
             android:title="@string/souce_code" />
 
         <Preference
-            android:key="copyRight"
+            android:key="copy_right"
             android:summary="@string/only_study"
             android:title="@string/copy_right" />
     </PreferenceCategory>
