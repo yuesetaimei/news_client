@@ -112,9 +112,8 @@
 
         <!-- 设置界面-->
         <activity
-            android:name=".activity.SettingActivity"
+            android:name=".activity.setting.SettingActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
-            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.Slidable" />
     </application>

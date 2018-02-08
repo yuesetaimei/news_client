@@ -63,14 +63,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         initSlidable();
         EventBus.getDefault().register(this);
-        initData(getIntent().getExtras());
+        Bundle bundle = getIntent().getExtras();
+        if (bundle == null) bundle = new Bundle();
+        initData(bundle);
         initWindow();
         initViews();
         initEvent();
     }
 
     /**
-     * 被动化滑动返回
+     * 初始化滑动返回
      */
     protected void initSlidable() {
     }

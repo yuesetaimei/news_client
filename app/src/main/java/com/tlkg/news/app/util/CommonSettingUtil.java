@@ -95,4 +95,44 @@ public class CommonSettingUtil {
     public int getTextSize() {
         return sharedPreferences.getInt(TEXT_SIZE, 16);
     }
+
+    /**
+     * 获取是否开启自动切换夜间模式
+     */
+    public boolean getIsAutoNightMode() {
+        return sharedPreferences.getBoolean("auto_swith_night_mode", false);
+    }
+
+    public String getNightStartHour() {
+        return sharedPreferences.getString("night_startHour", "22");
+    }
+
+    public void setNightStartHour(String nightStartHour) {
+        sharedPreferences.edit().putString("night_startHour", nightStartHour).apply();
+    }
+
+    public String getNightStartMinute() {
+        return sharedPreferences.getString("night_startMinute", "00");
+    }
+
+    public void setNightStartMinute(String nightStartMinute) {
+        sharedPreferences.edit().putString("night_startMinute", nightStartMinute).apply();
+    }
+
+    public String getDayStartHour() {
+        return sharedPreferences.getString("day_startHour", "06");
+    }
+
+    public void setDayStartHour(String dayStartHour) {
+        sharedPreferences.edit().putString("day_startHour", dayStartHour).apply();
+    }
+
+    public String getDayStartMinute() {
+        return sharedPreferences.getString("day_startMinute", "00");
+    }
+
+    public void setDayStartMinute(String dayStartMinute) {
+        sharedPreferences.edit().putString("day_startMinute", dayStartMinute).apply();
+    }
+
 }

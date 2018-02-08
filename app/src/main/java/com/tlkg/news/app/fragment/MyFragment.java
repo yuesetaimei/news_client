@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.activity.RegisterOrLoginActivity;
-import com.tlkg.news.app.activity.SettingActivity;
+import com.tlkg.news.app.activity.setting.SettingActivity;
 import com.tlkg.news.app.base.BaseEvent;
 import com.tlkg.news.app.base.BaseFragment;
 import com.tlkg.news.app.event.AnimTranEvent;

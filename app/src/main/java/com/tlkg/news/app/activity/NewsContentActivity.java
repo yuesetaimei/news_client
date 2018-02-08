@@ -100,6 +100,9 @@ public class NewsContentActivity extends BaseSlidrActivity implements NewsConten
         settings.setJavaScriptEnabled(true);
         // 缩放,设置为不能缩放可以防止页面上出现放大和缩小的图标
         settings.setBuiltInZoomControls(false);
+//        settings.setSupportZoom(false);
+//        settings.setLoadWithOverviewMode(true);
+//        settings.setUseWideViewPort(true);
         // 缓存
         settings.setCacheMode(WebSettings.LOAD_DEFAULT);
         // 开启DOM storage API功能
@@ -109,6 +112,8 @@ public class NewsContentActivity extends BaseSlidrActivity implements NewsConten
         // 判断是否为无图模式
         settings.setBlockNetworkImage(CommonSettingUtil.getInstance().getIsNoPhotoMode());
         // 不调用第三方浏览器即可进行页面反应
+        mWebView.setVerticalScrollBarEnabled(false);
+        mWebView.setHorizontalScrollBarEnabled(false);
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
