@@ -130,6 +130,8 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if ("theme_color".equals(key)) {
             themePreference.updateColor();
+        } else if ("slidable".equals(key)) {
+            context.recreate();
         }
     }
 }

@@ -3,6 +3,7 @@ package com.tlkg.news.app.base;
 import com.r0adkll.slidr.Slidr;
 import com.r0adkll.slidr.model.SlidrConfig;
 import com.r0adkll.slidr.model.SlidrInterface;
+import com.tlkg.news.app.util.CommonSettingUtil;
 
 /**
  * Created by wuxiaoqi on 2017/11/30.
@@ -14,9 +15,12 @@ public abstract class BaseSlidrActivity extends BaseActivity {
 
     @Override
     protected void initSlidable() {
-        SlidrConfig config = new SlidrConfig.Builder()
-                .edge(true)
-                .build();
-        slidrInterface = Slidr.attach(this, config);
+        int slidable = CommonSettingUtil.getInstance().getSlidable();
+        if (slidable == 1) {
+            SlidrConfig config = new SlidrConfig.Builder()
+                    .edge(true)
+                    .build();
+            slidrInterface = Slidr.attach(this, config);
+        }
     }
 }

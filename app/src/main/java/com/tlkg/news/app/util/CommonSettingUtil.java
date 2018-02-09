@@ -52,6 +52,15 @@ public class CommonSettingUtil {
     }
 
     /**
+     * 获取滑动返回值
+     */
+    public int getSlidable() {
+        String s = sharedPreferences.getString("slidable", "1");
+        return Integer.parseInt(s);
+    }
+
+
+    /**
      * 获取主题颜色
      *
      * @return
