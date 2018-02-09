@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MyFragment extends BaseFragment implements View.OnClickListener {
 
     public static final String TAG = "MyFragment";
+
+    @InjectView(R.id.fragment_my_head_rl)
+    RelativeLayout headRl;
 
     @InjectView(R.id.fragment_my_circle_img)
     CircleImageView circleImageView;
@@ -127,5 +131,10 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void setThemeColor(int color) {
+        headRl.setBackgroundColor(color);
     }
 }

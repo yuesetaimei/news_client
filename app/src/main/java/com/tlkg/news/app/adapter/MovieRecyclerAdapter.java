@@ -1,5 +1,6 @@
 package com.tlkg.news.app.adapter;
 
+import android.annotation.SuppressLint;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.tlkg.news.app.base.BaseRecyclerAdapter;
 import com.tlkg.news.app.bean.HotMovieBean;
 import com.tlkg.news.app.event.DoubanTop250CliekEvent;
 import com.tlkg.news.app.event.MovieItemClickEvent;
+import com.tlkg.news.app.util.CommonSettingUtil;
 import com.tlkg.news.app.util.PhoneUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -29,14 +31,15 @@ import java.util.List;
 import butterknife.InjectView;
 
 /**
+ * 电影界面 Adapter
  * Created by wuxiaoqi on 2017/10/11.
  */
 
 public class MovieRecyclerAdapter extends BaseRecyclerAdapter<HotMovieBean.SubjectsBean> {
 
-    private static final String TAG = "MovieRecyclerAdapter";
+//    private static final String TAG = "MovieRecyclerAdapter";
 
-    private static String headPic = PhoneUtil.randomPic();
+//    private static String headPic = PhoneUtil.randomPic();
 
     @Override
     public BaseRecyclerViewHolder getRecyclerViewHolder(ViewGroup parent, int viewType) {
@@ -70,6 +73,9 @@ public class MovieRecyclerAdapter extends BaseRecyclerAdapter<HotMovieBean.Subje
         @InjectView(R.id.item_movie_rating_rate_tv)
         TextView ratingRateTv;//subjectsBean.rating.average
 
+        @InjectView(R.id.item_movie_color_view)
+        View colorImg;
+
         @InjectView(R.id.item_movie_view_color)
         View lineView;
 
@@ -77,6 +83,7 @@ public class MovieRecyclerAdapter extends BaseRecyclerAdapter<HotMovieBean.Subje
             super(itemView);
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         public void onBindViewHolder(HotMovieBean.SubjectsBean object, int position) {
             final HotMovieBean.SubjectsBean subjectsBean = object;
@@ -86,6 +93,7 @@ public class MovieRecyclerAdapter extends BaseRecyclerAdapter<HotMovieBean.Subje
             titleTv.setText(subjectsBean.getTitle());
             directorTv.setText(getDirectorsString(subjectsBean));
             castsTv.setText(getCastsString(subjectsBean));
+            colorImg.setBackgroundColor(CommonSettingUtil.getInstance().getThemeColor());
             genresTv.setText(NewsClientApplication.getStringId(R.string.movie_type) + getGenersString(subjectsBean));
             ratingRateTv.setText(NewsClientApplication.getStringId(R.string.movie_score) + subjectsBean.getRating().getAverage());
             lineView.setBackgroundColor(PhoneUtil.randomColor());
@@ -129,7 +137,7 @@ public class MovieRecyclerAdapter extends BaseRecyclerAdapter<HotMovieBean.Subje
                     }
                 });
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
         }
     }
@@ -137,8 +145,8 @@ public class MovieRecyclerAdapter extends BaseRecyclerAdapter<HotMovieBean.Subje
     /**
      * 获取类型
      *
-     * @param subjectsBean
-     * @return
+     * @param subjectsBean 数据
+     * @return 类型
      */
     public static String getGenersString(HotMovieBean.SubjectsBean subjectsBean) {
         List<String> genres = subjectsBean.getGenres();
@@ -156,8 +164,8 @@ public class MovieRecyclerAdapter extends BaseRecyclerAdapter<HotMovieBean.Subje
     /**
      * 获取主演名字
      *
-     * @param subjectsBean
-     * @return
+     * @param subjectsBean 数据
+     * @return 主演名字
      */
     public static String getCastsString(HotMovieBean.SubjectsBean subjectsBean) {
         List<HotMovieBean.SubjectsBean.CastsBean> casts = subjectsBean.getCasts();
@@ -165,7 +173,7 @@ public class MovieRecyclerAdapter extends BaseRecyclerAdapter<HotMovieBean.Subje
         for (int i = 0; i < casts.size(); i++) {
             if (!TextUtils.isEmpty(casts.get(i).getName())) {
                 if (i < casts.size() - 1) {
-                    sb.append(casts.get(i).getName() + " / ");
+                    sb.append(casts.get(i).getName()).append(" / ");
                 } else {
                     sb.append(casts.get(i).getName());
                 }
@@ -177,8 +185,8 @@ public class MovieRecyclerAdapter extends BaseRecyclerAdapter<HotMovieBean.Subje
     /**
      * 获取导演名字
      *
-     * @param subjectsBean
-     * @return
+     * @param subjectsBean 数据
+     * @return 导演名字
      */
     public static String getDirectorsString(HotMovieBean.SubjectsBean subjectsBean) {
         List<HotMovieBean.SubjectsBean.DirectorsBean> directors = subjectsBean.getDirectors();
@@ -186,7 +194,7 @@ public class MovieRecyclerAdapter extends BaseRecyclerAdapter<HotMovieBean.Subje
         for (int i = 0; i < directors.size(); i++) {
             if (!TextUtils.isEmpty(directors.get(i).getName())) {
                 if (i < directors.size() - 1) {
-                    sb.append(directors.get(i).getName() + " / ");
+                    sb.append(directors.get(i).getName()).append(" / ");
                 } else {
                     sb.append(directors.get(i).getName());
                 }

@@ -21,6 +21,7 @@ import com.tlkg.news.app.event.NetworkErrEvent;
 import com.tlkg.news.app.event.WelfareClickEvent;
 import com.tlkg.news.app.presenter.WalfarePresenter;
 import com.tlkg.news.app.ui.view.ChoiceSwipeRefreshLayout;
+import com.tlkg.news.app.util.CommonSettingUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -34,7 +35,7 @@ import butterknife.InjectView;
 
 public class WalfareFragment extends BaseFragment implements WalfarePresenter.IWelfareView {
 
-    private static final String TAG = "WalfareFragment";
+//    private static final String TAG = "WalfareFragment";
 
     @InjectView(R.id.fragment_welfare_refreshLayout)
     ChoiceSwipeRefreshLayout swipeRefreshLayout;
@@ -142,5 +143,10 @@ public class WalfareFragment extends BaseFragment implements WalfarePresenter.IW
                 presenter.load();
             }
         }
+    }
+
+    @Override
+    protected void setThemeColor(int color) {
+        swipeRefreshLayout.setColorSchemeColors(CommonSettingUtil.getInstance().getThemeColor());
     }
 }

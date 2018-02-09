@@ -79,6 +79,13 @@ public class CommonSettingUtil {
         return sharedPreferences.getBoolean("switch_nightMode", false);
     }
 
+    /**
+     * 获取是否开启导航栏上色
+     */
+    public boolean getNavBar() {
+        return sharedPreferences.getBoolean("nav_bar", false);
+    }
+
 
     /**
      * 设置主题颜色

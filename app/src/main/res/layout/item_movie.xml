@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_movie_root_ll"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/ripple_one_item_bg"
     android:orientation="vertical"
     android:paddingLeft="5dp"
-    android:paddingTop="5dp">
+    android:paddingStart="5dp"
+    android:paddingTop="5dp"
+    tools:ignore="RtlSymmetry">
 
     <LinearLayout
         android:id="@+id/item_movie_item_ll"
@@ -18,14 +21,17 @@
             android:id="@+id/item_movie_photo_img"
             android:layout_width="100dp"
             android:layout_height="132dp"
+            android:layout_marginEnd="12dp"
             android:layout_marginRight="12dp"
             android:background="@color/colorPageBg"
+            android:contentDescription="@null"
             android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginEnd="12dp"
             android:layout_marginRight="12dp"
             android:orientation="vertical">
 
@@ -60,6 +66,7 @@
                         android:text="@string/director" />
 
                     <View
+                        android:id="@+id/item_movie_color_view"
                         android:layout_width="28dp"
                         android:layout_height="2dp"
                         android:layout_marginTop="2dp"
@@ -119,5 +126,6 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_marginLeft="112dp"
+        android:layout_marginStart="112dp"
         android:layout_marginTop="5dp" />
 </LinearLayout>

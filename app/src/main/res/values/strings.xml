@@ -114,5 +114,7 @@
     <string name="set_language">语言设置</string>
     <string name="chinese_simplified">中文简体</string>
     <string name="only_wifi_load_img">已开启仅在wifi环境下加载图片\n可到设置界面更改</string>
+    <string name="blog_name">这个杀手不太累</string>
+    <string name="blog_url">Blog: http://blog.csdn.net/zhe_ge_sha_shou</string>
 
 </resources>

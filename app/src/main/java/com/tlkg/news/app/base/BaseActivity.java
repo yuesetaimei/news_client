@@ -12,6 +12,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
+import com.tlkg.news.app.util.CommonSettingUtil;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -35,6 +37,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     public static final int FRAGMENT_FOUR = 4;
     public static final int FRAGMENT_FIVE = 5;
     public static final int FRAGMENT_SIX = 6;
+
+    private int oldThemeColor = CommonSettingUtil.getInstance().getThemeColor();
+
+    private boolean isFirstChangeThemeColor = true;
 
     /**
      * Activity栈
@@ -107,6 +113,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (isFirstChangeThemeColor || (oldThemeColor != CommonSettingUtil.getInstance().getThemeColor())) {
+            isFirstChangeThemeColor = false;
+            oldThemeColor = CommonSettingUtil.getInstance().getThemeColor();
+            setThemeColor(CommonSettingUtil.getInstance().getThemeColor());
+        }
+    }
+
+    protected void setThemeColor(int color) {
     }
 
     @Override

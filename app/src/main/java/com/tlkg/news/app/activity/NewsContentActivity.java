@@ -2,6 +2,8 @@ package com.tlkg.news.app.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.text.TextUtils;
@@ -12,6 +14,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.afollestad.materialdialogs.color.CircleView;
 import com.tlkg.news.app.NewsClientApplication;
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.base.BaseSlidrActivity;
@@ -195,5 +198,15 @@ public class NewsContentActivity extends BaseSlidrActivity implements NewsConten
     @Override
     public void onLoadStart() {
 
+    }
+
+    @Override
+    protected void setThemeColor(int color) {
+        ;
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(CircleView.shiftColorDown(color));
+        }
     }
 }

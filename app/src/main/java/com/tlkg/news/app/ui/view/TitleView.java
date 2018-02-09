@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tlkg.news.app.R;
+import com.tlkg.news.app.util.CommonSettingUtil;
 
 /**
  * Created by wuxiaoqi on 2018/1/17.
@@ -58,6 +59,7 @@ public class TitleView extends LinearLayout {
         mContext = context;
         setOrientation(HORIZONTAL);
         LayoutInflater.from(mContext).inflate(R.layout.layout_title, this);
+        setBackgroundColor(CommonSettingUtil.getInstance().getThemeColor());
 
         leftBtn = (ImageButton) findViewById(R.id.layout_title_left_btn);
         titleTv = (TextView) findViewById(R.id.layout_title_text_tv);

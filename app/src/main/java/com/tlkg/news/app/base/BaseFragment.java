@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.tlkg.news.app.util.CommonSettingUtil;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -22,6 +24,10 @@ import butterknife.ButterKnife;
 public abstract class BaseFragment extends Fragment {
 
     public static final String TAG = "BaseFragment";
+
+    private int oldThemeColor = CommonSettingUtil.getInstance().getThemeColor();
+
+    private boolean isFirstChangeThemeColor = true;
 
     @Override
     public void onAttach(Context context) {
@@ -74,6 +80,14 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        if (isFirstChangeThemeColor || (oldThemeColor != CommonSettingUtil.getInstance().getThemeColor())) {
+            isFirstChangeThemeColor = false;
+            oldThemeColor = CommonSettingUtil.getInstance().getThemeColor();
+            setThemeColor(CommonSettingUtil.getInstance().getThemeColor());
+        }
+    }
+
+    protected void setThemeColor(int color) {
     }
 
     @Override

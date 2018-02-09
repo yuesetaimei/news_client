@@ -419,4 +419,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         parent.addView(mirrorView, params);
         return mirrorView;
     }
+
+    @Override
+    protected void setThemeColor(int color) {
+        statusBarView.setBackgroundColor(color);
+        toolbar.setBackgroundColor(color);
+        navigationView.getHeaderView(0).setBackgroundColor(color);
+        for (int i = 0; i < bottomBar.getTabCount(); i++) {
+            bottomBar.getTabAtPosition(i).setBackgroundColor(color);
+        }
+    }
 }

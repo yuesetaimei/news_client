@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.tlkg.news.app.NewsClientApplication;
@@ -31,7 +32,7 @@ import butterknife.InjectView;
 
 public class MovieFragment extends BaseFragment implements MovidePresenter.IMovieView {
 
-    private static final String TAG = "MovieFragment";
+//    private static final String TAG = "MovieFragment";
 
     @InjectView(R.id.fragment_movie_refreshLayout)
     ChoiceSwipeRefreshLayout mRefreshLayout;
@@ -42,6 +43,8 @@ public class MovieFragment extends BaseFragment implements MovidePresenter.IMovi
     private MovidePresenter mPresenter;
 
     private MovieRecyclerAdapter mAdapter;
+
+    private ImageView colorImg;
 
     private View mHeadView = null;
 
@@ -74,6 +77,7 @@ public class MovieFragment extends BaseFragment implements MovidePresenter.IMovi
         mRecyclerView.setAdapter(mAdapter);
         if (mHeadView == null) {
             mHeadView = View.inflate(getContext(), R.layout.item_movie_head, null);
+            colorImg = (ImageView) mHeadView.findViewById(R.id.item_movie_head_color_img);
         }
     }
 
@@ -118,5 +122,11 @@ public class MovieFragment extends BaseFragment implements MovidePresenter.IMovi
             MovieItemClickEvent movieItemClickEvent = (MovieItemClickEvent) event;
             DetailsPageActivity.startActivity(getActivity(), movieItemClickEvent.mBean);
         }
+    }
+
+    @Override
+    protected void setThemeColor(int color) {
+        colorImg.setBackgroundColor(color);
+        mAdapter.notifyDataSetChanged();
     }
 }

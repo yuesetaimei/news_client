@@ -2,6 +2,8 @@ package com.tlkg.news.app.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
@@ -12,10 +14,10 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.color.CircleView;
 import com.tlkg.news.app.NewsClientApplication;
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.adapter.DoubanTopRecyclerAdapter;
-import com.tlkg.news.app.base.BaseActivity;
 import com.tlkg.news.app.base.BaseEvent;
 import com.tlkg.news.app.base.BaseRecyclerAdapter;
 import com.tlkg.news.app.base.BaseSlidrActivity;
@@ -35,7 +37,7 @@ import butterknife.InjectView;
  */
 public class DoubanTopActivity extends BaseSlidrActivity implements DoubanTopPresenter.IDoubanTopView {
 
-    private static final String TAG = "DoubanTopActivity";
+//    private static final String TAG = "DoubanTopActivity";
 
     @InjectView(R.id.activity_douban_top_toolbar)
     Toolbar toolbar;
@@ -146,7 +148,7 @@ public class DoubanTopActivity extends BaseSlidrActivity implements DoubanTopPre
 
     @Override
     public void onLoadComplete(HotMovieBean data) {
-        if(isFinishing()) return;
+        if (isFinishing()) return;
         count = data.getTotal();
         mAdapter.refreshData(data.getSubjects());
         mRefreshLayout.setRefreshing(false);
@@ -154,7 +156,7 @@ public class DoubanTopActivity extends BaseSlidrActivity implements DoubanTopPre
 
     @Override
     public void onLoadMoreComplete(HotMovieBean data) {
-        if(isFinishing()) return;
+        if (isFinishing()) return;
         count = data.getTotal();
         mAdapter.refreshAddData(data.getSubjects());
         mRefreshLayout.setRefreshing(false);
@@ -166,5 +168,14 @@ public class DoubanTopActivity extends BaseSlidrActivity implements DoubanTopPre
             MovieTopItemClickEvent movieTopItemClickEvent = (MovieTopItemClickEvent) event;
             DetailsPageActivity.startActivity(this, movieTopItemClickEvent.mBean);
         }
+    }
+
+    @Override
+    protected void setThemeColor(int color) {
+        mRefreshLayout.setColorSchemeColors(color);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            getWindow().setStatusBarColor(CircleView.shiftColorDown(color));
     }
 }

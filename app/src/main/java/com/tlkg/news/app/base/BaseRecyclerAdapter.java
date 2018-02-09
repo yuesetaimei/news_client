@@ -15,6 +15,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 
 /**
+ * BaseRecyclerAdapter
  * Created by wuxiaoqi on 2017/10/12.
  */
 

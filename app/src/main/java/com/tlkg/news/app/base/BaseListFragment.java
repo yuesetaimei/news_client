@@ -62,6 +62,10 @@ public abstract class BaseListFragment extends BaseFragment implements SwipeRefr
 
     @Override
     public void onRefresh() {
+    }
 
+    @Override
+    protected void setThemeColor(int color) {
+        swipeRefreshLayout.setColorSchemeColors(CommonSettingUtil.getInstance().getThemeColor());
     }
 }

@@ -36,7 +36,7 @@ import butterknife.InjectView;
 
 public class RecommentFragment extends BaseFragment {
 
-    private static final String TAG = "RecommentFragment";
+//    private static final String TAG = "RecommentFragment";
 
     @InjectView(R.id.fragment_recomment_refreshLayout)
     RelativeLayout rootLl;
@@ -149,5 +149,10 @@ public class RecommentFragment extends BaseFragment {
             initTabs();
             mFragmentAdapter.recreateItems(fragments, titleList);
         }
+    }
+
+    @Override
+    protected void setThemeColor(int color) {
+        headTableLl.setBackgroundColor(color);
     }
 }
