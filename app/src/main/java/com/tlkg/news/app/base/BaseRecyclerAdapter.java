@@ -1,5 +1,9 @@
 package com.tlkg.news.app.base;
 
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.tlkg.news.app.R;
+import com.tlkg.news.app.util.CommonSettingUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -173,7 +178,14 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
 
         @Override
         public void onBindViewHolder(java.lang.Object object, int position) {
-
+            int color = CommonSettingUtil.getInstance().getThemeColor();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                progressBar.getIndeterminateDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+            } else {
+                Drawable wrapDrawable = DrawableCompat.wrap(progressBar.getIndeterminateDrawable());
+                DrawableCompat.setTint(wrapDrawable, color);
+                progressBar.setIndeterminateDrawable(DrawableCompat.unwrap(wrapDrawable));
+            }
         }
     }
 

@@ -1,6 +1,10 @@
 package com.tlkg.news.app.adapter;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +20,7 @@ import com.bumptech.glide.request.target.Target;
 import com.tlkg.news.app.NewsClientApplication;
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.ui.view.photoview.PhotoView;
+import com.tlkg.news.app.util.CommonSettingUtil;
 
 import java.util.List;
 
@@ -59,6 +64,14 @@ public class BigImageViewPagerAdapter extends PagerAdapter {
 
         String imageUrl = mImageUrls.get(position);
         progressBar.setVisibility(View.VISIBLE);
+        int color = CommonSettingUtil.getInstance().getThemeColor();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            progressBar.getIndeterminateDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+        } else {
+            Drawable wrapDrawable = DrawableCompat.wrap(progressBar.getIndeterminateDrawable());
+            DrawableCompat.setTint(wrapDrawable, color);
+            progressBar.setIndeterminateDrawable(DrawableCompat.unwrap(wrapDrawable));
+        }
         Glide.with(mContext).load(imageUrl)
                 .crossFade(700)
                 .listener(new RequestListener<String, GlideDrawable>() {

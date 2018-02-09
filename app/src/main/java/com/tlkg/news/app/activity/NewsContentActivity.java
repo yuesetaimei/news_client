@@ -2,9 +2,12 @@ package com.tlkg.news.app.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -202,11 +205,15 @@ public class NewsContentActivity extends BaseSlidrActivity implements NewsConten
 
     @Override
     protected void setThemeColor(int color) {
-        ;
         if (getSupportActionBar() != null)
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(CircleView.shiftColorDown(color));
+            pb_progress.getIndeterminateDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+        } else {
+            Drawable wrapDrawable = DrawableCompat.wrap(pb_progress.getIndeterminateDrawable());
+            DrawableCompat.setTint(wrapDrawable, color);
+            pb_progress.setIndeterminateDrawable(DrawableCompat.unwrap(wrapDrawable));
         }
     }
 }

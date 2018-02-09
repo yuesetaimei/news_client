@@ -6,10 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -238,6 +242,17 @@ public class BigImageViewActivity extends BaseActivity {
             mWallManager.setBitmap(BitmapFactory.decodeFile(path));
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void setThemeColor(int color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            progressBar.getIndeterminateDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+        } else {
+            Drawable wrapDrawable = DrawableCompat.wrap(progressBar.getIndeterminateDrawable());
+            DrawableCompat.setTint(wrapDrawable, color);
+            progressBar.setIndeterminateDrawable(DrawableCompat.unwrap(wrapDrawable));
         }
     }
 }

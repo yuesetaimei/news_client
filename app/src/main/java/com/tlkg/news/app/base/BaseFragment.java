@@ -25,9 +25,7 @@ public abstract class BaseFragment extends Fragment {
 
     public static final String TAG = "BaseFragment";
 
-    private int oldThemeColor = CommonSettingUtil.getInstance().getThemeColor();
-
-    private boolean isFirstChangeThemeColor = true;
+    private int oldThemeColor = -1;
 
     @Override
     public void onAttach(Context context) {
@@ -80,8 +78,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (isFirstChangeThemeColor || (oldThemeColor != CommonSettingUtil.getInstance().getThemeColor())) {
-            isFirstChangeThemeColor = false;
+        if (oldThemeColor != CommonSettingUtil.getInstance().getThemeColor()) {
             oldThemeColor = CommonSettingUtil.getInstance().getThemeColor();
             setThemeColor(CommonSettingUtil.getInstance().getThemeColor());
         }

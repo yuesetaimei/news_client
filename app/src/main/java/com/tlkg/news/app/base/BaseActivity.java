@@ -38,9 +38,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public static final int FRAGMENT_FIVE = 5;
     public static final int FRAGMENT_SIX = 6;
 
-    private int oldThemeColor = CommonSettingUtil.getInstance().getThemeColor();
-
-    private boolean isFirstChangeThemeColor = true;
+    private int oldThemeColor = -1;
 
     /**
      * Activity栈
@@ -113,8 +111,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (isFirstChangeThemeColor || (oldThemeColor != CommonSettingUtil.getInstance().getThemeColor())) {
-            isFirstChangeThemeColor = false;
+        if (oldThemeColor != CommonSettingUtil.getInstance().getThemeColor()) {
             oldThemeColor = CommonSettingUtil.getInstance().getThemeColor();
             setThemeColor(CommonSettingUtil.getInstance().getThemeColor());
         }
