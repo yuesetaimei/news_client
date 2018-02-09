@@ -11,4 +11,18 @@
         <item>1</item>
         <item>2</item>
     </string-array>
+
+    <string-array name="language_slidable">
+        <item>中文简体</item>
+        <item>中文繁體</item>
+        <item>English</item>
+        <item>日语</item>
+    </string-array>
+
+    <string-array name="language_slidableValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 </resources>

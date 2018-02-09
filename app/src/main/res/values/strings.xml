@@ -77,7 +77,7 @@
 
     <!-- 设置 -->
     <string name="base_setting">基本设置</string>
-    <string name="only_wifi_load">仅在Wifi环境下加载图片</string>
+    <string name="only_wifi_load">仅在wifi环境下加载图片(不包括电影界面)</string>
     <string name="no_pic_mode">无图模式</string>
     <string name="set_switch_time">设置切换时间</string>
     <string name="auto_switch_night_mode">自动切换夜间模式</string>
@@ -88,7 +88,7 @@
     <string name="video_setting">视频设置</string>
     <string name="start_force_land_play_video">开启后强制横屏播放视频</string>
     <string name="full_screen_play">全屏播放</string>
-    <string name="only_wifi_auto_play_video">仅在Wifi环境下自动播放视频</string>
+    <string name="only_wifi_auto_play_video">仅在wifi环境下自动播放视频</string>
     <string name="auto_play_video">自动播放视频</string>
     <string name="only_wifi_auto_down_video">仅在Wifi环境下自动下载播放的视频</string>
     <string name="video_down">视频下载</string>
@@ -111,5 +111,8 @@
     <string name="auto_night_start_time">夜间模式开始时间</string>
     <string name="auto_day_start_time">日间模式开始时间</string>
     <string name="custom">自定义</string>
+    <string name="set_language">语言设置</string>
+    <string name="chinese_simplified">中文简体</string>
+    <string name="only_wifi_load_img">已开启仅在wifi环境下加载图片\n可到设置界面更改</string>
 
 </resources>

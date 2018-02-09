@@ -24,7 +24,7 @@ public class CommonSettingUtil {
     /**
      * 切换无图模式
      */
-    private static final String SWITCH_NOPHOTOMODE = "switch_noPhotoMode";
+    private static final String SWITCH_NOPHOTOMODE = "switch_noWifiLoadImg";
 
     /**
      * 字体大小

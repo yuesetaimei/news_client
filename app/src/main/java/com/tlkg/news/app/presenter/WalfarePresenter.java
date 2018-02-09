@@ -1,8 +1,11 @@
 package com.tlkg.news.app.presenter;
 
+import com.tlkg.news.app.NewsClientApplication;
+import com.tlkg.news.app.R;
 import com.tlkg.news.app.base.BasePresenter;
 import com.tlkg.news.app.bean.BeautyBean;
 import com.tlkg.news.app.http.HttpClient;
+import com.tlkg.news.app.util.CommonSettingUtil;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -23,7 +26,11 @@ public class WalfarePresenter extends BasePresenter<WalfarePresenter.IWelfareVie
     @Override
     public void load() {
         isLoadMore = false;
-        loadBeautyBean(PAGE_COUNT, 1);
+        if (CommonSettingUtil.getInstance().getIsNoPhotoMode()) {
+            mView.onLoadErr(NewsClientApplication.getStringId(R.string.only_wifi_load_img));
+        } else {
+            loadBeautyBean(PAGE_COUNT, 1);
+        }
     }
 
 

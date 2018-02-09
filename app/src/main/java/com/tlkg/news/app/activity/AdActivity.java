@@ -12,14 +12,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.base.BaseActivity;
 import com.tlkg.news.app.constant.ConstantImageUrl;
+import com.tlkg.news.app.util.ImageLoader;
 
 import java.util.Random;
 
@@ -94,47 +93,42 @@ public class AdActivity extends BaseActivity {
             int i = new Random().nextInt(ConstantImageUrl.TRANSITION_URLS.length);
             pic_url = ConstantImageUrl.TRANSITION_URLS[i];
         }
-        Glide.with(this).load(pic_url)
-                .placeholder(R.mipmap.welcome)
-                .error(R.mipmap.test_ad)
-                .crossFade()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(new GlideDrawableImageViewTarget(adImg) {
+        ImageLoader.load(this, pic_url, adImg, R.mipmap.welcome, R.mipmap.test_ad, new GlideDrawableImageViewTarget(adImg) {
+            @Override
+            public void onLoadFailed(Exception e, Drawable errorDrawable) {
+                super.onLoadFailed(e, errorDrawable);
+                startMainActivity(AdActivity.this, R.anim.screen_zoom_in, R.anim.screen_zoom_out);
+            }
+
+            @Override
+            public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> animation) {
+                super.onResourceReady(resource, animation);
+                if (!TextUtils.isEmpty(pic_title)) {
+                    titleTv.setVisibility(View.VISIBLE);
+                    titleTv.setAlpha(0);
+                    titleTv.animate().alpha(1).setDuration(1000).setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            titleTv.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    titleTv.clearAnimation();
+                                    titleTv.animate().translationY(titleTv.getHeight()).setDuration(500).start();
+                                }
+                            });
+                        }
+                    }).start();
+                    titleTv.setText(pic_title);
+                }
+                adImg.postDelayed(new Runnable() {
                     @Override
-                    public void onLoadFailed(Exception e, Drawable errorDrawable) {
-                        super.onLoadFailed(e, errorDrawable);
+                    public void run() {
+                        if (isJump) return;
                         startMainActivity(AdActivity.this, R.anim.screen_zoom_in, R.anim.screen_zoom_out);
                     }
-
-                    @Override
-                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> animation) {
-                        super.onResourceReady(resource, animation);
-                        if (!TextUtils.isEmpty(pic_title)) {
-                            titleTv.setVisibility(View.VISIBLE);
-                            titleTv.setAlpha(0);
-                            titleTv.animate().alpha(1).setDuration(1000).setListener(new AnimatorListenerAdapter() {
-                                @Override
-                                public void onAnimationEnd(Animator animation) {
-                                    titleTv.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            titleTv.clearAnimation();
-                                            titleTv.animate().translationY(titleTv.getHeight()).setDuration(500).start();
-                                        }
-                                    });
-                                }
-                            }).start();
-                            titleTv.setText(pic_title);
-                        }
-                        adImg.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (isJump) return;
-                                startMainActivity(AdActivity.this, R.anim.screen_zoom_in, R.anim.screen_zoom_out);
-                            }
-                        }, 3000);
-                    }
-                });
+                }, 3000);
+            }
+        });
     }
 
     @OnClick({R.id.activity_ad_img, R.id.activity_ad_jump_btn})
