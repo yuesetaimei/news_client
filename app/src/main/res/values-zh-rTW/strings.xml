@@ -1,0 +1,120 @@
+<resources>
+    <string name="app_name">新聞壹刻</string>
+
+    <!-- 侧滑按钮文字 -->
+    <string name="left_menu_project_address">項目地址</string>
+    <string name="left_menu_down">掃碼下載</string>
+    <string name="left_menu_shared">分享好友</string>
+    <string name="left_menu_about_app">關於應用</string>
+    <string name="left_menu_exit">退出應用</string>
+
+    <!-- 底部导航按钮文字 -->
+    <string name="recomment">推薦</string>
+    <string name="welfare">福利</string>
+    <string name="movie">電影</string>
+    <string name="my">我的</string>
+
+    <string name="press_the_exit_again">再按壹次退出</string>
+    <string name="loading">加載中</string>
+    <string name="save">保存</string>
+    <string name="setting_wallpaper">設置壁紙</string>
+    <string name="save_dir_name">福利圖片</string>
+    <string name="setting_success">設置成功</string>
+    <string name="network_err">網絡不給力~</string>
+    <string name="checkout_network">請檢查網絡連接</string>
+    <string name="network_disable">網絡不可用\n請檢查網絡連接</string>
+    <string name="result_data_fail">數據為空</string>
+
+    <string name="doubao_top_250">豆瓣電影Top250</string>
+    <string name="classic_quotations">生活就像巧克力,妳永遠不知道下壹顆是什麽味道</string>
+    <string name="hot_list">熱映榜</string>
+    <string name="director">導演：</string>
+    <string name="main_perform">主演：</string>
+    <string name="movie_type">類型：</string>
+    <string name="movie_score">評分：</string>
+    <string name="doubao_top">豆瓣Top</string>
+    <string name="no_more_data">沒有更多數據了~</string>
+    <string name="person_score">&#160;人評分</string>
+    <string name="movie_day">上映日期：%s</string>
+    <string name="movie_city">制片國家/地區：%s</string>
+    <string name="movie_other_name">又名</string>
+    <string name="brief_introduction">劇情簡介</string>
+    <string name="movie_all_performer">導演 &amp; 演員</string>
+    <string name="movie_share">抱歉，分享功能暫時不可用~</string>
+    <string name="action_share">分享</string>
+    <string name="no_more_content">暫無更多內容</string>
+    <string name="network_error">網絡不給力</string>
+
+    <string name="config_show_tab">顯示Tab</string>
+    <string name="config_hide_tab">隱藏Tab</string>
+    <string name="config_drag_tip">長按編輯,拖拽排序</string>
+    <string name="edit">編輯</string>
+    <string name="finish">完成</string>
+    <string name="copy_content">復制內容</string>
+    <string name="copied_to_clipboard">復制成功</string>
+    <string name="comment">評論</string>
+    <string name="back">返回</string>
+
+    <string name="project_address_url"><a color='white' href='https://github.com/wuxiaoqi123/news_client'>https://github.com/wuxiaoqi123/news_client</a></string>
+    <string name="github_url">https://github.com/wuxiaoqi123/news_client</string>
+    <string name="scan_down_load_url">https://github.com/wuxiaoqi123/news_client</string>
+    <string name="share_url">我在使用新聞壹刻，快去github上下載源碼吧~ https://github.com/wuxiaoqi123/news_client</string>
+
+    <string name="about_app">非常感謝github上眾多開源項目，使我可以去學習大牛們寫的代碼。在這裏深深的表示感謝，謝謝！\n新聞壹刻APP是本人在工作閑暇之時，為了學習其它開源項目而寫的，後續也會壹直維護，歡迎start和Issues。</string>
+
+    <string name="register_or_login">登錄 | 註冊</string>
+    <string name="login">登錄</string>
+    <string name="register">註冊</string>
+    <string name="my_theme">切換主題</string>
+    <string name="my_setting">設置</string>
+    <string name="my_version">版本號：&#160;V</string>
+    <string name="my_clear">清除緩存</string>
+
+    <string name="login_input_username_hint">請輸入手機號或郵箱</string>
+    <string name="hint_password">請輸入密碼</string>
+    <string name="login_hold_hint">記住密碼</string>
+    <string name="login_forget_hint">忘記密碼？</string>
+
+    <!-- 设置 -->
+    <string name="base_setting">基本設置</string>
+    <string name="only_wifi_load">僅在wifi環境下加載圖片(不包括電影界面)</string>
+    <string name="no_pic_mode">無圖模式</string>
+    <string name="set_switch_time">設置切換時間</string>
+    <string name="auto_switch_night_mode">自動切換夜間模式</string>
+    <string name="slide_btn_hide">上滑列表導航按鈕隱藏</string>
+    <string name="navigation_btn">導航按鈕</string>
+    <string name="set_text_size">設置字體大小</string>
+    <string name="text_size">字體大小</string>
+    <string name="video_setting">視頻設置</string>
+    <string name="start_force_land_play_video">開啟後強制橫屏播放視頻</string>
+    <string name="full_screen_play">全屏播放</string>
+    <string name="only_wifi_auto_play_video">僅在wifi環境下自動播放視頻</string>
+    <string name="auto_play_video">自動播放視頻</string>
+    <string name="only_wifi_auto_down_video">僅在Wifi環境下自動下載播放的視頻</string>
+    <string name="video_down">視頻下載</string>
+    <string name="other_set">其它設置</string>
+    <string name="cursor_theme_color">自定義主題顏色</string>
+    <string name="theme_color">主題顏色</string>
+    <string name="complete">完成</string>
+    <string name="cancel">取消</string>
+    <string name="similar_ios_slide_back">類似iOS左側滑動返回</string>
+    <string name="slide_back">滑動返回</string>
+    <string name="clear_cache">清除緩存</string>
+    <string name="about">關於</string>
+    <string name="version">版本</string>
+    <string name="licenses">開源許可</string>
+    <string name="souce_code">源碼</string>
+    <string name="only_study">僅作為個人學習非商業用途</string>
+    <string name="copy_right">版權聲明</string>
+    <string name="start">啟動</string>
+    <string name="time">時間</string>
+    <string name="auto_night_start_time">夜間模式開始時間</string>
+    <string name="auto_day_start_time">日間模式開始時間</string>
+    <string name="custom">自定義</string>
+    <string name="set_language">語言設置</string>
+    <string name="chinese_simplified">中文简体</string>
+    <string name="only_wifi_load_img">已開啟僅在wifi環境下加載圖片\n可到設置界面更改</string>
+    <string name="blog_name">这个杀手不太累</string>
+    <string name="blog_url">Blog: http://blog.csdn.net/zhe_ge_sha_shou</string>
+
+</resources>

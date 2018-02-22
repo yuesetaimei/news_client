@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!--状态栏-->
+    <View
+        android:id="@+id/activity_main_status_bar_view"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:background="@color/colorPrimaryDark" />
 
     <RelativeLayout
         android:id="@+id/activity_main_parent_rl"
@@ -15,15 +23,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
             android:orientation="vertical">
-
-            <!--状态栏-->
-            <View
-                android:id="@+id/activity_main_status_bar_view"
-                android:layout_width="match_parent"
-                android:layout_height="24dp"
-                android:background="@color/colorPrimaryDark" />
 
             <android.support.design.widget.CoordinatorLayout
                 android:id="@+id/activity_main_coordinator_layout"
@@ -59,6 +59,7 @@
                                 android:layout_width="23dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:contentDescription="@null"
                                 android:src="@drawable/titlebar_menu" />
                         </FrameLayout>
 
@@ -75,7 +76,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_gravity="right|center_vertical"
-                            android:layout_marginRight="15dp">
+                            android:layout_marginRight="15dp"
+                            tools:ignore="RtlHardcoded">
 
                             <de.hdodenhof.circleimageview.CircleImageView
                                 android:id="@+id/activity_main_tool_bar_head_iv"
@@ -110,4 +112,4 @@
 
         </LinearLayout>
     </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>

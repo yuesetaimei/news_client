@@ -1,0 +1,120 @@
+<resources>
+    <string name="app_name">A moment of news</string>
+
+    <!-- 侧滑按钮文字 -->
+    <string name="left_menu_project_address">Project address</string>
+    <string name="left_menu_down">Scavenging downloading</string>
+    <string name="left_menu_shared">Sharing friends</string>
+    <string name="left_menu_about_app">About</string>
+    <string name="left_menu_exit">Exit</string>
+
+    <!-- 底部导航按钮文字 -->
+    <string name="recomment">Recommend</string>
+    <string name="welfare">Welfare</string>
+    <string name="movie">Movie</string>
+    <string name="my">My</string>
+
+    <string name="press_the_exit_again">One more exit</string>
+    <string name="loading">loading</string>
+    <string name="save">save</string>
+    <string name="setting_wallpaper">set wallpaper</string>
+    <string name="save_dir_name">Welfare picture</string>
+    <string name="setting_success">Set up success</string>
+    <string name="network_err">Network suck~</string>
+    <string name="checkout_network">Please check the network connection</string>
+    <string name="network_disable">Network unavailable \n please check network connections</string>
+    <string name="result_data_fail">Data is empty</string>
+
+    <string name="doubao_top_250">Bean film Top250</string>
+    <string name="classic_quotations">Life is like a chocolate, you never know what the next taste is</string>
+    <string name="hot_list">hit list</string>
+    <string name="director">director：</string>
+    <string name="main_perform">star：</string>
+    <string name="movie_type">type：</string>
+    <string name="movie_score">score：</string>
+    <string name="doubao_top">Bean Top</string>
+    <string name="no_more_data">There is no more data~</string>
+    <string name="person_score">&#160;Human score</string>
+    <string name="movie_day">Release date：%s</string>
+    <string name="movie_city">Producer countries / regions：%s</string>
+    <string name="movie_other_name">or</string>
+    <string name="brief_introduction">Synopsis</string>
+    <string name="movie_all_performer">director &amp; star</string>
+    <string name="movie_share">Sorry, the sharing function is not available for the time being.</string>
+    <string name="action_share">share</string>
+    <string name="no_more_content">No more content</string>
+    <string name="network_error">Network suck</string>
+
+    <string name="config_show_tab">Show Tab</string>
+    <string name="config_hide_tab">Hide Tab</string>
+    <string name="config_drag_tip">Long press edit, drag and drop sort</string>
+    <string name="edit">Edit</string>
+    <string name="finish">complete</string>
+    <string name="copy_content">Copy content</string>
+    <string name="copied_to_clipboard">Replicating success</string>
+    <string name="comment">comment</string>
+    <string name="back">back</string>
+
+    <string name="project_address_url"><a color='white' href='https://github.com/wuxiaoqi123/news_client'>https://github.com/wuxiaoqi123/news_client</a></string>
+    <string name="github_url">https://github.com/wuxiaoqi123/news_client</string>
+    <string name="scan_down_load_url">https://github.com/wuxiaoqi123/news_client</string>
+    <string name="share_url">I am using the news for a moment, go to GitHub and download the source code~ https://github.com/wuxiaoqi123/news_client</string>
+
+    <string name="about_app">Thank you very much for the many open source projects on GitHub, so that I can learn the code written by the cows. Thank you deeply here. Thank you. \n news APP is my leisure time, in order to learn other open source projects, the follow-up will always be maintained, welcome start and Issues.</string>
+
+    <string name="register_or_login">Login | Register</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="my_theme">Switching theme</string>
+    <string name="my_setting">Set up</string>
+    <string name="my_version">Version：&#160;V</string>
+    <string name="my_clear">Clear cache</string>
+
+    <string name="login_input_username_hint">Please enter a cell phone number or a mailbox</string>
+    <string name="hint_password">Please input a password</string>
+    <string name="login_hold_hint">Remember the password</string>
+    <string name="login_forget_hint">Forget the password？</string>
+
+    <!-- 设置 -->
+    <string name="base_setting">Basic setup</string>
+    <string name="only_wifi_load">Loading pictures only in the WiFi environment (excluding the movie interface)</string>
+    <string name="no_pic_mode">Graph free pattern</string>
+    <string name="set_switch_time">Setting switch time</string>
+    <string name="auto_switch_night_mode">Automatic switching nocturnal mode</string>
+    <string name="slide_btn_hide">Skid list navigation button concealment</string>
+    <string name="navigation_btn">Navigation button</string>
+    <string name="set_text_size">Setting the size of the font</string>
+    <string name="text_size">font size</string>
+    <string name="video_setting">Video settings</string>
+    <string name="start_force_land_play_video">Forced horizontal screen playing video after opening</string>
+    <string name="full_screen_play">Full screen play</string>
+    <string name="only_wifi_auto_play_video">Automatically play video in a WiFi environment</string>
+    <string name="auto_play_video">Auto Play Video</string>
+    <string name="only_wifi_auto_down_video">Automatically downloading and playing video in the Wifi environment</string>
+    <string name="video_down">Video download</string>
+    <string name="other_set">Other settings</string>
+    <string name="cursor_theme_color">Custom theme color</string>
+    <string name="theme_color">Theme color</string>
+    <string name="complete">complete</string>
+    <string name="cancel">cancel</string>
+    <string name="similar_ios_slide_back">Like iOS left slide back</string>
+    <string name="slide_back">Sliding return</string>
+    <string name="clear_cache">Clear cache</string>
+    <string name="about">About</string>
+    <string name="version">Version</string>
+    <string name="licenses">Open Source License</string>
+    <string name="souce_code">code</string>
+    <string name="only_study">Learning non commercial purposes only as an individual</string>
+    <string name="copy_right">Copyright declaration</string>
+    <string name="start">start</string>
+    <string name="time">time</string>
+    <string name="auto_night_start_time">Nocturnal mode start time</string>
+    <string name="auto_day_start_time">Day mode start time</string>
+    <string name="custom">custom</string>
+    <string name="set_language">Language setting</string>
+    <string name="chinese_simplified">中文简体</string>
+    <string name="only_wifi_load_img">Loading the picture \n only in the WiFi environment can be changed to the set interface changes</string>
+    <string name="blog_name">这个杀手不太累</string>
+    <string name="blog_url">Blog: http://blog.csdn.net/zhe_ge_sha_shou</string>
+
+</resources>

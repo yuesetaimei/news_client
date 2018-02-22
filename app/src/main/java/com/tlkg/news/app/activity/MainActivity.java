@@ -360,7 +360,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         } else if (event instanceof AnimTranEvent) {
             AnimTranEvent animTranEvent = (AnimTranEvent) event;
             int x = animTranEvent.x + DensityUtil.dip2px(70) / 2;
-            int y = animTranEvent.y + DensityUtil.dip2px(70) / 2;
+            int y = animTranEvent.y + DensityUtil.dip2px(70) / 2 - StatusBarUtil.getStatusBarHeight(this);
             if (myCircleImageView != null) {
                 PropertyValuesHolder pvhX = PropertyValuesHolder.ofFloat("translationX", 0f, x - mirrorX);
                 PropertyValuesHolder pvhY = PropertyValuesHolder.ofFloat("translationY", 0f, y - mirrorY);

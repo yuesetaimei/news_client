@@ -12,7 +12,9 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.tlkg.news.app.R;
+import com.tlkg.news.app.activity.LaunchActivity;
 import com.tlkg.news.app.ui.view.ThemePreference;
+import com.tlkg.news.app.util.LanguageUtil;
 
 import de.psdev.licensesdialog.LicensesDialog;
 import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20;
@@ -21,6 +23,7 @@ import de.psdev.licensesdialog.model.Notices;
 
 /**
  * Created by wuxiaoqi on 2018/2/7.
+ * 设置 Fragment
  */
 
 public class SettingFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -74,7 +77,7 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
         });
         try {
             String versionName = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
-            findPreference("version").setSummary(versionName);
+            findPreference("version").setSummary("V " + versionName);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -117,6 +120,7 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
     @Override
     public void onResume() {
         super.onResume();
+        changeLanguageSummary();
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -132,6 +136,47 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
             themePreference.updateColor();
         } else if ("slidable".equals(key)) {
             context.recreate();
+        } else if ("language".equals(key)) {
+            changeLanguage();
+        }
+    }
+
+    /**
+     * 更改显示语言
+     */
+    private void changeLanguage() {
+        try {
+            changeLanguageSummary();
+            changeLanguageShow();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void changeLanguageShow() {
+        LanguageUtil.setChangeLanguage(context, getPreferenceManager().getSharedPreferences());
+        Intent intent = new Intent(getActivity(), LaunchActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+    private void changeLanguageSummary() {
+        String language = getPreferenceManager().getSharedPreferences().getString("language", "0");
+        switch (Integer.parseInt(language)) {
+            case 0:
+                findPreference("language").setSummary("中文简体");
+                break;
+            case 1:
+                findPreference("language").setSummary("中文繁體");
+                break;
+            case 2:
+                findPreference("language").setSummary("English");
+                break;
+            case 3:
+                findPreference("language").setSummary("日语");
+                break;
+            default:
+                break;
         }
     }
 }
