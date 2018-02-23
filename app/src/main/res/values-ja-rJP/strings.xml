@@ -67,7 +67,7 @@
     <string name="register">注册</string>
     <string name="my_theme">テーマの切り替え</string>
     <string name="my_setting">設置</string>
-    <string name="my_version">バージョン番号：&#160;V</string>
+    <string name="my_version">バージョン番号</string>
     <string name="my_clear">キャッシュをクリアする</string>
 
     <string name="login_input_username_hint">携帯番号やメールを入力してください</string>
@@ -116,5 +116,7 @@
     <string name="only_wifi_load_img">もう開けwifi環境下載写真だけで\ nまで設定画面の変更</string>
     <string name="blog_name">这个杀手不太累</string>
     <string name="blog_url">Blog: http://blog.csdn.net/zhe_ge_sha_shou</string>
+    <string name="do_you_want_clear_cache">キャッシュをクリアしなければなりませんか？</string>
+    <string name="yes">確定</string>
 
 </resources>

@@ -1,13 +1,15 @@
 package com.tlkg.news.app.fragment;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.activity.RegisterOrLoginActivity;
@@ -15,7 +17,9 @@ import com.tlkg.news.app.activity.setting.SettingActivity;
 import com.tlkg.news.app.base.BaseEvent;
 import com.tlkg.news.app.base.BaseFragment;
 import com.tlkg.news.app.event.AnimTranEvent;
+import com.tlkg.news.app.event.ClearCacheEvent;
 import com.tlkg.news.app.event.ShowMyFragmentCircleEvent;
+import com.tlkg.news.app.util.CacheDataManager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -53,6 +57,12 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
     @InjectView(R.id.fragment_my_clear)
     TextView clearTv;
 
+    @InjectView(R.id.fragment_my_version_tv)
+    TextView showVersionTv;
+
+    @InjectView(R.id.fragment_my_cache_tv)
+    TextView cacheTv;
+
     public static Fragment getInstance() {
         return new MyFragment();
     }
@@ -66,14 +76,16 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
         return R.layout.fragment_my;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void initView(View view) {
-        versionTv.append(getVersionName());
         registerOrLoginTv.setOnClickListener(this);
         themeTv.setOnClickListener(this);
         settingTv.setOnClickListener(this);
         versionTv.setOnClickListener(this);
         clearTv.setOnClickListener(this);
+        showVersionTv.setText("v " + getVersionName());
+        cacheTv.setText(CacheDataManager.getTotalCacheSize());
     }
 
     private String getVersionName() {
@@ -107,6 +119,8 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
             circleImageView.setVisibility(View.VISIBLE);
             registerOrLoginTv.clearAnimation();
             registerOrLoginTv.animate().alpha(1).setDuration(200).start();
+        } else if (event instanceof ClearCacheEvent) {
+            cacheTv.setText(CacheDataManager.getTotalCacheSize());
         }
     }
 
@@ -123,13 +137,34 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                 SettingActivity.startActivity(getActivity());
                 break;
             case R.id.fragment_my_version:
-                Toast.makeText(getActivity(), getVersionName(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), getVersionName(), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.fragment_my_clear:
-
+                showCacheDialog();
                 break;
             default:
                 break;
+        }
+    }
+
+    private void showCacheDialog() {
+        AlertDialog dialog = new AlertDialog.Builder(getActivity())
+                .setTitle(R.string.do_you_want_clear_cache)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        CacheDataManager.clearAllCache();
+                    }
+                })
+                .setNegativeButton(R.string.cancel, null).create();
+        dialog.show();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            cacheTv.setText(CacheDataManager.getTotalCacheSize());
         }
     }
 

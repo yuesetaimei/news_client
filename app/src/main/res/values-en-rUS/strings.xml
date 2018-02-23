@@ -67,7 +67,7 @@
     <string name="register">Register</string>
     <string name="my_theme">Switching theme</string>
     <string name="my_setting">Set up</string>
-    <string name="my_version">Version：&#160;V</string>
+    <string name="my_version">Version</string>
     <string name="my_clear">Clear cache</string>
 
     <string name="login_input_username_hint">Please enter a cell phone number or a mailbox</string>
@@ -116,5 +116,7 @@
     <string name="only_wifi_load_img">Loading the picture \n only in the WiFi environment can be changed to the set interface changes</string>
     <string name="blog_name">这个杀手不太累</string>
     <string name="blog_url">Blog: http://blog.csdn.net/zhe_ge_sha_shou</string>
+    <string name="do_you_want_clear_cache">Do you want to clear the cache?</string>
+    <string name="yes">yes</string>
 
 </resources>

@@ -1,5 +1,6 @@
 package com.tlkg.news.app.activity.setting;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -8,12 +9,12 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.activity.LaunchActivity;
 import com.tlkg.news.app.ui.view.ThemePreference;
+import com.tlkg.news.app.util.CacheDataManager;
 import com.tlkg.news.app.util.LanguageUtil;
 
 import de.psdev.licensesdialog.LicensesDialog;
@@ -68,10 +69,11 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
                 return true;
             }
         });
+        findPreference("clear_cache").setSummary(CacheDataManager.getTotalCacheSize());
         findPreference("clear_cache").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                Toast.makeText(context, "清理缓存", Toast.LENGTH_SHORT).show();
+                showCacheDialog();
                 return true;
             }
         });
@@ -178,5 +180,19 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
             default:
                 break;
         }
+    }
+
+    private void showCacheDialog() {
+        AlertDialog dialog = new AlertDialog.Builder(getActivity())
+                .setTitle(R.string.do_you_want_clear_cache)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        CacheDataManager.clearAllCache();
+                        findPreference("clear_cache").setSummary("0.0Byte");
+                    }
+                })
+                .setNegativeButton(R.string.cancel, null).create();
+        dialog.show();
     }
 }

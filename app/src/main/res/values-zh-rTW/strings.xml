@@ -67,7 +67,7 @@
     <string name="register">註冊</string>
     <string name="my_theme">切換主題</string>
     <string name="my_setting">設置</string>
-    <string name="my_version">版本號：&#160;V</string>
+    <string name="my_version">版本號</string>
     <string name="my_clear">清除緩存</string>
 
     <string name="login_input_username_hint">請輸入手機號或郵箱</string>
@@ -116,5 +116,7 @@
     <string name="only_wifi_load_img">已開啟僅在wifi環境下加載圖片\n可到設置界面更改</string>
     <string name="blog_name">这个杀手不太累</string>
     <string name="blog_url">Blog: http://blog.csdn.net/zhe_ge_sha_shou</string>
+    <string name="do_you_want_clear_cache">確定要清除緩存嗎</string>
+    <string name="yes">確定</string>
 
 </resources>
