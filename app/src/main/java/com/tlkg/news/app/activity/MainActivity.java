@@ -42,11 +42,15 @@ import com.tlkg.news.app.ui.dialog.AboutDialog;
 import com.tlkg.news.app.ui.dialog.ProjectAddressDialog;
 import com.tlkg.news.app.ui.dialog.ScanDownLoadDialog;
 import com.tlkg.news.app.ui.view.ConfigShowTabPopWindow;
+import com.tlkg.news.app.util.CommonSettingUtil;
 import com.tlkg.news.app.util.DensityUtil;
 import com.tlkg.news.app.view.statusbar.StatusBarUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 import butterknife.InjectView;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -427,6 +431,30 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         navigationView.getHeaderView(0).setBackgroundColor(color);
         for (int i = 0; i < bottomBar.getTabCount(); i++) {
             bottomBar.getTabAtPosition(i).setBackgroundColor(color);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        boolean isSlideHideNavBtn = CommonSettingUtil.getInstance().getIsSlideHideNavBtn();
+        //通过反射设置
+        try {
+            Class<? extends BottomBar> aClass = bottomBar.getClass();
+            Field behaviors = aClass.getDeclaredField("behaviors");
+            behaviors.setAccessible(true);
+            if (isSlideHideNavBtn) {
+                behaviors.set(bottomBar, 2);
+                Method initializeShyBehavior = aClass.getDeclaredMethod("updateShyHeight", int.class);
+                initializeShyBehavior.setAccessible(true);
+                initializeShyBehavior.invoke(bottomBar, bottomBar.getHeight());
+            } else {
+                behaviors.set(bottomBar, 0);
+                ((CoordinatorLayout.LayoutParams) bottomBar.getLayoutParams())
+                        .setBehavior(null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

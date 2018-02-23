@@ -14,7 +14,7 @@ import com.tlkg.news.app.R;
 
 public class CommonSettingUtil {
 
-    private static final String TAG = "CommonSettingUtil";
+//    private static final String TAG = "CommonSettingUtil";
 
     /**
      * 主题颜色key
@@ -59,11 +59,10 @@ public class CommonSettingUtil {
         return Integer.parseInt(s);
     }
 
-
     /**
      * 获取主题颜色
      *
-     * @return
+     * @return color
      */
     public int getThemeColor() {
         int defaultColor = NewsClientApplication.getColorId(R.color.colorPrimary);
@@ -79,6 +78,13 @@ public class CommonSettingUtil {
      */
     public boolean getIsNoPhotoMode() {
         return sharedPreferences.getBoolean(SWITCH_NOPHOTOMODE, false) && PhoneUtil.isMobileConnected(NewsClientApplication.getAppContext());
+    }
+
+    /**
+     * 获取是否上滑列表导航按钮隐藏
+     */
+    public boolean getIsSlideHideNavBtn() {
+        return sharedPreferences.getBoolean("nav_btn", true);
     }
 
     /**
