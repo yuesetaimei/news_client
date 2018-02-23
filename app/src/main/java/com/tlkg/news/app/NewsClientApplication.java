@@ -17,11 +17,5 @@ public class NewsClientApplication extends BaseApplication {
         super.onCreate();
         LanguageUtil.setChangeLanguage(this, getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE));
         HttpUtils.getInstance().init(getAppContext(), BuildConfig.DEBUG);
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                Glide.get(getAppContext()).clearDiskCache();
-//            }
-//        }).start();
     }
 }

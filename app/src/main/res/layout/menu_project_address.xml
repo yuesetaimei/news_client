@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="500dp">
 
@@ -11,25 +12,21 @@
         android:layout_centerInParent="true">
 
         <android.support.v7.widget.CardView
+            android:id="@+id/menu_address_cardview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="5dp"
-            app:cardBackgroundColor="@color/colorAccent"
-            app:cardCornerRadius="10dp">
+            app:cardCornerRadius="10dp"
+            tools:cardBackgroundColor="@color/colorAccent">
 
-            <ScrollView
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/menu_project_tv"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true">
-
-                <TextView
-                    android:id="@+id/menu_project_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
-            </ScrollView>
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
         </android.support.v7.widget.CardView>
     </RelativeLayout>
 

@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.widget.ImageView;
 
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.base.BaseMenuDialog;
+import com.tlkg.news.app.util.CommonSettingUtil;
 import com.tlkg.news.app.util.DensityUtil;
 import com.tlkg.news.app.util.ZxQRUtil;
 
@@ -20,26 +22,34 @@ import butterknife.InjectView;
 
 public class ScanDownLoadDialog extends BaseMenuDialog {
 
-    private static final String TAG = "ScanDownLoadDialog";
+//    private static final String TAG = "ScanDownLoadDialog";
+
+    @InjectView(R.id.menu_scan_cardview)
+    CardView cardView;
 
     @InjectView(R.id.menu_scan_down_qr_img)
     ImageView qrImg;
 
-    Bitmap qrBitmap = null;
+    private Bitmap qrBitmap = null;
 
     public ScanDownLoadDialog(@NonNull Context context) {
         super(context);
         initQR();
     }
 
+    @Override
+    public void show() {
+        super.show();
+        cardView.setCardBackgroundColor(CommonSettingUtil.getInstance().getThemeColor());
+    }
+
     private void initQR() {
         final String text = getContext().getString(R.string.scan_down_load_url);
-        final int width = DensityUtil.dip2px(200);
         if (qrBitmap == null) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    qrBitmap = ZxQRUtil.createQR(text, width, width);
+                    qrBitmap = ZxQRUtil.createQR(text, DensityUtil.dip2px(200), DensityUtil.dip2px(200));
                     ((Activity) mContext).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

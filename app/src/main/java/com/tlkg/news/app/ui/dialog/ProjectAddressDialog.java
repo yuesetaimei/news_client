@@ -3,6 +3,7 @@ package com.tlkg.news.app.ui.dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.base.BaseMenuDialog;
+import com.tlkg.news.app.util.CommonSettingUtil;
 
 import butterknife.InjectView;
 
@@ -23,6 +25,9 @@ import butterknife.InjectView;
 //https://github.com/wuxiaoqi123/news_client
 
 public class ProjectAddressDialog extends BaseMenuDialog {
+
+    @InjectView(R.id.menu_address_cardview)
+    CardView cardView;
 
     @InjectView(R.id.menu_project_tv)
     TextView textTv;
@@ -35,6 +40,12 @@ public class ProjectAddressDialog extends BaseMenuDialog {
         spannableString.setSpan(new UnderlineSpan(), 0, spannableString.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         textTv.setText(spannableString);
         textTv.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        cardView.setCardBackgroundColor(CommonSettingUtil.getInstance().getThemeColor());
     }
 
     @Override
