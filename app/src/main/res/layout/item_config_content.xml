@@ -18,6 +18,7 @@
         android:id="@+id/img_edit"
         android:layout_width="10dp"
         android:layout_height="10dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/ic_border_color_black_24dp"

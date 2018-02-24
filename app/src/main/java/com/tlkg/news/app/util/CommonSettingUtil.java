@@ -120,6 +120,10 @@ public class CommonSettingUtil {
         sharedPreferences.edit().putInt(THEME_COLOR, color).apply();
     }
 
+    public boolean getWifiAutoPlayVidoe() {
+        return sharedPreferences.getBoolean("video_auto_play", true) && PhoneUtil.isWifiConnected(NewsClientApplication.getAppContext());
+    }
+
     /**
      * 获取字体大小
      */

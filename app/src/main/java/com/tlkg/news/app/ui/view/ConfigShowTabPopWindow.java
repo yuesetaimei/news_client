@@ -2,6 +2,7 @@ package com.tlkg.news.app.ui.view;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.view.MotionEventCompat;
@@ -71,7 +72,7 @@ public class ConfigShowTabPopWindow extends PopupWindow {
     }
 
     public void show(View parent) {
-        View contentView = LayoutInflater.from(mContext).inflate(R.layout.view_configshowtab, null);
+        @SuppressLint("InflateParams") View contentView = LayoutInflater.from(mContext).inflate(R.layout.view_configshowtab, null);
         setWidth(WindowManager.LayoutParams.MATCH_PARENT);
         setHeight(WindowManager.LayoutParams.MATCH_PARENT);
         setContentView(contentView);
@@ -196,13 +197,13 @@ public class ConfigShowTabPopWindow extends PopupWindow {
 
     private class ConfigShowTabAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements IOnItemMoveListener {
 
-        public static final int TYPE_CONFIGSHOWTAB_SHOW_TITLE = 0;//显示标题item
+        static final int TYPE_CONFIGSHOWTAB_SHOW_TITLE = 0;//显示标题item
 
-        public static final int TYPE_CONFIGSHOWTAB_SHOW_CONFIG = 1;//配置显示item
+        static final int TYPE_CONFIGSHOWTAB_SHOW_CONFIG = 1;//配置显示item
 
-        public static final int TYPE_CONFIGSHOWTAB_HIDE_TITLE = 2;//隐藏标题item
+        static final int TYPE_CONFIGSHOWTAB_HIDE_TITLE = 2;//隐藏标题item
 
-        public static final int TYPE_CONFIGSHOWTAB_HIDE_CONFIG = 3;//配置隐藏item
+        static final int TYPE_CONFIGSHOWTAB_HIDE_CONFIG = 3;//配置隐藏item
 
         private LayoutInflater mLayoutInflater;
 
@@ -212,18 +213,19 @@ public class ConfigShowTabPopWindow extends PopupWindow {
 
         private List<NewsTableBean> enableItems, disableItems;
 
-        public ConfigShowTabAdapter(ItemTouchHelper helper, List<NewsTableBean>... items) {
+        @SafeVarargs
+        ConfigShowTabAdapter(ItemTouchHelper helper, List<NewsTableBean>... items) {
             mLayoutInflater = LayoutInflater.from(mContext);
             this.mItemTouchHeler = helper;
             this.enableItems = items[0];
             this.disableItems = items[1];
         }
 
-        public List<NewsTableBean> getEnableItems() {
+        List<NewsTableBean> getEnableItems() {
             return enableItems;
         }
 
-        public List<NewsTableBean> getDisableItems() {
+        List<NewsTableBean> getDisableItems() {
             return disableItems;
         }
 
@@ -239,6 +241,9 @@ public class ConfigShowTabPopWindow extends PopupWindow {
             return TYPE_CONFIGSHOWTAB_HIDE_CONFIG;
         }
 
+        private TextView editTv;
+
+        @SuppressLint("ClickableViewAccessibility")
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             final View view;
@@ -246,6 +251,7 @@ public class ConfigShowTabPopWindow extends PopupWindow {
                 case TYPE_CONFIGSHOWTAB_SHOW_TITLE:
                     view = mLayoutInflater.inflate(R.layout.item_config_show_title, parent, false);
                     final ShowTitleViewHolder showTitleViewHolder = new ShowTitleViewHolder(view);
+                    editTv = showTitleViewHolder.editTv;
                     showTitleViewHolder.editTv.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -331,8 +337,7 @@ public class ConfigShowTabPopWindow extends PopupWindow {
                     return showConfigViewHolder;
                 case TYPE_CONFIGSHOWTAB_HIDE_TITLE:
                     view = mLayoutInflater.inflate(R.layout.item_config_hide_title, parent, false);
-                    final HideTitleViewHolder hideTitleViewHolder = new HideTitleViewHolder(view);
-                    return hideTitleViewHolder;
+                    return new HideTitleViewHolder(view);
                 case TYPE_CONFIGSHOWTAB_HIDE_CONFIG:
                     view = mLayoutInflater.inflate(R.layout.item_config_content, parent, false);
                     final HideConfigViewHolder hideConfigViewHolder = new HideConfigViewHolder(view);
@@ -361,7 +366,7 @@ public class ConfigShowTabPopWindow extends PopupWindow {
         /**
          * 显示 移动到 隐藏
          *
-         * @param viewHolder
+         * @param viewHolder viewholder
          */
         private void moveShowToHide(ShowConfigViewHolder viewHolder) {
             int position = viewHolder.getAdapterPosition();
@@ -377,10 +382,10 @@ public class ConfigShowTabPopWindow extends PopupWindow {
         /**
          * 过渡动画
          *
-         * @param recyclerView
-         * @param currentView
-         * @param targetX
-         * @param targetY
+         * @param recyclerView recyclerView
+         * @param currentView  view
+         * @param targetX      x
+         * @param targetY      y
          */
         private void startAnimation(RecyclerView recyclerView, final View currentView, float targetX, float targetY) {
             final ViewGroup viewGroup = (ViewGroup) recyclerView.getParent();
@@ -418,9 +423,9 @@ public class ConfigShowTabPopWindow extends PopupWindow {
         /**
          * 创建一个平移动画
          *
-         * @param targetX
-         * @param targetY
-         * @return
+         * @param targetX x
+         * @param targetY y
+         * @return animation
          */
         private TranslateAnimation createTranslateAnimation(float targetX, float targetY) {
             TranslateAnimation translateAnimation = new TranslateAnimation(
@@ -437,10 +442,10 @@ public class ConfigShowTabPopWindow extends PopupWindow {
         /**
          * 获取一个镜像
          *
-         * @param parent
-         * @param recyclerView
-         * @param view
-         * @return
+         * @param parent       ViewGroup
+         * @param recyclerView recyclerView
+         * @param view         view
+         * @return view
          */
         private ImageView addMirrorView(ViewGroup parent, RecyclerView recyclerView, View view) {
             view.destroyDrawingCache();
@@ -520,7 +525,7 @@ public class ConfigShowTabPopWindow extends PopupWindow {
         class ShowTitleViewHolder extends RecyclerView.ViewHolder {
             TextView editTv;
 
-            public ShowTitleViewHolder(View itemView) {
+            ShowTitleViewHolder(View itemView) {
                 super(itemView);
                 editTv = (TextView) itemView.findViewById(R.id.tv_btn_edit);
             }
@@ -532,7 +537,7 @@ public class ConfigShowTabPopWindow extends PopupWindow {
 
             ImageView editImg;
 
-            public ShowConfigViewHolder(View itemView) {
+            ShowConfigViewHolder(View itemView) {
                 super(itemView);
                 textView = (TextView) itemView.findViewById(R.id.tv);
                 editImg = (ImageView) itemView.findViewById(R.id.img_edit);
@@ -551,7 +556,7 @@ public class ConfigShowTabPopWindow extends PopupWindow {
 
         class HideTitleViewHolder extends RecyclerView.ViewHolder {
 
-            public HideTitleViewHolder(View itemView) {
+            HideTitleViewHolder(View itemView) {
                 super(itemView);
             }
         }
@@ -560,7 +565,7 @@ public class ConfigShowTabPopWindow extends PopupWindow {
 
             TextView textView;
 
-            public HideConfigViewHolder(View itemView) {
+            HideConfigViewHolder(View itemView) {
                 super(itemView);
                 textView = (TextView) itemView.findViewById(R.id.tv);
             }
@@ -604,7 +609,7 @@ public class ConfigShowTabPopWindow extends PopupWindow {
 
     }
 
-    public synchronized <T extends Comparable<T>> boolean compare(List<T> a, List<T> b) {
+    private synchronized <T extends Comparable<T>> boolean compare(List<T> a, List<T> b) {
         if (a.size() != b.size())
             return false;
         for (int i = 0; i < a.size(); i++) {

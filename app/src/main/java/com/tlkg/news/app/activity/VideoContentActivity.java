@@ -18,7 +18,6 @@ import com.tlkg.news.app.util.StatusBarFullUtil;
 
 import butterknife.InjectView;
 import fm.jiecao.jcvideoplayer_lib.JCUserAction;
-import fm.jiecao.jcvideoplayer_lib.JCUserActionStandard;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
@@ -29,15 +28,8 @@ public class VideoContentActivity extends BaseActivity implements NewsVideoPrese
     @InjectView(R.id.jc_video)
     MyJCVideoPlayerStandard jcVideo;
 
-    private String groupId;
-    private String itemId;
     private String videoId;
-    private String videoTitle;
-    private String shareUrl;
-    private MultiNewsArticleDataBean dataBean;
     private int currentAction;
-
-    private NewsVideoPresenter presenter;
 
     public static void startActivity(MultiNewsArticleDataBean bean) {
         NewsClientApplication.getAppContext().startActivity(new Intent(
@@ -54,8 +46,8 @@ public class VideoContentActivity extends BaseActivity implements NewsVideoPrese
     @Override
     public void initData(Bundle bundle) {
         try {
-            dataBean = bundle.getParcelable(TAG);
-            if (null != dataBean.getVideo_detail_info()) {
+            MultiNewsArticleDataBean dataBean = bundle.getParcelable(TAG);
+            if (dataBean != null && dataBean.getVideo_detail_info() != null) {
                 if (null != dataBean.getVideo_detail_info().getDetail_video_large_image()) {
                     String image = dataBean.getVideo_detail_info().getDetail_video_large_image().getUrl();
                     if (!TextUtils.isEmpty(image)) {
@@ -63,12 +55,11 @@ public class VideoContentActivity extends BaseActivity implements NewsVideoPrese
                     }
                 }
             }
-            this.groupId = dataBean.getGroup_id() + "";
-            this.itemId = dataBean.getItem_id() + "";
-            this.videoId = dataBean.getVideo_id();
-            this.videoTitle = dataBean.getTitle();
-            this.shareUrl = dataBean.getDisplay_url();
+            if (dataBean != null) {
+                this.videoId = dataBean.getVideo_id();
+            }
         } catch (NullPointerException e) {
+            e.printStackTrace();
         }
     }
 
@@ -79,7 +70,7 @@ public class VideoContentActivity extends BaseActivity implements NewsVideoPrese
 
     @Override
     protected void initViews() {
-        presenter = new NewsVideoPresenter(this);
+        NewsVideoPresenter presenter = new NewsVideoPresenter(this);
         presenter.load();
     }
 
@@ -88,7 +79,7 @@ public class VideoContentActivity extends BaseActivity implements NewsVideoPrese
         MyJCVideoPlayerStandard.setOnClickFullScreenListener(new MyJCVideoPlayerStandard.onClickFullScreenListener() {
             @Override
             public void onClickFullScreen() {
-                if (currentAction == JCUserAction.ON_ENTER_FULLSCREEN && CommonSettingUtil.getInstance().getIsVideoForceLandscape()) {
+                if (currentAction == JCUserAction.ON_ENTER_FULLSCREEN) {
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 }
             }
@@ -128,19 +119,25 @@ public class VideoContentActivity extends BaseActivity implements NewsVideoPrese
     @Override
     public void onSetVidoeUrl(String url) {
         jcVideo.setUp(url, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL);
-        jcVideo.startButton.performClick();
+        if (CommonSettingUtil.getInstance().getWifiAutoPlayVidoe()) {
+            jcVideo.startButton.performClick();
+        }
+        if (CommonSettingUtil.getInstance().getIsVideoForceLandscape()) {
+            currentAction = JCUserAction.ON_ENTER_FULLSCREEN;
+            jcVideo.fullscreenButton.performClick();
+        }
         // 设置监听事件 判断是否进入全屏
         JCVideoPlayer.setJcUserAction(new JCUserAction() {
             @Override
             public void onEvent(int type, String url, int screen, Object... objects) {
-                if (type == JCUserActionStandard.ON_CLICK_START_THUMB ||
-                        type == JCUserAction.ON_CLICK_START_ICON ||
-                        type == JCUserAction.ON_CLICK_RESUME ||
-                        type == JCUserAction.ON_CLICK_START_AUTO_COMPLETE) {
-                }
+//                if (type == JCUserActionStandard.ON_CLICK_START_THUMB ||
+//                        type == JCUserAction.ON_CLICK_START_ICON ||
+//                        type == JCUserAction.ON_CLICK_RESUME ||
+//                        type == JCUserAction.ON_CLICK_START_AUTO_COMPLETE) {
+//                }
 
-                if (type == JCUserAction.ON_CLICK_PAUSE || type == JCUserAction.ON_AUTO_COMPLETE) {
-                }
+//                if (type == JCUserAction.ON_CLICK_PAUSE || type == JCUserAction.ON_AUTO_COMPLETE) {
+//                }
                 if (type == JCUserAction.ON_ENTER_FULLSCREEN) {
                     currentAction = JCUserAction.ON_ENTER_FULLSCREEN;
                 }
