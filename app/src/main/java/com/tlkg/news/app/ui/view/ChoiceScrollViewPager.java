@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 
 /**
  * Created by wuxiaoqi on 2017/9/22.
+ * 自定义的ViewPager
  */
 
 public class ChoiceScrollViewPager extends ViewPager {
@@ -21,14 +22,6 @@ public class ChoiceScrollViewPager extends ViewPager {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        //TODO
         return super.onInterceptTouchEvent(ev);
-    }
-
-
-    @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        //TODO
-        return super.onTouchEvent(ev);
     }
 }

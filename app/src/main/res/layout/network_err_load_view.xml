@@ -10,6 +10,7 @@
         android:id="@+id/network_err_load_img"
         android:layout_width="@dimen/x200"
         android:layout_height="@dimen/x200"
+        android:contentDescription="@null"
         android:scaleType="fitXY"
         android:src="@drawable/ic_sentiment_dissatisfied_white_48dp" />
 

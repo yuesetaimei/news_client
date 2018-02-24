@@ -1,7 +1,6 @@
 package com.tlkg.news.app.ui.view;
 
 import android.content.Context;
-import android.support.v4.view.MotionEventCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -9,6 +8,7 @@ import android.view.MotionEvent;
 
 /**
  * Created by wuxiaoqi on 2017/9/24.
+ * 自定义 SwipeRefreshLayout
  */
 
 public class ChoiceSwipeRefreshLayout extends SwipeRefreshLayout {
@@ -65,10 +65,5 @@ public class ChoiceSwipeRefreshLayout extends SwipeRefreshLayout {
             return super.onInterceptTouchEvent(ev);
         }
         return false;
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        return super.onTouchEvent(ev);
     }
 }

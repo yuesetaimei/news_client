@@ -29,6 +29,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="?attr/selectableItemBackground"
+            android:contentDescription="@null"
             android:foreground="?attr/selectableItemBackground"
             android:maxHeight="?attr/actionBarSize"
             android:paddingBottom="4dp"

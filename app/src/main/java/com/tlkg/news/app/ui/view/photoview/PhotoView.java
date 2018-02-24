@@ -15,6 +15,7 @@
  *******************************************************************************/
 package com.tlkg.news.app.ui.view.photoview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -26,6 +27,7 @@ import android.view.GestureDetector;
 import android.widget.ImageView;
 
 
+@SuppressLint("AppCompatCustomView")
 public class PhotoView extends ImageView implements IPhotoView {
 
     private PhotoViewAttacher mAttacher;

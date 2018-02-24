@@ -44,7 +44,8 @@
                         android:background="@color/colorPrimary"
                         android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                         app:contentInsetStart="0.0dp"
-                        app:layout_scrollFlags="scroll|enterAlways|snap">
+                        app:layout_scrollFlags="scroll|enterAlways|snap"
+                        tools:targetApi="lollipop">
 
                         <FrameLayout
                             android:id="@+id/activity_main_title_menu"
