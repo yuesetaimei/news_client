@@ -40,13 +40,15 @@ public class NewsContentActivity extends BaseSlidrActivity implements NewsConten
     @InjectView(R.id.webview)
     WebView mWebView;
 
+    @InjectView(R.id.mask_view)
+    View mastView;
+
     @InjectView(R.id.pb_progress)
     ContentLoadingProgressBar pb_progress;
 
     private MultiNewsArticleDataBean bean;
-    private String imgUrl;
+    //    private String imgUrl;
     private NewsContentPresenter presenter;
-
 
     public static void startActivity(MultiNewsArticleDataBean bean) {
         NewsClientApplication.getAppContext().startActivity(new Intent(NewsClientApplication.getAppContext(), NewsContentActivity.class)
@@ -70,8 +72,9 @@ public class NewsContentActivity extends BaseSlidrActivity implements NewsConten
     public void initData(Bundle bundle) {
         try {
             bean = bundle.getParcelable(TAG);
-            imgUrl = bundle.getString(IMG);
+//            imgUrl = bundle.getString(IMG);
         } catch (Exception e) {
+            e.printStackTrace();
         }
         presenter = new NewsContentPresenter(this, bean);
     }
@@ -186,6 +189,12 @@ public class NewsContentActivity extends BaseSlidrActivity implements NewsConten
     @Override
     public void onHideLoading() {
         pb_progress.hide();
+        mastView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mastView.setVisibility(View.GONE);
+            }
+        }, 1000);
     }
 
     @Override

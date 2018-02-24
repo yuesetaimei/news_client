@@ -7,6 +7,9 @@
     <color name="viewBackground">@android:color/white</color>
     <color name="textColorPrimary">#616161</color>
 
+    <color name="my_text_color">#000000</color>
+    <color name="item_movie_color">#ffffff</color>
+
     <color name="colorPageBg">#f2f4f5</color>
     <color name="colorTopPageBg">#22cccccc</color>
 

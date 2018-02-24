@@ -4,9 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,6 +23,7 @@ import com.tlkg.news.app.event.AnimTranEvent;
 import com.tlkg.news.app.event.ClearCacheEvent;
 import com.tlkg.news.app.event.ShowMyFragmentCircleEvent;
 import com.tlkg.news.app.util.CacheDataManager;
+import com.tlkg.news.app.util.CommonSettingUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -131,7 +135,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                 RegisterOrLoginActivity.startActivity(getActivity());
                 break;
             case R.id.fragment_my_theme:
-
+                switchLightMode();
                 break;
             case R.id.fragment_my_setting:
                 SettingActivity.startActivity(getActivity());
@@ -145,6 +149,25 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    private void switchLightMode() {
+        int mode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        if (mode == Configuration.UI_MODE_NIGHT_YES) {
+            CommonSettingUtil.getInstance().setNightMode(false);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        } else {
+            CommonSettingUtil.getInstance().setNightMode(true);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        getActivity().getWindow().setWindowAnimations(R.style.WindowAnimationFadeInOut);
+        getActivity().recreate();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                EventBus.getDefault().post(new ShowMyFragmentCircleEvent());
+            }
+        }, 400);
     }
 
     private void showCacheDialog() {

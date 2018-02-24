@@ -95,6 +95,15 @@ public class CommonSettingUtil {
     }
 
     /**
+     * 保存设置夜间模式
+     *
+     * @param nightMode 值
+     */
+    public void setNightMode(boolean nightMode) {
+        sharedPreferences.edit().putBoolean("switch_nightMode", nightMode).apply();
+    }
+
+    /**
      * 获取是否开启导航栏上色
      */
     public boolean getNavBar() {

@@ -13,6 +13,7 @@ import com.tlkg.news.app.util.CommonSettingUtil;
 
 /**
  * Created by wuxiaoqi on 2018/2/8.
+ * 自动切换夜间模式设置
  */
 
 public class AutoNightSwitchFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener {

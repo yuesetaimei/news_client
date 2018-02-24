@@ -106,9 +106,9 @@ public class NewsContentPresenter extends BasePresenter<NewsContentPresenter.INe
         String content = bean.getData().getContent();
         if (content != null) {
 
-            String css = "<link rel=\"stylesheet\" href=\"file:///android_asset/toutiao_light.css\" type=\"text/css\">";
+            String css = "<link rel=\"stylesheet\" href=\"file:///android_asset/news_light.css\" type=\"text/css\">";
             if (CommonSettingUtil.getInstance().getIsNightMode()) {
-                css = css.replace("toutiao_light", "toutiao_dark");
+                css = css.replace("news_light", "news_dark");
             }
 
             String html = "<!DOCTYPE html>\n" +

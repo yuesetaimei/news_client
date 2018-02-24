@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical"
     tools:context="com.tlkg.news.app.activity.NewsContentActivity">
 
@@ -18,6 +17,13 @@
         android:layout_height="match_parent"
         android:layout_below="@id/title_view"
         android:background="@color/windowBackground" />
+
+    <View
+        android:id="@+id/mask_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_view"
+        android:background="@color/viewBackground" />
 
     <android.support.v4.widget.ContentLoadingProgressBar
         android:id="@+id/pb_progress"

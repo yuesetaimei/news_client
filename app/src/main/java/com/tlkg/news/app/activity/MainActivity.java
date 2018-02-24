@@ -196,7 +196,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         toolBarHeadImg.post(new Runnable() {
             @Override
             public void run() {
-                myCircleImageView = addMirrorView(parentRl, toolBarHeadImg);
+                try {
+                    myCircleImageView = addMirrorView(parentRl, toolBarHeadImg);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
