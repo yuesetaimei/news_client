@@ -151,7 +151,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (manager.findFragmentById(getContentFragmentId()) != null) {
             manager.beginTransaction()
                     .remove(manager.findFragmentById(getContentFragmentId()))
-                    .commit();
+                    .commitAllowingStateLoss();
         }
 //        setFragment(currentIndex);
     }
@@ -192,7 +192,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             if (childFragment == null) return;
             ft.replace(getContentFragmentId(), childFragment, tag)
                     .addToBackStack(tag)
-                    .commit();
+                    .commitAllowingStateLoss();
             mCurrentFragment = childFragment;
             mCurrentTag = tag;
         }
