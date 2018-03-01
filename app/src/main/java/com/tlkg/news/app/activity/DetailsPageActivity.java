@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.CardView;
@@ -57,6 +58,9 @@ public class DetailsPageActivity extends BaseSlidrActivity implements DetailsPre
 
     @InjectView(R.id.activity_details_page_appbar_layout)
     AppBarLayout appBarLayout;
+
+    @InjectView(R.id.activity_details_page_collapsing_toolbar_layout)
+    CollapsingToolbarLayout collapsingToolbarLayout;
 
     @InjectView(R.id.activity_details_page_toolbar)
     Toolbar toolbar;
@@ -206,7 +210,7 @@ public class DetailsPageActivity extends BaseSlidrActivity implements DetailsPre
                         .setAction(Intent.ACTION_SEND)
                         .setType("text/plain")
                         .putExtra(Intent.EXTRA_TEXT, mBean.getTitle() + "https://movie.douban.com/subject/" + mBean.getId() + "/?from=showing");
-                startActivity(Intent.createChooser(shareIntent, "分享"));
+                startActivity(Intent.createChooser(shareIntent, getString(R.string.action_share)));
             }
         });
     }
@@ -322,5 +326,12 @@ public class DetailsPageActivity extends BaseSlidrActivity implements DetailsPre
             DetailPersonClienEvent detailPersonClienEvent = (DetailPersonClienEvent) event;
             WebViewActivity.startActivity(this, detailPersonClienEvent.mLoadUrl, detailPersonClienEvent.mTitle);
         }
+    }
+
+    @Override
+    protected void setThemeColor(int color) {
+        collapsingToolbarLayout.setBackgroundColor(color);
+        collapsingToolbarLayout.setContentScrimColor(color);
+        collapsingToolbarLayout.setStatusBarScrimColor(color);
     }
 }
