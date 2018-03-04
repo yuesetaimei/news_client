@@ -19,6 +19,7 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.color.CircleView;
 import com.tlkg.news.app.NewsClientApplication;
 import com.tlkg.news.app.R;
 import com.tlkg.news.app.base.BaseSlidrActivity;
@@ -201,5 +202,13 @@ public class WebViewActivity extends BaseSlidrActivity {
     @Override
     public void initEvent() {
 
+    }
+
+    @Override
+    protected void setThemeColor(int color) {
+        toolbar.setBackgroundColor(color);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(CircleView.shiftColorDown(color));
+        }
     }
 }
