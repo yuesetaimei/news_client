@@ -100,9 +100,6 @@ public class VideoContentActivity extends BaseActivity implements NewsVideoPrese
 
     @Override
     public void onBackPressed() {
-        if (JCVideoPlayer.backPress()) {
-            return;
-        }
         super.onBackPressed();
     }
 
