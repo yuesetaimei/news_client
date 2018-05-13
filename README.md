@@ -15,10 +15,10 @@
 新闻一刻App中大部分 API 收集自网络, 本程序仅供学习交流, 不可用于任何商业用途
 
 ## Screenshots
-<img width="173" height=“274” src="https://github.com/wuxiaoqi123/news_client/tree/master/img/img-1.png"></img>
-<img width="173" height=“274” src="https://github.com/wuxiaoqi123/news_client/tree/master/img/img-2.png"></img>
-<img width="173" height=“274” src="https://github.com/wuxiaoqi123/news_client/tree/master/img/img-3.png"></img>
-<img width="173" height=“274” src="https://github.com/wuxiaoqi123/news_client/tree/master/img/img-4.png"></img>
+<img width="173" height=“274” src="https://raw.githubusercontent.com/wuxiaoqi123/news_client/master/img/img-1.png"></img>
+<img width="173" height=“274” src="https://raw.githubusercontent.com/wuxiaoqi123/news_client/master/img/img-2.png"></img>
+<img width="173" height=“274” src="https://raw.githubusercontent.com/wuxiaoqi123/news_client/master/img/img-3.png"></img>
+<img width="173" height=“274” src="https://raw.githubusercontent.com/wuxiaoqi123/news_client/master/img/img-4.png"></img>
 
 
 
